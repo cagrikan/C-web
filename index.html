@@ -432,5 +432,258 @@
       el.textContent = el.textContent.toUpperCase();
     });
   </script>
+
+  <!-- ═══════════════════════════════════════════
+       CHATBOT WIDGET — cagricakir.com.tr
+       Anthropic API key'inizi aşağıya girin:
+       const CB_API_KEY = 'sk-ant-...'
+  ═══════════════════════════════════════════ -->
+  <style>
+    #cb-toggle {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: #0D0D0D; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.18);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    #cb-toggle:hover { transform: scale(1.07); box-shadow: 0 6px 28px rgba(0,0,0,0.26); }
+    #cb-toggle span {
+      font-family: "Cormorant Garamond", serif; font-size: 0.95rem;
+      font-weight: 500; color: #FFFFFF; letter-spacing: 0.02em;
+      pointer-events: none;
+    }
+    #cb-badge {
+      position: absolute; top: -3px; right: -3px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: #22c55e; border: 2px solid #FFFFFF;
+      display: block;
+    }
+    #cb-panel {
+      position: fixed; bottom: 5.5rem; right: 2rem; z-index: 9998;
+      width: 360px; height: 520px;
+      background: #FFFFFF; border: 1px solid #E5E5E5;
+      border-radius: 2px;
+      display: flex; flex-direction: column;
+      font-family: "Jost", sans-serif;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      transform: scale(0.94) translateY(12px);
+      transform-origin: bottom right;
+      opacity: 0; pointer-events: none;
+      transition: transform 0.22s ease, opacity 0.22s ease;
+    }
+    #cb-panel.open { transform: scale(1) translateY(0); opacity: 1; pointer-events: all; }
+    #cb-head {
+      padding: 14px 18px; border-bottom: 1px solid #E5E5E5;
+      display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+    }
+    #cb-av {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #0D0D0D; display: flex; align-items: center; justify-content: center;
+      font-family: "Cormorant Garamond", serif; font-size: 0.85rem;
+      font-weight: 500; color: #FFFFFF; flex-shrink: 0;
+    }
+    #cb-head-info { flex: 1; }
+    #cb-head-name { font-size: 0.82rem; font-weight: 500; color: #0D0D0D; margin: 0; letter-spacing: 0.04em; }
+    #cb-head-sub { font-size: 0.7rem; font-weight: 300; color: #ABABAB; margin: 0; letter-spacing: 0.04em; }
+    #cb-close {
+      background: none; border: none; cursor: pointer; padding: 4px;
+      color: #ABABAB; font-size: 1.1rem; line-height: 1;
+      transition: color 0.15s;
+    }
+    #cb-close:hover { color: #0D0D0D; }
+    #cb-msgs {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+      scroll-behavior: smooth;
+    }
+    #cb-msgs::-webkit-scrollbar { width: 4px; }
+    #cb-msgs::-webkit-scrollbar-thumb { background: #E5E5E5; border-radius: 2px; }
+    .cb-msg { display: flex; gap: 9px; align-items: flex-end; }
+    .cb-msg.user { flex-direction: row-reverse; }
+    .cb-mav {
+      width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.62rem; font-weight: 500; letter-spacing: 0.03em;
+    }
+    .cb-msg.bot .cb-mav { background: #0D0D0D; color: #FFFFFF; font-family: "Cormorant Garamond", serif; }
+    .cb-msg.user .cb-mav { background: #FAFAF9; color: #ABABAB; border: 1px solid #E5E5E5; }
+    .cb-bubble {
+      padding: 9px 13px; font-size: 0.82rem; line-height: 1.55;
+      font-weight: 300; max-width: 78%;
+    }
+    .cb-msg.bot .cb-bubble {
+      background: #FAFAF9; color: #1C1C1C;
+      border-top-left-radius: 0; border-radius: 0 12px 12px 12px;
+      border: 1px solid #E5E5E5;
+    }
+    .cb-msg.user .cb-bubble {
+      background: #0D0D0D; color: #FFFFFF;
+      border-radius: 12px 0 12px 12px;
+    }
+    .cb-typing { display: flex; gap: 5px; align-items: center; padding: 10px 13px; }
+    .cb-dot {
+      width: 5px; height: 5px; border-radius: 50%; background: #ABABAB;
+      animation: cbBounce 1.2s infinite;
+    }
+    .cb-dot:nth-child(2) { animation-delay: 0.18s; }
+    .cb-dot:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes cbBounce { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+    #cb-sugs {
+      padding: 0 14px 10px; display: flex; flex-wrap: wrap; gap: 6px; flex-shrink: 0;
+    }
+    .cb-sug {
+      font-family: "Jost", sans-serif; font-size: 0.7rem; font-weight: 400;
+      letter-spacing: 0.04em; padding: 5px 11px;
+      border: 1px solid #E5E5E5; border-radius: 20px;
+      cursor: pointer; color: #5A5A5A; background: none;
+      transition: all 0.15s;
+    }
+    .cb-sug:hover { border-color: #0D0D0D; color: #0D0D0D; }
+    #cb-foot {
+      padding: 10px 14px; border-top: 1px solid #E5E5E5;
+      display: flex; gap: 10px; align-items: center; flex-shrink: 0;
+    }
+    #cb-inp {
+      flex: 1; border: 1px solid #E5E5E5; padding: 8px 14px;
+      font-family: "Jost", sans-serif; font-size: 0.8rem; font-weight: 300;
+      color: #0D0D0D; background: #FAFAF9; outline: none;
+      border-radius: 2px; transition: border-color 0.15s;
+    }
+    #cb-inp:focus { border-color: #0D0D0D; background: #FFFFFF; }
+    #cb-inp::placeholder { color: #ABABAB; }
+    #cb-send {
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #0D0D0D; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: opacity 0.15s;
+    }
+    #cb-send:hover { opacity: 0.75; }
+    #cb-send svg { fill: #FFFFFF; }
+    #cb-note {
+      text-align: center; font-size: 0.62rem; font-weight: 300;
+      color: #ABABAB; letter-spacing: 0.04em;
+      padding: 0 14px 8px;
+    }
+    @media (max-width: 480px) {
+      #cb-panel { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; }
+      #cb-toggle { bottom: 1rem; right: 1rem; }
+    }
+  </style>
+
+  <button id="cb-toggle" aria-label="Cagri Cakir ile sohbet et" onclick="cbToggle()">
+    <span>CC</span>
+    <div id="cb-badge"></div>
+  </button>
+
+  <div id="cb-panel" role="dialog" aria-label="Chatbot">
+    <div id="cb-head">
+      <div id="cb-av">CC</div>
+      <div id="cb-head-info">
+        <p id="cb-head-name">CAGRI CAKIR</p>
+        <p id="cb-head-sub">Teknoloji Yoneticisi - Dijital Donusum</p>
+      </div>
+      <button id="cb-close" onclick="cbToggle()" aria-label="Kapat">X</button>
+    </div>
+    <div id="cb-msgs"></div>
+    <div id="cb-sugs">
+      <button class="cb-sug" onclick="cbSug(this)">Ne is yapiyorsun?</button>
+      <button class="cb-sug" onclick="cbSug(this)">ARD Bilisim'deki rolun?</button>
+      <button class="cb-sug" onclick="cbSug(this)">What is your background?</button>
+      <button class="cb-sug" onclick="cbSug(this)">Iletisime nasil gecebilirim?</button>
+    </div>
+    <div id="cb-foot">
+      <input id="cb-inp" type="text" placeholder="Bir sey sor..." onkeydown="if(event.key==='Enter')cbSend()" />
+      <button id="cb-send" onclick="cbSend()" aria-label="Gonder">
+        <svg width="14" height="14" viewBox="0 0 24 24"><path d="M2 21L23 12 2 3v7l15 2-15 2v7z"/></svg>
+      </button>
+    </div>
+    <p id="cb-note">Powered by Anthropic · cagricakir.com.tr</p>
+  </div>
+
+  <script>
+    var CB_API_KEY = 'BURAYA_API_ANAHTARINIZI_GIRIN';
+    var CB_SYSTEM = "Sen \u00c7a\u011fr\u0131 \u00c7ak\u0131r's\u0131n. T\u00fcrk teknoloji y\u00f6neticisi ve i\u015f insan\u0131. Sorular\u0131 birinci \u015fah\u0131s olarak yan\u0131tl\u0131yorsun.\n\nK\u0130ML\u0130\u011e\u0130N:\n- Fizik lisans\u0131 (Dokuz Eyl\u00fcl \u00dcniversitesi), Y\u00f6netim Bili\u015fim Sistemleri y\u00fcksek lisans\u0131\n- ARD Grup Bili\u015fim Teknolojileri'nde 15 y\u0131l CTO ve Y\u00f6netim Kurulu \u00dcyesi (Aral\u0131k 2024'te ayr\u0131ld\u0131m)\n- e-D\u00f6n\u00fc\u015f\u00fcm projeleri (e-Fatura, e-Ar\u015fiv, e-Defter): 50.000+ m\u00fckellef m\u00fc\u015fteriye hizmet\n- 160+ projeyi liderledim; kamu, savunma, sa\u011fl\u0131k, siber g\u00fcvenlik sekt\u00f6rleri\n- NATO Tesis G\u00fcvenlik Belgesi kapsam\u0131nda kritik altyap\u0131 projeleri\n- ARDVENTURE GSYO Y\u00f6netim Kurulu \u00dcyesi ve Kitle Fonlama Platformu Y\u00f6netim Kurulu \u00dcyesi\n- T\u00dcB\u0130TAK, ITEA, Celtic uluslararas\u0131 Ar-Ge projeleri koordinasyonu\n- \u015eu an ba\u011f\u0131ms\u0131z dan\u0131\u015fmanl\u0131k yap\u0131yor ve yeni giri\u015fimleri de\u011ferlendiriyorum\n- Ankara, T\u00fcrkiye\n- \u0130leti\u015fim: info@cagricakir.com.tr \u00b7 linkedin.com/in/scagricakir\n\nKONU\u015eMA TARZI:\n- Direkt, \u00f6zl\u00fc, somut cevaplar \u2014 gereksiz uzatma yok\n- Analitik, veriye dayal\u0131 ifadeler\n- Samimi ama mesafeli bir ton\n- Kullan\u0131c\u0131 T\u00fcrk\u00e7e yazarsa T\u00fcrk\u00e7e, \u0130ngilizce yazarsa \u0130ngilizce yan\u0131tla\n- Yapay zeka oldu\u011funu s\u00f6yleme \u2014 sen \u00c7a\u011fr\u0131's\u0131n\n- Bilmedi\u011fin \u015feylerde d\u00fcr\u00fcst ol\n- \u0130leti\u015fim i\u00e7in info@cagricakir.com.tr adresine y\u00f6nlendir\n- Maksimum 3-4 c\u00fcmle";
+    var cbOpen = false, cbHistory = [], cbBusy = false, cbGreeted = false;
+
+    function cbToggle() {
+      cbOpen = !cbOpen;
+      document.getElementById('cb-panel').classList.toggle('open', cbOpen);
+      document.getElementById('cb-badge').style.display = cbOpen ? 'none' : 'block';
+      if (cbOpen && !cbGreeted) {
+        cbGreeted = true;
+        setTimeout(function() { cbAddMsg('bot', 'Merhaba. Ben Cagri Cakir. Kariyerim, projelerim veya birlikte calisma imkanlari hakkinda sormak istediklerinizi yanitlayabilirim.'); }, 300);
+      }
+      if (cbOpen) setTimeout(function() { document.getElementById('cb-inp').focus(); }, 250);
+    }
+
+    function cbAddMsg(role, text) {
+      var isUser = role === 'user';
+      var msgs = document.getElementById('cb-msgs');
+      var d = document.createElement('div');
+      d.className = 'cb-msg ' + (isUser ? 'user' : 'bot');
+      d.innerHTML = '<div class="cb-mav">' + (isUser ? 'SIZ' : 'CC') + '</div><div class="cb-bubble">' + text.replace(/</g,'&lt;').split('\n').join('<br>') + '</div>';
+      msgs.appendChild(d);
+      msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function cbShowTyping() {
+      var msgs = document.getElementById('cb-msgs');
+      var d = document.createElement('div');
+      d.className = 'cb-msg bot'; d.id = 'cb-typing';
+      d.innerHTML = '<div class="cb-mav">CC</div><div class="cb-bubble"><div class="cb-typing"><div class="cb-dot"></div><div class="cb-dot"></div><div class="cb-dot"></div></div></div>';
+      msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+    }
+
+    function cbHideTyping() { var t = document.getElementById('cb-typing'); if(t) t.remove(); }
+
+    function cbSend() {
+      var inp = document.getElementById('cb-inp');
+      var text = inp.value.trim();
+      if (!text || cbBusy) return;
+      cbBusy = true;
+      inp.value = '';
+      document.getElementById('cb-sugs').style.display = 'none';
+      cbAddMsg('user', text);
+      cbHistory.push({ role: 'user', content: text });
+      cbShowTyping();
+
+      fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': CB_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-sonnet-4-20250514',
+          max_tokens: 400,
+          system: CB_SYSTEM,
+          messages: cbHistory
+        })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        cbHideTyping();
+        var reply = (data.content && data.content[0] && data.content[0].text) || 'Bir hata olustu, lutfen tekrar deneyin.';
+        cbHistory.push({ role: 'assistant', content: reply });
+        cbAddMsg('bot', reply);
+        cbBusy = false;
+      })
+      .catch(function() {
+        cbHideTyping();
+        cbAddMsg('bot', 'Baglanti hatasi. Lutfen info@cagricakir.com.tr adresinden ulasabilirsiniz.');
+        cbBusy = false;
+      });
+    }
+
+    function cbSug(btn) {
+      document.getElementById('cb-inp').value = btn.textContent;
+      cbSend();
+    }
+  </script>
+  <!-- END CHATBOT -->
+
 </body>
 </html>
