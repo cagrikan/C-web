@@ -60,9 +60,9 @@
     .kpi { background:var(--white); padding:2rem 1.75rem; }
     .kpi-val { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:400; line-height:1; margin-bottom:0.4rem; }
     .kpi-lbl { font-size:0.72rem; color:var(--mid); }
-    .profile-note { background:var(--off); padding:1.5rem 1.75rem; border:1px solid var(--rule); }
-    .profile-note p { font-size:0.82rem; color:var(--mid); line-height:1.75; }
-    .profile-note strong { font-weight:500; color:var(--dark); }
+    .profile-note { background:var(--black); padding:1.75rem 2rem; border:1px solid var(--black); margin-bottom:1.5rem; }
+    .profile-note p { font-size:0.85rem; color:rgba(255,255,255,0.75); line-height:1.75; }
+    .profile-note strong { font-weight:500; color:var(--white); }
 
     /* EXPERIENCE */
     #deneyim { border-bottom:1px solid var(--rule); }
@@ -198,14 +198,14 @@
           </div>
         </div>
         <div class="reveal">
+          <div class="profile-note">
+            <p><strong>Danışmanlık & Yöneticilik fırsatlarına açığım.</strong> Dijital dönüşüm, ERP mimarisi, Ar-Ge yönetimi ve kurumsal strateji konularında hizmet sunmaya hazırım.</p>
+          </div>
           <div class="kpi-grid">
             <div class="kpi"><div class="kpi-val">15+</div><div class="kpi-lbl">Yıl teknoloji liderliği</div></div>
             <div class="kpi"><div class="kpi-val">160+</div><div class="kpi-lbl">Tamamlanan proje</div></div>
             <div class="kpi"><div class="kpi-val">1M+</div><div class="kpi-lbl">Platform kullanıcısı</div></div>
             <div class="kpi"><div class="kpi-val">5</div><div class="kpi-lbl">Akademik derece</div></div>
-          </div>
-          <div class="profile-note">
-            <p><strong>Danışmanlık & Yöneticilik fırsatlarına açığım.</strong> Dijital dönüşüm, ERP mimarisi, Ar-Ge yönetimi ve kurumsal strateji konularında hizmet sunmaya hazırım.</p>
           </div>
         </div>
       </div>
@@ -395,7 +395,7 @@
       <div class="contact-grid">
         <div class="reveal">
           <h2>Birlikte<br>çalışalım.</h2>
-          <p>Dijital dönüşüm projeleri, ERP danışmanlığı, Ar-Ge yönetimi veya üst düzey yöneticilik fırsatları için iletişime geçebilirsiniz. Her iş birliği teklifini değerlendiririm.</p>
+          <p>Dijital dönüşüm projeleri, ERP danışmanlığı, Ar-Ge yönetimi veya üst düzey yöneticilik fırsatları için iletişime geçebilirsiniz. Yöneticilik, danışmanlık ve/veya iş birliği tekliflerinizi değerlendirmek isterim.</p>
         </div>
         <div class="reveal">
           <a href="https://www.linkedin.com/in/scagricakir/" target="_blank" class="contact-item">
@@ -425,6 +425,12 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // CSS text-transform:uppercase Türkçe locale'de i→İ yapıyor, JS ile düzelt
+    document.querySelectorAll('#yetenekler .tag, #yetenekler .skill-cat-label').forEach(el => {
+      el.style.textTransform = 'none';
+      el.textContent = el.textContent.toUpperCase();
+    });
   </script>
 </body>
 </html>

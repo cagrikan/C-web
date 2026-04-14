@@ -65,9 +65,9 @@
     .kpi { background:var(--white); padding:2rem 1.75rem; }
     .kpi-val { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:400; line-height:1; margin-bottom:0.4rem; }
     .kpi-lbl { font-size:0.72rem; color:var(--mid); }
-    .profile-note { background:var(--off); padding:1.5rem 1.75rem; border:1px solid var(--rule); }
-    .profile-note p { font-size:0.82rem; color:var(--mid); line-height:1.75; }
-    .profile-note strong { font-weight:500; color:var(--dark); }
+    .profile-note { background:var(--black); padding:1.75rem 2rem; border:1px solid var(--black); margin-bottom:1.5rem; }
+    .profile-note p { font-size:0.85rem; color:rgba(255,255,255,0.75); line-height:1.75; }
+    .profile-note strong { font-weight:500; color:var(--white); }
 
     /* EXPERIENCE */
     #experience { border-bottom:1px solid var(--rule); }
@@ -198,14 +198,14 @@
           </div>
         </div>
         <div class="reveal">
+          <div class="profile-note">
+            <p><strong>Open to consulting & executive opportunities.</strong> Available to provide services in digital transformation, ERP architecture, R&D management, and corporate strategy.</p>
+          </div>
           <div class="kpi-grid">
             <div class="kpi"><div class="kpi-val">15+</div><div class="kpi-lbl">Years of technology leadership</div></div>
             <div class="kpi"><div class="kpi-val">160+</div><div class="kpi-lbl">Completed projects</div></div>
             <div class="kpi"><div class="kpi-val">1M+</div><div class="kpi-lbl">Platform users</div></div>
             <div class="kpi"><div class="kpi-val">5</div><div class="kpi-lbl">Academic degrees</div></div>
-          </div>
-          <div class="profile-note">
-            <p><strong>Open to consulting & executive opportunities.</strong> Available to provide services in digital transformation, ERP architecture, R&D management, and corporate strategy.</p>
           </div>
         </div>
       </div>
@@ -395,7 +395,7 @@
       <div class="contact-grid">
         <div class="reveal">
           <h2>Let's work<br>together.</h2>
-          <p>Feel free to reach out for digital transformation projects, ERP consulting, R&D management, or senior executive opportunities. I consider every collaboration proposal.</p>
+          <p>Feel free to reach out for digital transformation projects, ERP consulting, R&D management, or senior executive opportunities. I would be happy to consider your executive, consulting and/or collaboration proposals.</p>
         </div>
         <div class="reveal">
           <a href="https://www.linkedin.com/in/scagricakir/" target="_blank" class="contact-item">
@@ -425,6 +425,12 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Fix CSS text-transform uppercase i→İ issue in Turkish locale
+    document.querySelectorAll('#skills .tag, #skills .skill-cat-label').forEach(el => {
+      el.style.textTransform = 'none';
+      el.textContent = el.textContent.toUpperCase();
+    });
   </script>
 </body>
 </html>
