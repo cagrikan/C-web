@@ -666,14 +666,14 @@
       .then(function(r) { return r.json(); })
       .then(function(data) {
         cbHideTyping();
-        var reply = (data.content && data.content[0] && data.content[0].text) || 'Bir hata olustu, lutfen tekrar deneyin.';
+        var reply = (data.content && data.content[0] && data.content[0].text) || ('API Hatasi: ' + (data.error && data.error.message ? data.error.message : JSON.stringify(data)));
         cbHistory.push({ role: 'assistant', content: reply });
         cbAddMsg('bot', reply);
         cbBusy = false;
       })
-      .catch(function() {
+      .catch(function(err) {
         cbHideTyping();
-        cbAddMsg('bot', 'Baglanti hatasi. Lutfen info@cagricakir.com.tr adresinden ulasabilirsiniz.');
+        cbAddMsg('bot', 'Network hatasi: ' + (err && err.message ? err.message : String(err)));
         cbBusy = false;
       });
     }
