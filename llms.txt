@@ -24,6 +24,8 @@ Fizik (Dokuz Eylül Üniversitesi), İşletme Yönetimi (Anadolu Üniversitesi),
 - [Ana Sayfa (İngilizce)](https://cagricakir.com.tr/index_en.html): CV, experience, education and skills in English.
 - [Dijital Dönüşüm Danışmanı Nedir?](https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html): Dijital dönüşüm danışmanlığının ne olduğu ve KOBİ'ler için dijital dönüşüm yol haritası hakkında bilgilendirici içerik.
 - [What Does a Digital Transformation Consultant Do?](https://cagricakir.com.tr/digital-transformation-consultant.html): English version — the role of a digital transformation consultant and a roadmap for SMEs.
+- [GEO Nedir?](https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html): Generative Engine Optimization (GEO) nedir, markalar yapay zeka motorlarında nasıl görünür olur.
+- [What Is GEO?](https://cagricakir.com.tr/geo-ai-visibility-guide.html): English version — what Generative Engine Optimization is and how brands become visible in AI engines.
 
 ## İletişim
 
