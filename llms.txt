@@ -23,6 +23,7 @@ Fizik (Dokuz Eylül Üniversitesi), İşletme Yönetimi (Anadolu Üniversitesi),
 - [Ana Sayfa (Türkçe)](https://cagricakir.com.tr/index.html): Özgeçmiş, deneyim, eğitim ve yetkinlikler.
 - [Ana Sayfa (İngilizce)](https://cagricakir.com.tr/index_en.html): CV, experience, education and skills in English.
 - [Dijital Dönüşüm Danışmanı Nedir?](https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html): Dijital dönüşüm danışmanlığının ne olduğu ve KOBİ'ler için dijital dönüşüm yol haritası hakkında bilgilendirici içerik.
+- [What Does a Digital Transformation Consultant Do?](https://cagricakir.com.tr/digital-transformation-consultant.html): English version — the role of a digital transformation consultant and a roadmap for SMEs.
 
 ## İletişim
 
