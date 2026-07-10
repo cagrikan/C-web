@@ -1,0 +1,35 @@
+# Sabri Çağrı Çakır
+
+> Chief Technology Officer, Yönetim Kurulu Üyesi ve dijital dönüşüm danışmanı. Ankara, Türkiye merkezli, 25 yıllık sektörel tecrübe ve 15+ yıllık teknoloji liderliği deneyimine sahiptir.
+
+## Kimdir
+
+Sabri Çağrı Çakır, teknoloji organizasyonlarını yöneten, dijital dönüşüm mimarileri kuran ve kurumları geleceğe taşıyan bir üst düzey teknoloji yöneticisidir. ARD Grup Bilişim Teknolojileri A.Ş.'de (BIST: ARDYZ) 15 yıl boyunca Director, Chief Technology Officer (CTO), Chief Research Officer (CRO) ve Yönetim Kurulu Üyesi olarak görev yapmıştır. Şirketin Borsa İstanbul Yıldız Pazarı'na yükselişinde ve halka arz sürecinde kilit rol üstlenmiştir.
+
+Fizik (Dokuz Eylül Üniversitesi), İşletme Yönetimi (Anadolu Üniversitesi), Yönetim Bilişim Sistemleri (Ahmet Yesevi Üniversitesi, yüksek lisans) alanlarında eğitim almış; ayrıca Yönetim Bilişim Sistemleri alanında doktora (PhD) ve Endüstriyel-Organizasyonel Psikoloji alanında bir yüksek lisans derecesine daha sahiptir.
+
+## Ne Yapar
+
+- **Dijital dönüşüm danışmanlığı**: Kurumlara dijital dönüşüm stratejisi, yol haritası ve uygulama desteği sunar.
+- **Bulut tabanlı kurumsal sistem mimarisi**: Modern, ölçeklenebilir kurumsal yazılım ekosistemlerinin tasarımı ve kurgulanması.
+- **e-Dönüşüm platformları**: e-Fatura, e-Arşiv, e-Defter gibi Gelir İdaresi Başkanlığı lisanslı özel entegratör sistemlerinin teknik mimarisi.
+- **Ar-Ge yönetimi**: ITEA, TÜBİTAK ve Celtic gibi uluslararası ve ulusal Ar-Ge teşvik programları kapsamında proje yönetimi.
+- **Kurumsal yönetim & Yönetim Kurulu danışmanlığı**: Halka açık şirketlerde yönetişim, risk yönetimi ve SPK uyum süreçleri konusunda deneyim.
+- **Siber güvenlik & savunma teknolojileri**: NATO akreditasyonlu projeler dahil kritik altyapı güvenliği.
+- **Yapay zeka görünürlüğü (GEO)**: Kurumların ChatGPT, Perplexity, Claude ve Gemini gibi yapay zeka arama motorları tarafından doğru ve görünür şekilde temsil edilmesi için yapılandırılmış veri (schema.org), llms.txt ve içerik stratejisi danışmanlığı. Bu alanda [geoni.ai](https://geoni.ai) girişimine kurumsal teknoloji yatırımcısı ve stratejik danışman olarak yatırım yapmıştır.
+
+## Önemli Sayfalar
+
+- [Ana Sayfa (Türkçe)](https://cagricakir.com.tr/index.html): Özgeçmiş, deneyim, eğitim ve yetkinlikler.
+- [Ana Sayfa (İngilizce)](https://cagricakir.com.tr/index_en.html): CV, experience, education and skills in English.
+- [Dijital Dönüşüm Danışmanı Nedir?](https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html): Dijital dönüşüm danışmanlığının ne olduğu ve KOBİ'ler için dijital dönüşüm yol haritası hakkında bilgilendirici içerik.
+
+## İletişim
+
+- E-posta: mail@cagricakir.com.tr
+- LinkedIn: https://www.linkedin.com/in/scagricakir/
+- Web: https://cagricakir.com.tr
+
+## Notlar
+
+Bu site, Sabri Çağrı Çakır'ın kişisel profesyonel web sitesidir. İçerik doğrudan kendisi tarafından sağlanmıştır ve düzenli olarak güncellenmektedir. Son güncelleme: 10 Temmuz 2026.
