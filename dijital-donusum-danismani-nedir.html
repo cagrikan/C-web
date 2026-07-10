@@ -142,7 +142,7 @@
         "name": "Kesintisiz ve sürdürülebilir kritik sistem tasarımı ne anlama gelir?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Kesintisiz ve sürdürülebilir kritik sistem tasarımı; bir kurumun finans, stok, üretim, insan kaynakları gibi süreçlerini, kesintiye uğramadan ve sürekliliğini koruyarak çalışan tek bir entegre yapıda birleştirecek şekilde yazılım, veri akışı ve entegrasyon noktalarının tasarlanmasıdır. Doğru tasarım, veri tekrarını önler, raporlamayı hızlandırır ve süreçler arası tutarlılığı sağlar."
+          "text": "Kesintisiz ve sürdürülebilir kritik sistem tasarımı; bir kurumun operasyonlarını hiçbir noktada durdurmadan sürdürebilmesi için altyapının uçtan uca yedekli ve dayanıklı kurgulanmasıdır. Bu; always-on ve replikasyonlu veritabanları, aktif-aktif veya aktif-pasif veri merkezi yedekliliği, felaket kurtarma (disaster recovery) planları, kesintisiz güç kaynakları ve elektrik altyapısı, sunucu ve ağ seviyesinde yük dengeleme (load balancing), siber güvenlik katmanları ve saldırı tespit sistemleri ile bu altyapı üzerinde çalışan yazılımın da yatay ölçeklenebilir ve yük paylaşımına uygun şekilde kodlanmasını kapsayan uçtan uca bir mühendislik disiplinidir."
         }
       }
     ]
@@ -227,6 +227,31 @@
         Bu hem yönetime hem de ekibe sürecin değerini gösterir.
       </p>
 
+      <h2>Kesintisiz ve Sürdürülebilir Kritik Sistem Tasarımı</h2>
+      <p>
+        Dijital dönüşümün en kritik ama en az konuşulan boyutu, sistemlerin hiçbir noktada durmaması. Bu,
+        tek bir yazılım özelliği değil; sunucudan elektrik altyapısına, veritabanından siber güvenliğe kadar
+        uzanan uçtan uca bir mühendislik disiplinidir.
+      </p>
+
+      <h3>Altyapı seviyesinde süreklilik</h3>
+      <ul>
+        <li><strong>Yedekli veri merkezi mimarisi:</strong> Aktif-aktif veya aktif-pasif veri merkezi kurgusu, bir merkezde yaşanan kesintide diğerinin devreye girmesini sağlar.</li>
+        <li><strong>Always-on veritabanları:</strong> Gerçek zamanlı replikasyon ile veri kaybı olmadan kesintisiz erişim sağlanır.</li>
+        <li><strong>Felaket kurtarma (disaster recovery) planları:</strong> Beklenmedik bir kesinti durumunda sistemlerin ne kadar sürede ve hangi veri kaybıyla geri ayağa kalkacağı önceden tanımlanır.</li>
+        <li><strong>Kesintisiz güç kaynakları:</strong> UPS sistemleri, jeneratör yedekliliği ve elektrik altyapısının kendisi de bu zincirin bir parçasıdır.</li>
+        <li><strong>Siber güvenlik katmanları:</strong> Saldırı tespit ve önleme sistemleri, güvenlik duvarları ve sürekli izleme, sürekliliği tehdit eden dış etkenlere karşı korur.</li>
+      </ul>
+
+      <h3>Yazılım seviyesinde süreklilik</h3>
+      <p>
+        Dayanıklı altyapı tek başına yeterli değil; üzerinde çalışan yazılımın da bu dayanıklılığa uygun
+        yazılması gerekir. Yük dengeleme (load balancing) ile trafiğin birden fazla sunucuya dağıtılması,
+        yatay ölçeklenebilir (horizontally scalable) mimariler ve hatasız devreye alma (zero-downtime
+        deployment) pratikleri, bankacılık ve kamu gibi kesintiye tahammülü olmayan sektörlerde standart
+        hale gelmiştir.
+      </p>
+
       <h2>Sıkça Sorulan Sorular</h2>
 
       <div class="faq-item">
@@ -241,7 +266,7 @@
 
       <div class="faq-item">
         <p class="faq-q">Kesintisiz ve sürdürülebilir kritik sistem tasarımı ne anlama gelir?</p>
-        <p class="faq-a">Bir kurumun finans, stok, üretim, insan kaynakları gibi süreçlerini kesintiye uğramadan ve sürekliliğini koruyarak tek bir entegre yapıda birleştirecek şekilde yazılım, veri akışı ve entegrasyon noktalarının tasarlanmasıdır. Doğru tasarım, veri tekrarını önler, raporlamayı hızlandırır ve süreçler arası tutarlılığı sağlar.</p>
+        <p class="faq-a">Bir kurumun operasyonlarını hiçbir noktada durdurmadan sürdürebilmesi için altyapının uçtan uca yedekli ve dayanıklı kurgulanmasıdır. Bu; always-on ve replikasyonlu veritabanları, aktif-aktif veya aktif-pasif veri merkezi yedekliliği, felaket kurtarma (disaster recovery) planları, kesintisiz güç kaynakları ve elektrik altyapısı, sunucu ve ağ seviyesinde yük dengeleme (load balancing), siber güvenlik katmanları ve saldırı tespit sistemleri ile bu altyapı üzerinde çalışan yazılımın da yatay ölçeklenebilir ve yük paylaşımına uygun şekilde kodlanmasını kapsayan uçtan uca bir mühendislik disiplinidir.</p>
       </div>
 
       <div class="cta-box">
