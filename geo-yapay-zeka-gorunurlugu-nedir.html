@@ -1,267 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Generative Engine Optimization (GEO) Nedir? Markalar Yapay Zeka Motorlarında Nasıl Görünür Olur? — Sabri Çağrı Çakır</title>
-  <meta name="description" content="GEO (Generative Engine Optimization) nedir, markalar ChatGPT, Perplexity, Claude ve Gemini gibi yapay zeka motorlarında nasıl görünür olur? Pratik bir rehber.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GEO Nedir? Yapay Zeka Görünürlüğü Rehberi | Sabri Çağrı Çakır</title>
+  <meta name="description" content="Generative Engine Optimization (GEO) nedir, SEO’dan nasıl ayrılır, AI görünürlüğü nasıl ölçülür ve markalar yapay zeka sistemlerinde nasıl doğru temsil edilir?">
   <link rel="canonical" href="https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html">
-  <meta name="last-modified" content="2026-07-10">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --white:#FFFFFF; --off:#FAFAF9; --black:#0D0D0D; --dark:#1C1C1C; --mid:#5A5A5A; --light:#ABABAB; --rule:#E5E5E5; }
-    html { scroll-behavior: smooth; }
-    body { background:var(--white); color:var(--black); font-family:'Jost',sans-serif; font-weight:300; line-height:1.7; -webkit-font-smoothing:antialiased; }
-
-    nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 5rem; height:64px; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
-    .logo { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:500; letter-spacing:0.06em; color:var(--black); text-decoration:none; }
-    nav a.back { font-size:0.72rem; font-weight:400; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); text-decoration:none; }
-    nav a.back:hover { color:var(--black); }
-
-    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
-    main { padding: 9rem 0 6rem; }
-
-    .eyebrow {
-      font-size:0.7rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--mid);
-      display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem;
-    }
-    .eyebrow::before { content:''; width:2rem; height:1px; background:var(--rule); }
-
-    h1 {
-      font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.2rem); font-weight:500;
-      line-height:1.15; letter-spacing:-0.01em; margin-bottom:1.5rem;
-    }
-
-    .lede { font-size:1.05rem; color:var(--mid); line-height:1.85; margin-bottom:3rem; }
-
-    h2 {
-      font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:500; margin-top:3rem; margin-bottom:1rem;
-      border-top: 1px solid var(--rule); padding-top: 2rem;
-    }
-
-    h3 { font-size:1rem; font-weight:500; color:var(--dark); margin-top:1.75rem; margin-bottom:0.6rem; }
-
-    p { font-size:0.95rem; color:var(--mid); margin-bottom:1rem; }
-    p strong { color:var(--dark); font-weight:500; }
-
-    ul, ol { margin: 0 0 1.25rem 1.25rem; color: var(--mid); font-size: 0.95rem; }
-    li { margin-bottom: 0.5rem; }
-    li strong { color: var(--dark); font-weight: 500; }
-
-    .answer-box {
-      background: var(--off);
-      border-left: 3px solid var(--black);
-      padding: 1.5rem 1.75rem;
-      margin: 1.5rem 0;
-    }
-    .answer-box p { color: var(--dark); font-size: 0.95rem; margin-bottom: 0; }
-
-    .faq-item { border-top: 1px solid var(--rule); padding: 1.75rem 0; }
-    .faq-item:last-child { border-bottom: 1px solid var(--rule); }
-    .faq-q { font-family:'Cormorant Garamond',serif; font-size: 1.25rem; font-weight: 500; margin-bottom: 0.6rem; }
-    .faq-a { font-size: 0.92rem; color: var(--mid); }
-
-    .cta-box {
-      background: var(--black);
-      color: var(--white);
-      padding: 2.5rem;
-      margin-top: 3rem;
-      text-align: center;
-    }
-    .cta-box p { color: rgba(255,255,255,0.7); margin-bottom: 1.25rem; }
-    .cta-box a {
-      display: inline-block;
-      background: var(--white);
-      color: var(--black);
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.85rem 2rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 1.75rem 5rem;
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-    }
-    footer p { font-size: 0.75rem; color: var(--light); }
-
-    @media (max-width: 700px) {
-      nav { padding: 0 1.5rem; }
-      main { padding: 7rem 0 4rem; }
-      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
-    }
-  </style>
-
+  <link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html">
+  <link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/geo-ai-visibility-guide.html">
+  <link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/geo-ai-visibility-guide.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <meta property="og:type" content="article"><meta property="og:locale" content="tr_TR"><meta property="og:title" content="GEO Nedir? Yapay Zeka Görünürlüğü Rehberi"><meta property="og:description" content="AI yanıtlarında doğru temsil için entity, teknik yapı, içerik, kanıt ve ölçüm."><meta property="og:url" content="https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html"><meta name="twitter:card" content="summary"><meta name="last-modified" content="2026-10-30">
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Generative Engine Optimization (GEO) nedir?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "GEO (Generative Engine Optimization), bir markanın veya kişinin ChatGPT, Perplexity, Claude ve Gemini gibi yapay zeka arama motorları tarafından doğru, güncel ve görünür şekilde temsil edilmesini sağlayan optimizasyon disiplinidir. Yapılandırılmış veri, içerik netliği ve makine tarafından okunabilir kaynaklar üzerinden çalışır."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "GEO ile SEO arasındaki fark nedir?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SEO, bir web sitesinin arama motoru sonuç sayfalarında (Google gibi) üst sıralarda çıkmasını hedefler ve kullanıcıyı siteye tıklatmaya odaklanır. GEO ise yapay zeka motorlarının ürettiği doğrudan yanıtlarda markanın doğru şekilde alıntılanmasını, özetlenmesini veya önerilmesini hedefler; kullanıcı siteye hiç tıklamadan bile marka bilgisiyle karşılaşabilir."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Bir marka yapay zeka motorlarında nasıl görünür olur?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yapılandırılmış veri (Schema.org / JSON-LD) eklenmesi, robots.txt üzerinden AI botlarına (GPTBot, ClaudeBot, PerplexityBot vb.) erişim izni verilmesi, llms.txt dosyasıyla yapay zeka asistanlarına net bir özet sunulması, güncel ve tarihli içerik üretilmesi, ve soru-cevap formatında net yanıtlar içeren sayfalar oluşturulması gerekir."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "llms.txt dosyası ne işe yarar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "llms.txt, bir web sitesinin kim olduğunu, ne yaptığını ve önemli sayfalarının neler olduğunu yapay zeka asistanlarına markdown formatında özetleyen bir dosyadır. Yapay zeka modellerinin siteyi doğru ve tutarlı şekilde özetlemesine yardımcı olur."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "GEO neden kesintisiz ve sürdürülebilir bir süreç olmalıdır?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yapay zeka motorları içeriği periyodik olarak yeniden tarar ve modelleri güncellenir; bir defalık optimizasyon zamanla etkisini kaybeder. GEO, tazelik sinyalleri (güncel tarihler), tutarlı yapılandırılmış veri ve düzenli içerik üretimiyle sürekli bakım gerektiren, kesintisiz işleyen bir sistem olarak tasarlanmalıdır."
-        }
-      }
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"Article","headline":"Generative Engine Optimization (GEO) Nedir? Yapay Zeka Görünürlüğü Rehberi","description":"GEO, SEO’dan farkları, teknik temel, içerik, kanıt ve ölçüm yaklaşımı.","url":"https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html","mainEntityOfPage":"https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html","author":{"@id":"https://cagricakir.com.tr/#person"},"datePublished":"2026-07-10","dateModified":"2026-10-30","inLanguage":"tr-TR"},
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://cagricakir.com.tr/"},{"@type":"ListItem","position":2,"name":"GEO Nedir?","item":"https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html"}]},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"Generative Engine Optimization (GEO) nedir?","acceptedAnswer":{"@type":"Answer","text":"GEO, bir marka, kişi, ürün veya hizmetin yapay zeka tarafından üretilen yanıtlarda doğru, güncel ve bağlama uygun biçimde anlaşılması, anılması, kaynak gösterilmesi veya önerilmesi için yapılan teknik, içerik ve otorite çalışmalarının bütünüdür."}},
+        {"@type":"Question","name":"GEO ile SEO arasındaki fark nedir?","acceptedAnswer":{"@type":"Answer","text":"SEO arama sonuçlarında görünürlük ve tıklamaya odaklanır. GEO, AI tarafından üretilen doğrudan yanıtta varlığın doğru anlaşılması ve temsil edilmesine odaklanır. İki disiplin ortak teknik ve içerik temellerini paylaşır, ancak ölçüm biçimleri farklıdır."}},
+        {"@type":"Question","name":"AI görünürlüğü nasıl ölçülür?","acceptedAnswer":{"@type":"Answer","text":"Hedef soru seti belirlenir ve aynı sorular düzenli aralıklarla farklı sistemlerde test edilir. Mention, citation, recommendation, share of voice ve narrative accuracy gibi göstergeler zaman içinde izlenir."}},
+        {"@type":"Question","name":"Schema veya llms.txt tek başına yeterli midir?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Yapılandırılmış veri ve makine okunabilir özetler varlığın anlaşılmasına yardımcı olabilir, ancak görünürlük; açık içerik, kaynak tutarlılığı, crawl edilebilirlik, kanıt, üçüncü taraf otoritesi ve düzenli ölçümle birlikte gelişir."}}
+      ]}
     ]
   }
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+  <header class="site-header"><div class="container header-inner"><a class="logo" href="index.html">S. Çağrı Çakır</a><details class="nav-menu"><summary>Menü</summary><nav aria-label="Ana navigasyon"><ul class="nav-list"><li><a href="index.html#hizmetler">Hizmetler</a></li><li><a href="yapay-zeka-gorunurlugu-ve-yonetisimi.html">AI Visibility Hizmeti</a></li><li><a href="index.html#yazilar">Yazılar</a></li><li class="lang-switch"><a href="geo-ai-visibility-guide.html" lang="en">EN</a></li><li><a class="nav-cta" href="mailto:mail@cagricakir.com.tr?subject=AI%20görünürlük%20baseline">Baseline görüşmesi</a></li></ul></nav></details></div></header>
+  <main id="main">
+    <article class="article"><div class="reading">
+      <ol class="breadcrumb"><li><a href="index.html">Ana Sayfa</a></li><li>Yazılar</li><li>AI Görünürlüğü</li></ol>
+      <p class="eyebrow">GEO · AI görünürlüğü</p>
+      <h1>Generative Engine Optimization (GEO) nedir?</h1>
+      <p class="lede">GEO, bir marka, kişi, ürün veya hizmetin ChatGPT, Perplexity, Claude, Gemini ve benzeri sistemlerin ürettiği yanıtlarda doğru, güncel ve bağlama uygun biçimde anlaşılması, anılması, kaynak gösterilmesi veya önerilmesi için yürütülen çalışmaların bütünüdür.</p>
+      <p class="small muted">Yayın: 10 Temmuz 2026 · Güncelleme: 30 Ekim 2026</p>
+      <div class="prose">
+        <h2>Kısa cevap</h2><div class="answer-box"><p><strong>GEO;</strong> entity netliği, teknik erişilebilirlik, yapılandırılmış veri, açık içerik, kanıt ve üçüncü taraf kaynaklarını birlikte düzenleyerek AI sistemlerinin bir varlığı daha doğru anlamasına ve temsil etmesine yardımcı olur.</p></div>
+        <p>Geleneksel arama, kullanıcıya bağlantı listesi sunar. Üretken sistemler ise çoğu zaman doğrudan cevap verir. Bu nedenle görünürlük artık yalnızca bir sayfanın sırası değil, cevabın içinde hangi varlığın nasıl anlatıldığıdır.</p>
 
-  <nav>
-    <a href="index.html" class="logo">S. Çağrı Çakır</a>
-    <a href="index.html" class="back">← Ana Sayfaya Dön</a>
-  </nav>
+        <h2>GEO ile SEO arasındaki fark</h2>
+        <p>SEO; taranabilirlik, indeksleme, sayfa kalitesi, otorite ve kullanıcı niyeti üzerinden arama sonuçlarında görünürlüğü artırmayı hedefler. GEO bu temellerin çoğunu kullanır, ancak farklı sorular sorar:</p>
+        <ul><li>AI markayı hangi kategoriyle ilişkilendiriyor?</li><li>Hangi sorularda markayı anıyor veya önermiyor?</li><li>Hangi kaynaklara dayanıyor?</li><li>Yanıt güncel ve doğru mu?</li><li>Markanın kendi iddiaları üçüncü taraf kaynaklarla destekleniyor mu?</li></ul>
+        <p>SEO ve GEO rakip değildir. Sağlam bir web, entity ve içerik yapısı ikisine de hizmet eder. Fakat GEO’da ölçüm; tıklama ve sıra yerine mention, citation, recommendation ve anlatı doğruluğuna doğru genişler.</p>
 
-  <div class="container">
-    <main>
-      <p class="eyebrow">Yapay Zeka Görünürlüğü</p>
-      <h1>Generative Engine Optimization (GEO) Nedir? Markalar Yapay Zeka Motorlarında Nasıl Görünür Olur?</h1>
-      <p class="lede">
-        GEO (Generative Engine Optimization), bir markanın ChatGPT, Perplexity, Claude ve Gemini gibi yapay
-        zeka arama motorları tarafından doğru, güncel ve görünür şekilde temsil edilmesini sağlayan
-        optimizasyon disiplinidir. Aşağıda, kurumsal teknoloji yatırımcısı olarak içinde bulunduğum
-        <a href="https://geoni.ai" target="_blank" style="color:var(--black);">geoni.ai</a> deneyimime dayanarak,
-        GEO'nun ne olduğunu ve nasıl çalıştığını anlatıyorum.
-      </p>
+        <h2>AI sistemleri bir markayı nasıl anlar?</h2>
+        <h3>1. Entity netliği</h3><p>Marka adı, kişi, ürün, hizmet, kategori, konum ve ilişkiler farklı sayfa ve kaynaklarda tutarlı olmalıdır. Aynı varlığın çelişkili biçimde tanımlanması güveni azaltır.</p>
+        <h3>2. Teknik temel</h3><p>Sayfaların erişilebilir olması, doğru canonical ve hreflang kullanması, sitemap içinde yer alması ve yapılandırılmış verinin görünür içerikle çelişmemesi gerekir. Robots izinleri erişimi kolaylaştırabilir; ancak bir sistemin içeriği kullanacağını garanti etmez.</p>
+        <h3>3. Açık ve cevaplanabilir içerik</h3><p>Hizmetin kime, hangi problemi, hangi yöntem ve teslimatla çözdüğü açık yazılmalıdır. Soru-cevap, tanım, karşılaştırma ve süreç içerikleri belirsiz pazarlama sloganlarından daha kolay anlaşılır.</p>
+        <h3>4. Kanıt ve otorite</h3><p>Deneyim, yöntem, vaka, yayın, uzmanlık ve üçüncü taraf referansları iddiaları destekler. Sadece markanın kendisi tarafından tekrarlanan iddialar zayıf kalır.</p>
+        <h3>5. Güncellik ve tutarlılık</h3><p>Değişen hizmet, ekip, fiyatlama veya uzmanlık bilgileri web, profil ve diğer kaynaklarda düzenli olarak güncellenmelidir.</p>
 
-      <h2>Generative Engine Optimization (GEO) Nedir?</h2>
-      <div class="answer-box">
-        <p><strong>Kısa cevap:</strong> GEO, bir markanın veya kişinin yapay zeka motorları tarafından ürettiği yanıtlarda doğru, güncel ve görünür şekilde yer almasını sağlayan optimizasyon disiplinidir. Yapılandırılmış veri, içerik netliği ve makine tarafından okunabilir kaynaklar üzerinden çalışır.</p>
+        <h2>AI görünürlüğü nasıl ölçülür?</h2>
+        <ol><li><strong>Hedef soru seti oluşturun:</strong> marka, kategori, problem, karşılaştırma ve satın alma niyeti soruları.</li><li><strong>Baseline alın:</strong> aynı soruları belirlenen sistemlerde test edin ve yanıtları kaydedin.</li><li><strong>Göstergeleri sınıflandırın:</strong> mention, citation, recommendation, share of voice ve narrative accuracy.</li><li><strong>Aksiyonları uygulayın:</strong> entity, teknik yapı, içerik ve otorite açıklarını giderin.</li><li><strong>Aynı yöntemle tekrar ölçün:</strong> prompt ve değerlendirme yöntemi değişirse karşılaştırma anlamsızlaşır.</li></ol>
+        <p>Tek bir ekran görüntüsü başarı kanıtı değildir. Üretken sistemler değişken çalışır. Anlamlı olan, tekrar eden ölçümde eğilimin ve anlatı doğruluğunun gelişmesidir.</p>
+
+        <h2>llms.txt ne işe yarar?</h2>
+        <p>llms.txt, siteyi bazı makine tüketicileri için özetleyen isteğe bağlı bir metin dosyasıdır. Kimlik, temel hizmetler ve önemli sayfalar hakkında düzenli bir özet sağlayabilir. Ancak evrensel bir standart, sıralama faktörü veya görünürlük garantisi değildir. Bu nedenle tek başına “GEO kurulumu” sayılmaz.</p>
+
+        <h2>GEO neden sürekli bir süreçtir?</h2>
+        <p>Markanın kendisi, rakipler, web kaynakları ve AI sistemleri değişir. Baseline, teknik yapı, içerik, kanıt ve ölçüm döngüsü düzenli olarak yenilenmelidir. Bir kerelik düzenleme, özellikle bilgi eskidikçe etkisini kaybeder.</p>
+        <p>Uygulanabilir hizmet modeli için <a href="yapay-zeka-gorunurlugu-ve-yonetisimi.html">Yapay Zeka Görünürlüğü ve Yönetişimi</a> paketini inceleyebilirsiniz.</p>
+
+        <h2>Sıkça sorulan sorular</h2><div class="faq-list"><div class="faq-item"><h3>GEO nedir?</h3><p>Bir varlığın AI yanıtlarında doğru anlaşılması, anılması, kaynak gösterilmesi veya önerilmesi için teknik, içerik ve otorite çalışmalarının bütünüdür.</p></div><div class="faq-item"><h3>GEO ile SEO arasındaki fark nedir?</h3><p>SEO arama sonuçlarında görünürlük ve tıklamaya; GEO AI tarafından üretilen doğrudan yanıtta doğru anlaşılma ve temsile odaklanır.</p></div><div class="faq-item"><h3>AI görünürlüğü nasıl ölçülür?</h3><p>Aynı hedef sorular düzenli aralıklarla test edilir; mention, citation, recommendation, share of voice ve narrative accuracy zaman içinde izlenir.</p></div><div class="faq-item"><h3>Schema veya llms.txt tek başına yeterli midir?</h3><p>Hayır. Açık içerik, kaynak tutarlılığı, crawl edilebilirlik, kanıt, üçüncü taraf otoritesi ve düzenli ölçümle birlikte ele alınmalıdır.</p></div></div>
       </div>
-      <p>
-        Arama motorları uzun yıllar boyunca kullanıcıyı bir bağlantı listesine yönlendirdi. Yapay zeka
-        motorları ise artık doğrudan yanıt üretiyor — kullanıcı hiçbir siteye tıklamadan bir markayı,
-        ürünü veya kişiyi tanıyabiliyor. Bu, görünürlüğün tanımını kökten değiştiriyor.
-      </p>
-
-      <h3>GEO ile SEO arasındaki temel fark</h3>
-      <p>
-        SEO, bir sayfanın arama sonuçlarında üst sıralarda çıkmasını ve kullanıcının o sayfaya tıklamasını
-        hedefler. GEO ise bir adım öteye gider: yapay zeka motorunun ürettiği yanıtın içinde markanın doğru
-        şekilde alıntılanmasını, özetlenmesini veya önerilmesini hedefler. Bazı durumlarda kullanıcı hiç
-        siteye gitmeden bile markayla karşılaşır.
-      </p>
-
-      <h2>Bir Marka Yapay Zeka Motorlarında Nasıl Görünür Olur?</h2>
-      <p>
-        Görünürlük tek bir teknik ayara indirgenemez; birden fazla katmanın bir araya gelmesiyle oluşur.
-        Aşağıdaki adımlar, GEO'nun temel yapı taşlarıdır:
-      </p>
-
-      <h3>1. Yapılandırılmış veri ekleyin</h3>
-      <p>
-        Schema.org standardında JSON-LD işaretlemesi, yapay zeka modellerinin bir sayfanın kim, ne ve neden
-        olduğunu net şekilde anlamasını sağlar. Person, Organization, FAQPage gibi şema tipleri bu konuda
-        kritik rol oynar.
-      </p>
-
-      <h3>2. AI botlarına erişim izni verin</h3>
-      <p>
-        robots.txt dosyasında GPTBot, ClaudeBot, PerplexityBot gibi yapay zeka tarayıcılarına açıkça izin
-        vermek, içeriğin bu motorlar tarafından taranabilmesinin ön koşuludur.
-      </p>
-
-      <h3>3. llms.txt ile net bir özet sunun</h3>
-      <p>
-        llms.txt, sitenin kim olduğunu, ne yaptığını ve hangi sayfaların önemli olduğunu markdown formatında
-        özetleyen bir dosyadır. Yapay zeka asistanlarının siteyi doğru özetlemesine doğrudan katkı sağlar.
-      </p>
-
-      <h3>4. Tazelik sinyali verin</h3>
-      <p>
-        Görünür güncelleme tarihleri ve yapılandırılmış veri içindeki dateModified alanları, içeriğin güncel
-        olduğunu gösterir. Yapay zeka motorları, güncelliğini yitirmiş içeriğe daha az güvenir.
-      </p>
-
-      <h3>5. Soru-cevap formatında net içerik üretin</h3>
-      <p>
-        Yapay zeka motorları, net bir soruya net bir cevap veren, madde işaretli ve yapılandırılmış içerikleri
-        alıntılamayı tercih eder. Bu sayfanın kendisi de bu prensibe göre tasarlanmıştır.
-      </p>
-
-      <h2>GEO Neden Tek Seferlik Değil, Kesintisiz Bir Süreçtir?</h2>
-      <p>
-        Burada sıkça yapılan bir hata var: GEO'yu bir kerelik bir "kurulum" gibi görmek. Oysa yapay zeka
-        motorları içeriği periyodik olarak yeniden tarar, modelleri güncellenir ve rekabet ortamı sürekli
-        değişir. Bu yüzden GEO'yu, geleneksel ve artık eskimiş kurumsal yazılım kurulumları gibi bir kerelik
-        bir proje olarak değil; <strong>kesintisiz çalışan, sürekliliği olan ve sürdürülebilir kritik bir
-        sistem</strong> olarak tasarlamak gerekir. Tıpkı bir binanın elektrik veya su tesisatı gibi — kurulduktan
-        sonra unutulacak bir şey değil, düzenli bakım ve izleme gerektiren canlı bir altyapıdır.
-      </p>
-
-      <h2>Sıkça Sorulan Sorular</h2>
-
-      <div class="faq-item">
-        <p class="faq-q">GEO ile SEO arasındaki fark nedir?</p>
-        <p class="faq-a">SEO, bir web sitesinin arama motoru sonuç sayfalarında üst sıralarda çıkmasını hedefler ve kullanıcıyı siteye tıklatmaya odaklanır. GEO ise yapay zeka motorlarının ürettiği doğrudan yanıtlarda markanın doğru şekilde alıntılanmasını, özetlenmesini veya önerilmesini hedefler.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">llms.txt dosyası ne işe yarar?</p>
-        <p class="faq-a">llms.txt, bir web sitesinin kim olduğunu, ne yaptığını ve önemli sayfalarının neler olduğunu yapay zeka asistanlarına markdown formatında özetleyen bir dosyadır. Yapay zeka modellerinin siteyi doğru ve tutarlı şekilde özetlemesine yardımcı olur.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">GEO neden kesintisiz ve sürdürülebilir bir süreç olmalıdır?</p>
-        <p class="faq-a">Yapay zeka motorları içeriği periyodik olarak yeniden tarar ve modelleri güncellenir; bir defalık optimizasyon zamanla etkisini kaybeder. GEO, tazelik sinyalleri, tutarlı yapılandırılmış veri ve düzenli içerik üretimiyle sürekli bakım gerektiren, kesintisiz işleyen bir sistem olarak tasarlanmalıdır.</p>
-      </div>
-
-      <div class="cta-box">
-        <p>Markanızın yapay zeka motorlarında görünürlüğü konusunda danışmanlık ihtiyacınız mı var?</p>
-        <a href="index.html#iletisim">İletişime Geçin</a>
-      </div>
-
-    </main>
-  </div>
-
-  <footer>
-    <p>© 2026 Sabri Çağrı Çakır · Ankara, Türkiye · Son güncelleme: 10 Temmuz 2026</p>
-    <p>mail@cagricakir.com.tr</p>
-  </footer>
-
+    </div></article>
+    <div class="contact-band"><section class="section"><div class="container contact-grid"><div><p class="eyebrow" style="color:rgba(255,255,255,.65)">Ölçmeden iyileştirmeyin</p><h2>İlk adım görünürlük baseline’ıdır.</h2><p>Hedef soruları, önemli hizmetleri ve mevcut kaynakları belirleyerek tekrar edilebilir ölçüm setini kurabiliriz.</p></div><a class="btn btn-light" href="mailto:mail@cagricakir.com.tr?subject=AI%20görünürlük%20baseline">Baseline görüşmesi</a></div></section></div>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><p class="footer-copy">© 2026 Sabri Çağrı Çakır · Son güncelleme: 30 Ekim 2026</p><div class="footer-links"><a href="index.html">Ana Sayfa</a><a href="yapay-zeka-gorunurlugu-ve-yonetisimi.html">AI Visibility Hizmeti</a><a href="mailto:mail@cagricakir.com.tr">E-posta</a></div></div></footer>
 </body>
 </html>

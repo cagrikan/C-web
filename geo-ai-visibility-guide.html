@@ -1,267 +1,63 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>What Is Generative Engine Optimization (GEO)? How Brands Become Visible in AI Engines — Sabri Çağrı Çakır</title>
-  <meta name="description" content="What is GEO (Generative Engine Optimization), and how do brands become visible in AI engines like ChatGPT, Perplexity, Claude, and Gemini? A practical guide.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What Is GEO? AI Visibility Guide | Sabri Çağrı Çakır</title>
+  <meta name="description" content="What Generative Engine Optimization is, how it differs from SEO, how AI visibility is measured and how brands can improve accurate representation in AI systems.">
   <link rel="canonical" href="https://cagricakir.com.tr/geo-ai-visibility-guide.html">
-  <meta name="last-modified" content="2026-07-10">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --white:#FFFFFF; --off:#FAFAF9; --black:#0D0D0D; --dark:#1C1C1C; --mid:#5A5A5A; --light:#ABABAB; --rule:#E5E5E5; }
-    html { scroll-behavior: smooth; }
-    body { background:var(--white); color:var(--black); font-family:'Jost',sans-serif; font-weight:300; line-height:1.7; -webkit-font-smoothing:antialiased; }
-
-    nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 5rem; height:64px; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
-    .logo { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:500; letter-spacing:0.06em; color:var(--black); text-decoration:none; }
-    nav a.back { font-size:0.72rem; font-weight:400; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); text-decoration:none; }
-    nav a.back:hover { color:var(--black); }
-
-    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
-    main { padding: 9rem 0 6rem; }
-
-    .eyebrow {
-      font-size:0.7rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--mid);
-      display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem;
-    }
-    .eyebrow::before { content:''; width:2rem; height:1px; background:var(--rule); }
-
-    h1 {
-      font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.2rem); font-weight:500;
-      line-height:1.15; letter-spacing:-0.01em; margin-bottom:1.5rem;
-    }
-
-    .lede { font-size:1.05rem; color:var(--mid); line-height:1.85; margin-bottom:3rem; }
-
-    h2 {
-      font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:500; margin-top:3rem; margin-bottom:1rem;
-      border-top: 1px solid var(--rule); padding-top: 2rem;
-    }
-
-    h3 { font-size:1rem; font-weight:500; color:var(--dark); margin-top:1.75rem; margin-bottom:0.6rem; }
-
-    p { font-size:0.95rem; color:var(--mid); margin-bottom:1rem; }
-    p strong { color:var(--dark); font-weight:500; }
-
-    ul, ol { margin: 0 0 1.25rem 1.25rem; color: var(--mid); font-size: 0.95rem; }
-    li { margin-bottom: 0.5rem; }
-    li strong { color: var(--dark); font-weight: 500; }
-
-    .answer-box {
-      background: var(--off);
-      border-left: 3px solid var(--black);
-      padding: 1.5rem 1.75rem;
-      margin: 1.5rem 0;
-    }
-    .answer-box p { color: var(--dark); font-size: 0.95rem; margin-bottom: 0; }
-
-    .faq-item { border-top: 1px solid var(--rule); padding: 1.75rem 0; }
-    .faq-item:last-child { border-bottom: 1px solid var(--rule); }
-    .faq-q { font-family:'Cormorant Garamond',serif; font-size: 1.25rem; font-weight: 500; margin-bottom: 0.6rem; }
-    .faq-a { font-size: 0.92rem; color: var(--mid); }
-
-    .cta-box {
-      background: var(--black);
-      color: var(--white);
-      padding: 2.5rem;
-      margin-top: 3rem;
-      text-align: center;
-    }
-    .cta-box p { color: rgba(255,255,255,0.7); margin-bottom: 1.25rem; }
-    .cta-box a {
-      display: inline-block;
-      background: var(--white);
-      color: var(--black);
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.85rem 2rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 1.75rem 5rem;
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-    }
-    footer p { font-size: 0.75rem; color: var(--light); }
-
-    @media (max-width: 700px) {
-      nav { padding: 0 1.5rem; }
-      main { padding: 7rem 0 4rem; }
-      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
-    }
-  </style>
-
+  <link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html">
+  <link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/geo-ai-visibility-guide.html">
+  <link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/geo-ai-visibility-guide.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <meta property="og:type" content="article"><meta property="og:locale" content="en_US"><meta property="og:title" content="What Is GEO? AI Visibility Guide"><meta property="og:description" content="Entity clarity, technical foundations, content, evidence and measurement for accurate AI representation."><meta property="og:url" content="https://cagricakir.com.tr/geo-ai-visibility-guide.html"><meta name="twitter:card" content="summary"><meta name="last-modified" content="2026-10-30">
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is Generative Engine Optimization (GEO)?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Generative Engine Optimization (GEO) is the discipline of ensuring a brand or individual is accurately, currently, and visibly represented by AI search engines such as ChatGPT, Perplexity, Claude, and Gemini. It works through structured data, content clarity, and machine-readable sources."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What is the difference between GEO and SEO?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "SEO aims to rank a website higher on search engine results pages (like Google) and get users to click through to the site. GEO aims to ensure a brand is accurately cited, summarized, or recommended within the direct answers generated by AI engines — a user may encounter the brand without ever clicking to the site."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How does a brand become visible in AI engines?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It requires adding structured data (Schema.org / JSON-LD), granting access to AI bots via robots.txt (GPTBot, ClaudeBot, PerplexityBot, etc.), providing a clear summary to AI assistants through an llms.txt file, publishing current and dated content, and creating pages with clear question-and-answer formatted content."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "What does an llms.txt file do?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "llms.txt is a file that summarizes who a website belongs to, what it does, and which pages matter, in markdown format, for AI assistants. It helps AI models summarize the site accurately and consistently."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Why should GEO be an uninterrupted, sustainable process?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "AI engines periodically re-crawl content and their underlying models get updated; a one-time optimization loses its effect over time. GEO should be designed as an uninterrupted, continuously maintained system — through freshness signals (current dates), consistent structured data, and regular content production — rather than a one-off project."
-        }
-      }
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"Article","headline":"What Is Generative Engine Optimization (GEO)? An AI Visibility Guide","description":"GEO, differences from SEO, technical foundations, content, evidence and measurement.","url":"https://cagricakir.com.tr/geo-ai-visibility-guide.html","mainEntityOfPage":"https://cagricakir.com.tr/geo-ai-visibility-guide.html","author":{"@id":"https://cagricakir.com.tr/#person"},"datePublished":"2026-07-10","dateModified":"2026-10-30","inLanguage":"en"},
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cagricakir.com.tr/index_en.html"},{"@type":"ListItem","position":2,"name":"What Is GEO?","item":"https://cagricakir.com.tr/geo-ai-visibility-guide.html"}]},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"What is Generative Engine Optimization (GEO)?","acceptedAnswer":{"@type":"Answer","text":"GEO is the combined technical, content and authority work used to help a brand, person, product or service be understood, mentioned, cited or recommended accurately and currently in AI-generated answers."}},
+        {"@type":"Question","name":"How is GEO different from SEO?","acceptedAnswer":{"@type":"Answer","text":"SEO focuses on visibility and clicks in search results. GEO focuses on whether an entity is understood and represented accurately in an AI-generated answer. The disciplines share technical and content foundations, but their measurements differ."}},
+        {"@type":"Question","name":"How is AI visibility measured?","acceptedAnswer":{"@type":"Answer","text":"A target question set is defined and the same questions are tested regularly across selected systems. Mention, citation, recommendation, share of voice and narrative accuracy are tracked over time."}},
+        {"@type":"Question","name":"Are schema or llms.txt sufficient on their own?","acceptedAnswer":{"@type":"Answer","text":"No. Structured data and machine-readable summaries may help systems understand an entity, but visibility also depends on clear content, source consistency, crawlability, evidence, third-party authority and recurring measurement."}}
+      ]}
     ]
   }
   </script>
 </head>
 <body>
-
-  <nav>
-    <a href="index_en.html" class="logo">S. Çağrı Çakır</a>
-    <a href="index_en.html" class="back">← Back to Home</a>
-  </nav>
-
-  <div class="container">
-    <main>
-      <p class="eyebrow">AI Visibility</p>
-      <h1>What Is Generative Engine Optimization (GEO)? How Brands Become Visible in AI Engines</h1>
-      <p class="lede">
-        GEO (Generative Engine Optimization) is the discipline of ensuring a brand is accurately, currently,
-        and visibly represented by AI search engines such as ChatGPT, Perplexity, Claude, and Gemini. Below,
-        drawing on my experience as a corporate technology investor in
-        <a href="https://geoni.ai" target="_blank" style="color:var(--black);">geoni.ai</a>, I explain what
-        GEO is and how it works.
-      </p>
-
-      <h2>What Is Generative Engine Optimization (GEO)?</h2>
-      <div class="answer-box">
-        <p><strong>Short answer:</strong> GEO is the discipline of ensuring a brand or individual appears accurately, currently, and visibly in the answers generated by AI engines. It works through structured data, content clarity, and machine-readable sources.</p>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="container header-inner"><a class="logo" href="index_en.html">S. Çağrı Çakır</a><details class="nav-menu"><summary>Menu</summary><nav aria-label="Primary navigation"><ul class="nav-list"><li><a href="index_en.html#services">Services</a></li><li><a href="ai-visibility-and-governance.html">AI Visibility Service</a></li><li><a href="index_en.html#insights">Insights</a></li><li class="lang-switch"><a href="geo-yapay-zeka-gorunurlugu-nedir.html" lang="tr">TR</a></li><li><a class="nav-cta" href="mailto:mail@cagricakir.com.tr?subject=AI%20visibility%20baseline">Start a baseline</a></li></ul></nav></details></div></header>
+  <main id="main">
+    <article class="article"><div class="reading">
+      <ol class="breadcrumb"><li><a href="index_en.html">Home</a></li><li>Insights</li><li>AI Visibility</li></ol>
+      <p class="eyebrow">GEO · AI visibility</p>
+      <h1>What is Generative Engine Optimization?</h1>
+      <p class="lede">GEO is the combined work used to help a brand, person, product or service be understood, mentioned, cited or recommended accurately and currently in answers generated by ChatGPT, Perplexity, Claude, Gemini and similar systems.</p>
+      <p class="small muted">Published: 10 July 2026 · Updated: 30 October 2026</p>
+      <div class="prose">
+        <h2>The concise answer</h2><div class="answer-box"><p><strong>GEO</strong> combines entity clarity, technical accessibility, structured data, clear content, evidence and third-party sources to improve how AI systems understand and represent an entity.</p></div>
+        <p>Traditional search presents a list of links. Generative systems often produce a direct answer. Visibility is therefore no longer only the position of a page; it also concerns which entity appears in the answer and how it is described.</p>
+        <h2>GEO and SEO</h2><p>SEO improves visibility in search results through crawlability, indexing, page quality, authority and user intent. GEO shares many of those foundations, but asks a different set of questions:</p>
+        <ul><li>Which category does the system associate with the brand?</li><li>For which questions is the brand mentioned or omitted?</li><li>Which sources support the answer?</li><li>Is the narrative accurate and current?</li><li>Are the brand’s claims corroborated by independent sources?</li></ul>
+        <p>SEO and GEO are not opponents. A sound web, entity and content structure supports both. GEO measurement, however, extends beyond ranking and clicks into mention, citation, recommendation and narrative accuracy.</p>
+        <h2>How do AI systems understand a brand?</h2>
+        <h3>1. Entity clarity</h3><p>Brand name, people, products, services, categories, locations and relationships should remain consistent across the site and external sources. Conflicting descriptions weaken confidence.</p>
+        <h3>2. Technical foundations</h3><p>Pages should be accessible, use correct canonical and hreflang relationships, appear in the sitemap and carry structured data that matches visible content. Crawler permissions may enable access, but do not guarantee that a system will use the content.</p>
+        <h3>3. Clear, answerable content</h3><p>Explain who the service is for, which problem it solves, the method used and what is delivered. Definitions, comparisons, Q&A and process content are easier to understand than vague marketing slogans.</p>
+        <h3>4. Evidence and authority</h3><p>Experience, methods, cases, publications, expertise and independent references support claims. Statements repeated only by the brand itself remain weak evidence.</p>
+        <h3>5. Freshness and consistency</h3><p>Changes to services, teams, pricing models or expertise should be updated consistently across the site, profiles and other sources.</p>
+        <h2>How is AI visibility measured?</h2><ol><li><strong>Define a target question set:</strong> brand, category, problem, comparison and purchase-intent questions.</li><li><strong>Establish a baseline:</strong> test the same questions in selected systems and record the answers.</li><li><strong>Classify indicators:</strong> mention, citation, recommendation, share of voice and narrative accuracy.</li><li><strong>Implement actions:</strong> improve entity, technical, content and authority gaps.</li><li><strong>Measure again using the same method:</strong> changing prompts and evaluation rules destroys comparability.</li></ol>
+        <p>A single screenshot is not evidence of success. Generative systems are variable. The meaningful signal is improvement across repeated measurement and a more accurate narrative over time.</p>
+        <h2>What does llms.txt do?</h2><p>llms.txt is an optional text file that summarises a site for machine consumers that choose to use it. It can provide an organised statement of identity, services and important pages. It is not a universal standard, ranking factor or visibility guarantee, and is not a complete GEO implementation by itself.</p>
+        <h2>Why is GEO continuous?</h2><p>The brand, competitors, web sources and AI systems all change. Baselines, technical structure, content, evidence and measurement must be refreshed. One-off optimisation loses value as information becomes stale.</p><p>For an operational service model, review <a href="ai-visibility-and-governance.html">AI Visibility & Governance</a>.</p>
+        <h2>Frequently asked questions</h2><div class="faq-list"><div class="faq-item"><h3>What is GEO?</h3><p>The technical, content and authority work used to help an entity be understood, mentioned, cited or recommended accurately in AI answers.</p></div><div class="faq-item"><h3>How is GEO different from SEO?</h3><p>SEO focuses on visibility and clicks in search results. GEO focuses on accurate understanding and representation within the direct answer generated by AI.</p></div><div class="faq-item"><h3>How is AI visibility measured?</h3><p>The same target questions are tested regularly, and mention, citation, recommendation, share of voice and narrative accuracy are tracked over time.</p></div><div class="faq-item"><h3>Are schema or llms.txt sufficient?</h3><p>No. They must be combined with clear content, source consistency, crawlability, evidence, third-party authority and recurring measurement.</p></div></div>
       </div>
-      <p>
-        For years, search engines directed users toward a list of links. AI engines now generate direct
-        answers instead — a user can become aware of a brand, product, or person without ever clicking
-        through to a website. This fundamentally changes what "visibility" means.
-      </p>
-
-      <h3>The key difference between GEO and SEO</h3>
-      <p>
-        SEO aims to rank a page higher in search results and get the user to click through. GEO goes a
-        step further: it aims to ensure a brand is accurately cited, summarized, or recommended within the
-        answer an AI engine generates. In some cases, the user encounters the brand without visiting the
-        site at all.
-      </p>
-
-      <h2>How Does a Brand Become Visible in AI Engines?</h2>
-      <p>
-        Visibility isn't reducible to a single technical setting — it emerges from several layers working
-        together. The steps below are the foundational building blocks of GEO:
-      </p>
-
-      <h3>1. Add structured data</h3>
-      <p>
-        JSON-LD markup following the Schema.org standard helps AI models clearly understand who, what, and
-        why a page exists. Schema types like Person, Organization, and FAQPage play a critical role here.
-      </p>
-
-      <h3>2. Grant access to AI bots</h3>
-      <p>
-        Explicitly allowing AI crawlers such as GPTBot, ClaudeBot, and PerplexityBot in robots.txt is a
-        prerequisite for your content to be crawled by these engines at all.
-      </p>
-
-      <h3>3. Provide a clear summary via llms.txt</h3>
-      <p>
-        llms.txt is a file that summarizes who a site belongs to, what it does, and which pages matter, in
-        markdown format. It directly contributes to AI assistants summarizing the site accurately.
-      </p>
-
-      <h3>4. Signal freshness</h3>
-      <p>
-        Visible update dates and dateModified fields within structured data show that content is current.
-        AI engines place less trust in content that appears stale.
-      </p>
-
-      <h3>5. Produce clear question-and-answer content</h3>
-      <p>
-        AI engines prefer to cite content that answers a clear question directly, with bulleted and
-        well-structured formatting. This very page is designed according to that principle.
-      </p>
-
-      <h2>Why Is GEO an Uninterrupted Process, Not a One-Time Setup?</h2>
-      <p>
-        A common mistake here is treating GEO as a one-time "installation." In reality, AI engines
-        periodically re-crawl content and their models are continuously updated, while the competitive
-        landscape keeps shifting. This is why GEO should not be designed like a traditional, now-outdated
-        one-off enterprise software rollout — it should be designed as an
-        <strong>uninterrupted, continuity-focused, and sustainable critical system</strong>. Much like a
-        building's electrical or water infrastructure — it isn't something you set up and forget, but a
-        living system that requires ongoing maintenance and monitoring.
-      </p>
-
-      <h2>Frequently Asked Questions</h2>
-
-      <div class="faq-item">
-        <p class="faq-q">What is the difference between GEO and SEO?</p>
-        <p class="faq-a">SEO aims to rank a website higher on search engine results pages and get users to click through. GEO aims to ensure a brand is accurately cited, summarized, or recommended within the direct answers generated by AI engines.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">What does an llms.txt file do?</p>
-        <p class="faq-a">llms.txt summarizes who a website belongs to, what it does, and which pages matter, in markdown format, for AI assistants. It helps AI models summarize the site accurately and consistently.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">Why should GEO be an uninterrupted, sustainable process?</p>
-        <p class="faq-a">AI engines periodically re-crawl content and their models get updated; a one-time optimization loses its effect over time. GEO should be designed as an uninterrupted, continuously maintained system rather than a one-off project.</p>
-      </div>
-
-      <div class="cta-box">
-        <p>Need consulting on your brand's visibility in AI engines?</p>
-        <a href="index_en.html#iletisim">Get in Touch</a>
-      </div>
-
-    </main>
-  </div>
-
-  <footer>
-    <p>© 2026 Sabri Çağrı Çakır · Ankara, Turkey · Last updated: July 10, 2026</p>
-    <p>mail@cagricakir.com.tr</p>
-  </footer>
-
+    </div></article>
+    <div class="contact-band"><section class="section"><div class="container contact-grid"><div><p class="eyebrow" style="color:rgba(255,255,255,.65)">Do not optimise before measuring</p><h2>The first step is an AI visibility baseline.</h2><p>We can define the target questions, priority services and available sources, then establish a repeatable measurement set.</p></div><a class="btn btn-light" href="mailto:mail@cagricakir.com.tr?subject=AI%20visibility%20baseline">Start a baseline</a></div></section></div>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><p class="footer-copy">© 2026 Sabri Çağrı Çakır · Last updated: 30 October 2026</p><div class="footer-links"><a href="index_en.html">Home</a><a href="ai-visibility-and-governance.html">AI Visibility Service</a><a href="mailto:mail@cagricakir.com.tr">Email</a></div></div></footer>
 </body>
 </html>

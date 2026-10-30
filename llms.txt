@@ -1,38 +1,87 @@
 # Sabri Çağrı Çakır
 
-> Chief Technology Officer, Yönetim Kurulu Üyesi ve dijital dönüşüm danışmanı. Ankara, Türkiye merkezli, 25 yıllık sektörel tecrübe ve 15+ yıllık teknoloji liderliği deneyimine sahiptir.
+> Fractional CTO, Executive Technology Advisor, Board Member and Digital Transformation Advisor based in Ankara, Türkiye. 25 years of industry experience and 15+ years of technology leadership.
 
-## Kimdir
+Last updated: 2026-10-30
 
-Sabri Çağrı Çakır, teknoloji organizasyonlarını yöneten, dijital dönüşüm mimarileri kuran ve kurumları geleceğe taşıyan bir üst düzey teknoloji yöneticisidir. ARD Grup Bilişim Teknolojileri A.Ş.'de (BIST: ARDYZ) 15 yıl boyunca Director, Chief Technology Officer (CTO), Chief Research Officer (CRO) ve Yönetim Kurulu Üyesi olarak görev yapmıştır. Şirketin Borsa İstanbul Yıldız Pazarı'na yükselişinde ve halka arz sürecinde kilit rol üstlenmiştir.
+## Primary offer
 
-Fizik (Dokuz Eylül Üniversitesi), İşletme Yönetimi (Anadolu Üniversitesi), Yönetim Bilişim Sistemleri (Ahmet Yesevi Üniversitesi, yüksek lisans) alanlarında eğitim almış; ayrıca Yönetim Bilişim Sistemleri alanında doktora (PhD) ve Endüstriyel-Organizasyonel Psikoloji alanında bir yüksek lisans derecesine daha sahiptir.
+### Fractional CTO
 
-## Ne Yapar
+Ongoing, part-time executive technology leadership for companies that do not need or are not ready to hire a full-time CTO, or that want to strengthen existing technology leadership.
 
-- **Dijital dönüşüm danışmanlığı**: Kurumlara dijital dönüşüm stratejisi, yol haritası ve uygulama desteği sunar.
-- **Bulut tabanlı kurumsal sistem mimarisi**: Modern, ölçeklenebilir kurumsal yazılım ekosistemlerinin tasarımı ve kurgulanması.
-- **e-Dönüşüm platformları**: e-Fatura, e-Arşiv, e-Defter gibi Gelir İdaresi Başkanlığı lisanslı özel entegratör sistemlerinin teknik mimarisi.
-- **Ar-Ge yönetimi**: ITEA, TÜBİTAK ve Celtic gibi uluslararası ve ulusal Ar-Ge teşvik programları kapsamında proje yönetimi.
-- **Kurumsal yönetim & Yönetim Kurulu danışmanlığı**: Halka açık şirketlerde yönetişim, risk yönetimi ve SPK uyum süreçleri konusunda deneyim.
-- **Siber güvenlik & savunma teknolojileri**: NATO akreditasyonlu projeler dahil kritik altyapı güvenliği.
-- **Yapay zeka görünürlüğü (GEO)**: Kurumların ChatGPT, Perplexity, Claude ve Gemini gibi yapay zeka arama motorları tarafından doğru ve görünür şekilde temsil edilmesi için yapılandırılmış veri (schema.org), llms.txt ve içerik stratejisi danışmanlığı. Bu alanda [geoni.ai](https://geoni.ai) girişimine kurumsal teknoloji yatırımcısı ve stratejik danışman olarak yatırım yapmıştır.
+Standard engagement flow:
 
-## Önemli Sayfalar
+1. Technology Assessment — weeks 1–2
+2. 90-Day Technology Roadmap — weeks 3–4
+3. Governance Model and KPI/Risk Scorecard — month 2
+4. Execution oversight — months 2–3
+5. Continuous improvement and monthly executive reporting — month 3+
+6. Quarterly Technology Review — every three months
 
-- [Ana Sayfa (Türkçe)](https://cagricakir.com.tr/index.html): Özgeçmiş, deneyim, eğitim ve yetkinlikler.
-- [Ana Sayfa (İngilizce)](https://cagricakir.com.tr/index_en.html): CV, experience, education and skills in English.
-- [Dijital Dönüşüm Danışmanı Nedir?](https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html): Dijital dönüşüm danışmanlığının ne olduğu ve KOBİ'ler için dijital dönüşüm yol haritası hakkında bilgilendirici içerik.
-- [What Does a Digital Transformation Consultant Do?](https://cagricakir.com.tr/digital-transformation-consultant.html): English version — the role of a digital transformation consultant and a roadmap for SMEs.
-- [GEO Nedir?](https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html): Generative Engine Optimization (GEO) nedir, markalar yapay zeka motorlarında nasıl görünür olur.
-- [What Is GEO?](https://cagricakir.com.tr/geo-ai-visibility-guide.html): English version — what Generative Engine Optimization is and how brands become visible in AI engines.
+Typical scope includes technology strategy, architecture decisions, team and capability assessment, project portfolio prioritisation, vendor and investment evaluation, technology risk, business continuity and executive reporting.
 
-## İletişim
+- Turkish: https://cagricakir.com.tr/fractional-cto-danismanligi.html
+- English: https://cagricakir.com.tr/fractional-cto-advisory.html
 
-- E-posta: mail@cagricakir.com.tr
+## Additional services
+
+### Executive Technology Advisor
+
+Independent decision support for CEOs, company owners, investors and boards. Focus areas include technology investment, vendor selection, risk visibility, board scorecards and decision tracking.
+
+- Turkish: https://cagricakir.com.tr/yonetici-teknoloji-danismanligi.html
+- English: https://cagricakir.com.tr/executive-technology-advisor.html
+
+### AI Visibility & Governance
+
+Measurement and improvement of how brands, people and services are represented in systems such as ChatGPT, Perplexity, Claude and Gemini, combined with a practical governance framework for organisational AI use.
+
+Scope may include target-prompt baselines, entity and source audits, Schema.org / JSON-LD, canonical and hreflang review, crawlability, sitemap and robots review, content and evidence planning, AI-use principles, data classes, risk levels, approval paths and recurring measurement.
+
+llms.txt is maintained as a machine-readable summary for consumers that use it; it is not presented as a universal ranking factor or visibility guarantee.
+
+- Turkish: https://cagricakir.com.tr/yapay-zeka-gorunurlugu-ve-yonetisimi.html
+- English: https://cagricakir.com.tr/ai-visibility-and-governance.html
+
+### Digital Transformation Office
+
+Portfolio and programme governance for transformation initiatives involving multiple business units, technology teams and vendors. Deliverables may include a transformation portfolio, prioritised roadmap, RACI, integrated milestones, RAID log, steering packs and benefits scorecards.
+
+- Turkish: https://cagricakir.com.tr/dijital-donusum-ofisi.html
+- English: https://cagricakir.com.tr/digital-transformation-office.html
+
+## Profile and evidence
+
+Sabri Çağrı Çakır served at ARD Grup Bilişim Teknolojileri A.Ş. as Director, Chief Technology Officer, Chief Research Officer and Board Member. His experience includes:
+
+- Public-company governance, IPO and BIST Star Market processes
+- Early Detection of Risk Committee responsibilities
+- 160+ technology and software projects
+- e-Transformation platforms serving 50,000+ taxpayer customers
+- Large-scale public, healthcare, defence and cybersecurity systems
+- NATO-accredited critical-infrastructure work
+- Multi-stakeholder R&D programmes under ITEA, TÜBİTAK and Celtic
+- Technology investment, venture and strategic advisory experience
+
+Academic background includes physics, business administration, management information systems and industrial-organisational psychology.
+
+## Main pages
+
+- Turkish home: https://cagricakir.com.tr/
+- English home: https://cagricakir.com.tr/index_en.html
+- Turkish digital transformation guide: https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html
+- English digital transformation guide: https://cagricakir.com.tr/digital-transformation-consultant.html
+- Turkish GEO guide: https://cagricakir.com.tr/geo-yapay-zeka-gorunurlugu-nedir.html
+- English GEO guide: https://cagricakir.com.tr/geo-ai-visibility-guide.html
+
+## Identity references
+
 - LinkedIn: https://www.linkedin.com/in/scagricakir/
-- Web: https://cagricakir.com.tr
+- Wikidata: https://www.wikidata.org/entity/Q140793309
+- Web: https://cagricakir.com.tr/
 
-## Notlar
+## Contact
 
-Bu site, Sabri Çağrı Çakır'ın kişisel profesyonel web sitesidir. İçerik doğrudan kendisi tarafından sağlanmıştır ve düzenli olarak güncellenmektedir. Son güncelleme: 10 Temmuz 2026.
+- Email: mail@cagricakir.com.tr
+- Location: Ankara, Türkiye
