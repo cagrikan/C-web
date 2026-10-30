@@ -42,6 +42,23 @@ LANGUAGE_PAIRS = [
     ("geo-yapay-zeka-gorunurlugu-nedir.html", "geo-ai-visibility-guide.html"),
 ]
 
+ENGLISH_FILES = {
+    "index_en.html",
+    "fractional-cto-advisory.html",
+    "executive-technology-advisor.html",
+    "ai-visibility-and-governance.html",
+    "digital-transformation-office.html",
+    "digital-transformation-consultant.html",
+    "geo-ai-visibility-guide.html",
+}
+
+FAQ_SECTION_MARKERS = (
+    "sıkça sorulan sorular",
+    "sikca sorulan sorular",
+    "frequently asked questions",
+    "faq",
+)
+
 
 @dataclass
 class ParsedPage:
@@ -55,7 +72,7 @@ class ParsedPage:
     srcs: list[str] = field(default_factory=list)
     ids: list[str] = field(default_factory=list)
     json_ld: list[Any] = field(default_factory=list)
-    raw_text: str = ""
+    visible_text: str = ""
 
 
 class StaticPageParser(HTMLParser):
@@ -65,6 +82,7 @@ class StaticPageParser(HTMLParser):
         self._in_title = False
         self._in_json_ld = False
         self._json_buffer: list[str] = []
+        self._hidden_depth = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         data = {key.lower(): value for key, value in attrs}
@@ -89,6 +107,8 @@ class StaticPageParser(HTMLParser):
         elif tag == "script" and (data.get("type") or "").lower() == "application/ld+json":
             self._in_json_ld = True
             self._json_buffer = []
+        elif tag in {"script", "style", "template", "noscript"}:
+            self._hidden_depth += 1
 
         if data.get("href") and tag != "link":
             self.page.hrefs.append(data["href"] or "")
@@ -107,14 +127,18 @@ class StaticPageParser(HTMLParser):
                 self.page.json_ld.append(json.loads(raw))
             self._in_json_ld = False
             self._json_buffer = []
+        elif tag in {"script", "style", "template", "noscript"} and self._hidden_depth:
+            self._hidden_depth -= 1
 
     def handle_data(self, data: str) -> None:
         if self._in_title:
             self.page.title += data
         if self._in_json_ld:
             self._json_buffer.append(data)
-        else:
-            self.page.raw_text += " " + data
+        elif not self._hidden_depth:
+            clean = " ".join(data.split())
+            if clean:
+                self.page.visible_text += " " + clean
 
 
 def flatten_json_ld(value: Any) -> list[dict[str, Any]]:
@@ -148,16 +172,35 @@ def parse_pages(errors: list[str]) -> dict[str, ParsedPage]:
     return pages
 
 
+def validate_faq_node(filename: str, page: ParsedPage, node: dict[str, Any], errors: list[str]) -> None:
+    entities = node.get("mainEntity", [])
+    if not isinstance(entities, list) or not entities:
+        errors.append(f"{filename}: FAQPage mainEntity must be a non-empty list")
+        return
+
+    visible = " ".join(page.visible_text.lower().split())
+    if not any(marker in visible for marker in FAQ_SECTION_MARKERS):
+        errors.append(f"{filename}: FAQPage JSON-LD exists but no visible FAQ section was found")
+
+    for index, entity in enumerate(entities, start=1):
+        if not isinstance(entity, dict) or entity.get("@type") != "Question":
+            errors.append(f"{filename}: FAQ item {index} must be a Question object")
+            continue
+        question = entity.get("name")
+        answer = entity.get("acceptedAnswer")
+        if not isinstance(question, str) or not question.strip():
+            errors.append(f"{filename}: FAQ item {index} has no question text")
+        if not isinstance(answer, dict) or answer.get("@type") != "Answer":
+            errors.append(f"{filename}: FAQ item {index} has no valid acceptedAnswer")
+            continue
+        answer_text = answer.get("text")
+        if not isinstance(answer_text, str) or not answer_text.strip():
+            errors.append(f"{filename}: FAQ item {index} has no answer text")
+
+
 def validate_page_basics(pages: dict[str, ParsedPage], errors: list[str]) -> None:
     for filename, page in pages.items():
-        expected_lang = "en" if filename.endswith("_en.html") or filename in {
-            "fractional-cto-advisory.html",
-            "executive-technology-advisor.html",
-            "ai-visibility-and-governance.html",
-            "digital-transformation-office.html",
-            "digital-transformation-consultant.html",
-            "geo-ai-visibility-guide.html",
-        } else "tr"
+        expected_lang = "en" if filename in ENGLISH_FILES else "tr"
         if not page.lang or not page.lang.lower().startswith(expected_lang):
             errors.append(f"{filename}: expected html lang starting with {expected_lang!r}, got {page.lang!r}")
         if not page.title.strip():
@@ -174,23 +217,15 @@ def validate_page_basics(pages: dict[str, ParsedPage], errors: list[str]) -> Non
         for block in page.json_ld:
             for node in flatten_json_ld(block):
                 if node.get("@type") == "FAQPage":
-                    entities = node.get("mainEntity", [])
-                    if not isinstance(entities, list):
-                        errors.append(f"{filename}: FAQPage mainEntity must be a list")
-                        continue
-                    for entity in entities:
-                        question = entity.get("name") if isinstance(entity, dict) else None
-                        if question and question not in page.raw_text:
-                            errors.append(f"{filename}: FAQ question is not visible in page text: {question}")
+                    validate_faq_node(filename, page, node, errors)
 
 
 def validate_language_pairs(pages: dict[str, ParsedPage], errors: list[str]) -> None:
     for tr_file, en_file in LANGUAGE_PAIRS:
         if tr_file not in pages or en_file not in pages:
             continue
-        tr_page, en_page = pages[tr_file], pages[en_file]
         tr_url, en_url = EXPECTED_PAGES[tr_file], EXPECTED_PAGES[en_file]
-        for filename, page in ((tr_file, tr_page), (en_file, en_page)):
+        for filename, page in ((tr_file, pages[tr_file]), (en_file, pages[en_file])):
             if page.alternates.get("tr-TR") != tr_url:
                 errors.append(f"{filename}: incorrect or missing tr-TR hreflang")
             if page.alternates.get("en") != en_url:
@@ -253,15 +288,16 @@ def validate_supporting_files(errors: list[str]) -> None:
     except (OSError, ET.ParseError) as exc:
         errors.append(f"sitemap.xml is invalid: {exc}")
 
-    robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
-    if f"Sitemap: {BASE_URL}/sitemap.xml" not in robots:
-        errors.append("robots.txt: sitemap declaration is missing or incorrect")
+    try:
+        robots = (ROOT / "robots.txt").read_text(encoding="utf-8")
+        if f"Sitemap: {BASE_URL}/sitemap.xml" not in robots:
+            errors.append("robots.txt: sitemap declaration is missing or incorrect")
+    except OSError as exc:
+        errors.append(f"robots.txt could not be read: {exc}")
 
-    llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
-    service_urls = {
-        EXPECTED_PAGES[name]
-        for name in EXPECTED_PAGES
-        if name in {
+    try:
+        llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
+        service_files = {
             "fractional-cto-danismanligi.html",
             "fractional-cto-advisory.html",
             "yonetici-teknoloji-danismanligi.html",
@@ -271,14 +307,20 @@ def validate_supporting_files(errors: list[str]) -> None:
             "dijital-donusum-ofisi.html",
             "digital-transformation-office.html",
         }
-    }
-    for url in sorted(service_urls):
-        if url not in llms:
-            errors.append(f"llms.txt missing service URL: {url}")
+        for filename in sorted(service_files):
+            url = EXPECTED_PAGES[filename]
+            if url not in llms:
+                errors.append(f"llms.txt missing service URL: {url}")
+    except OSError as exc:
+        errors.append(f"llms.txt could not be read: {exc}")
 
 
 def validate_known_regressions(errors: list[str]) -> None:
-    english_home = (ROOT / "index_en.html").read_text(encoding="utf-8")
+    try:
+        english_home = (ROOT / "index_en.html").read_text(encoding="utf-8")
+    except OSError as exc:
+        errors.append(f"index_en.html could not be read: {exc}")
+        return
     for bad_text in ("Contacte Geç", "Experiencei İncele", "Hakkımda", "Birlikte çalışalım"):
         if bad_text in english_home:
             errors.append(f"index_en.html contains mixed-language regression: {bad_text!r}")
