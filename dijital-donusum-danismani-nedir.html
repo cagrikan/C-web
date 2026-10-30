@@ -1,286 +1,92 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dijital Dönüşüm Danışmanı Ne Yapar? KOBİ'ler İçin Yol Haritası — Sabri Çağrı Çakır</title>
-  <meta name="description" content="Dijital dönüşüm danışmanı ne iş yapar, KOBİ'ler için dijital dönüşüm nasıl planlanır? CTO ve danışman Sabri Çağrı Çakır'dan pratik bir yol haritası.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dijital Dönüşüm Danışmanı Ne Yapar? | Sabri Çağrı Çakır</title>
+  <meta name="description" content="Dijital dönüşüm danışmanının rolü, KOBİ’ler için uygulanabilir yol haritası, kritik sistem sürekliliği ve dönüşüm programı yönetişimi.">
   <link rel="canonical" href="https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html">
-  <meta name="last-modified" content="2026-07-10">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root { --white:#FFFFFF; --off:#FAFAF9; --black:#0D0D0D; --dark:#1C1C1C; --mid:#5A5A5A; --light:#ABABAB; --rule:#E5E5E5; }
-    html { scroll-behavior: smooth; }
-    body { background:var(--white); color:var(--black); font-family:'Jost',sans-serif; font-weight:300; line-height:1.7; -webkit-font-smoothing:antialiased; }
-
-    nav { position:fixed; inset:0 0 auto 0; z-index:200; display:flex; align-items:center; justify-content:space-between; padding:0 5rem; height:64px; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--rule); }
-    .logo { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:500; letter-spacing:0.06em; color:var(--black); text-decoration:none; }
-    nav a.back { font-size:0.72rem; font-weight:400; letter-spacing:0.12em; text-transform:uppercase; color:var(--mid); text-decoration:none; }
-    nav a.back:hover { color:var(--black); }
-
-    .container { max-width: 760px; margin: 0 auto; padding: 0 2rem; }
-    main { padding: 9rem 0 6rem; }
-
-    .eyebrow {
-      font-size:0.7rem; font-weight:500; letter-spacing:0.16em; text-transform:uppercase; color:var(--mid);
-      display:flex; align-items:center; gap:0.75rem; margin-bottom:1.5rem;
-    }
-    .eyebrow::before { content:''; width:2rem; height:1px; background:var(--rule); }
-
-    h1 {
-      font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.2rem); font-weight:500;
-      line-height:1.15; letter-spacing:-0.01em; margin-bottom:1.5rem;
-    }
-
-    .lede { font-size:1.05rem; color:var(--mid); line-height:1.85; margin-bottom:3rem; }
-
-    h2 {
-      font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:500; margin-top:3rem; margin-bottom:1rem;
-      border-top: 1px solid var(--rule); padding-top: 2rem;
-    }
-
-    h3 { font-size:1rem; font-weight:500; color:var(--dark); margin-top:1.75rem; margin-bottom:0.6rem; }
-
-    p { font-size:0.95rem; color:var(--mid); margin-bottom:1rem; }
-    p strong { color:var(--dark); font-weight:500; }
-
-    ul, ol { margin: 0 0 1.25rem 1.25rem; color: var(--mid); font-size: 0.95rem; }
-    li { margin-bottom: 0.5rem; }
-    li strong { color: var(--dark); font-weight: 500; }
-
-    .answer-box {
-      background: var(--off);
-      border-left: 3px solid var(--black);
-      padding: 1.5rem 1.75rem;
-      margin: 1.5rem 0;
-    }
-    .answer-box p { color: var(--dark); font-size: 0.95rem; margin-bottom: 0; }
-
-    .faq-item { border-top: 1px solid var(--rule); padding: 1.75rem 0; }
-    .faq-item:last-child { border-bottom: 1px solid var(--rule); }
-    .faq-q { font-family:'Cormorant Garamond',serif; font-size: 1.25rem; font-weight: 500; margin-bottom: 0.6rem; }
-    .faq-a { font-size: 0.92rem; color: var(--mid); }
-
-    .cta-box {
-      background: var(--black);
-      color: var(--white);
-      padding: 2.5rem;
-      margin-top: 3rem;
-      text-align: center;
-    }
-    .cta-box p { color: rgba(255,255,255,0.7); margin-bottom: 1.25rem; }
-    .cta-box a {
-      display: inline-block;
-      background: var(--white);
-      color: var(--black);
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.85rem 2rem;
-    }
-
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 1.75rem 5rem;
-      max-width: 1080px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-    }
-    footer p { font-size: 0.75rem; color: var(--light); }
-
-    @media (max-width: 700px) {
-      nav { padding: 0 1.5rem; }
-      main { padding: 7rem 0 4rem; }
-      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; }
-    }
-  </style>
-
+  <link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html">
+  <link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/digital-transformation-consultant.html">
+  <link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/digital-transformation-consultant.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <meta property="og:type" content="article"><meta property="og:locale" content="tr_TR"><meta property="og:title" content="Dijital Dönüşüm Danışmanı Ne Yapar?"><meta property="og:description" content="Dijital dönüşümün analiz, önceliklendirme, uygulama ve ölçüm adımları."><meta property="og:url" content="https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html"><meta name="twitter:card" content="summary"><meta name="last-modified" content="2026-10-30">
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Dijital dönüşüm danışmanı ne yapar?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dijital dönüşüm danışmanı, bir kurumun teknoloji, süreç ve organizasyon yapısını analiz ederek dijitalleşme stratejisi belirler; kesintisiz ve sürdürülebilir kritik sistemler (bulut tabanlı kurumsal yazılımlar), e-Dönüşüm ve otomasyon gibi çözümlerin seçimi ve entegrasyonunda rehberlik eder; değişim yönetimi ve ekip eğitimini planlar; sonuçları ölçülebilir hedeflerle takip eder."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "KOBİ'ler için dijital dönüşüm nasıl yapılır?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "KOBİ'ler için dijital dönüşüm; mevcut süreçlerin analizi, önceliklerin belirlenmesi (finans, muhasebe ve e-Dönüşüm gibi zorunlu alanlardan başlanması), ölçeğe uygun, kesintisiz çalışan bulut tabanlı kurumsal sistemlerin seçimi, küçük ve ölçülebilir adımlarla pilot uygulama, ekip eğitimi ve süreçlerin kademeli olarak dijitalleştirilmesi adımlarını içerir."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Dijital dönüşüm danışmanlığı neden gereklidir?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Dijital dönüşüm danışmanlığı, kurumların doğru teknolojiye doğru zamanda yatırım yapmasını sağlar, gereksiz maliyet ve entegrasyon hatalarını önler, mevzuata uyumu (örneğin e-Fatura ve e-Defter zorunlulukları) garanti eder ve değişim sürecinde çalışan direncini azaltarak uygulamayı hızlandırır."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "e-Dönüşüm nedir ve hangi şirketler için zorunludur?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "e-Dönüşüm; e-Fatura, e-Arşiv Fatura ve e-Defter gibi Gelir İdaresi Başkanlığı tarafından zorunlu tutulan elektronik belge ve kayıt sistemlerine geçiş sürecidir. Belirli ciro eşiklerini aşan şirketler ile e-ticaret, akaryakıt ve bazı düzenlenmiş sektörlerdeki işletmeler için zorunludur; eşik gerektirmeden gönüllü olarak da kullanılabilir."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Kesintisiz ve sürdürülebilir kritik sistem tasarımı ne anlama gelir?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Kesintisiz ve sürdürülebilir kritik sistem tasarımı; bir kurumun operasyonlarını hiçbir noktada durdurmadan sürdürebilmesi için altyapının uçtan uca yedekli ve dayanıklı kurgulanmasıdır. Bu; always-on ve replikasyonlu veritabanları, aktif-aktif veya aktif-pasif veri merkezi yedekliliği, felaket kurtarma (disaster recovery) planları, kesintisiz güç kaynakları ve elektrik altyapısı, sunucu ve ağ seviyesinde yük dengeleme (load balancing), siber güvenlik katmanları ve saldırı tespit sistemleri ile bu altyapı üzerinde çalışan yazılımın da yatay ölçeklenebilir ve yük paylaşımına uygun şekilde kodlanmasını kapsayan uçtan uca bir mühendislik disiplinidir."
-        }
-      }
+    "@context":"https://schema.org",
+    "@graph":[
+      {"@type":"Article","headline":"Dijital Dönüşüm Danışmanı Ne Yapar? KOBİ’ler İçin Pratik Yol Haritası","description":"Dijital dönüşüm danışmanının rolü, KOBİ’ler için uygulanabilir yol haritası ve kritik sistem sürekliliği.","url":"https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html","mainEntityOfPage":"https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html","author":{"@id":"https://cagricakir.com.tr/#person"},"datePublished":"2026-07-10","dateModified":"2026-10-30","inLanguage":"tr-TR"},
+      {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://cagricakir.com.tr/"},{"@type":"ListItem","position":2,"name":"Dijital Dönüşüm Danışmanı Ne Yapar?","item":"https://cagricakir.com.tr/dijital-donusum-danismani-nedir.html"}]},
+      {"@type":"FAQPage","mainEntity":[
+        {"@type":"Question","name":"Dijital dönüşüm danışmanı ne yapar?","acceptedAnswer":{"@type":"Answer","text":"Kurumun teknoloji, süreç ve organizasyon yapısını analiz eder; önceliklendirilmiş yol haritası oluşturur; doğru teknoloji ve çalışma modelinin seçilmesine yardımcı olur; değişim, risk, bağımlılık ve sonuç ölçümünü yönetir."}},
+        {"@type":"Question","name":"Dijital dönüşüm yalnızca yazılım satın almak mıdır?","acceptedAnswer":{"@type":"Answer","text":"Hayır. Yazılım yalnızca araçtır. Başarılı dönüşüm; süreç, veri, rol, yetkinlik, karar mekanizması, entegrasyon, güvenlik, iş sürekliliği ve değişim yönetimini birlikte ele alır."}},
+        {"@type":"Question","name":"KOBİ’ler dönüşüme nereden başlamalıdır?","acceptedAnswer":{"@type":"Answer","text":"Önce mevcut süreç ve sorunları görünür hale getirmeli, en yüksek etkiyi en düşük riskle sağlayacak alanları seçmeli, küçük ve ölçülebilir pilotlarla başlamalı ve sonuçları doğrulamadan kapsamı büyütmemelidir."}},
+        {"@type":"Question","name":"Dijital dönüşüm başarısı nasıl ölçülür?","acceptedAnswer":{"@type":"Answer","text":"Teslim edilen sistem sayısıyla değil; işlem süresi, hata oranı, maliyet, müşteri veya çalışan deneyimi, veri kalitesi, risk azalması ve gerçekleşen iş faydası gibi başlangıçta tanımlanmış göstergelerle ölçülür."}}
+      ]}
     ]
   }
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">İçeriğe geç</a>
+  <header class="site-header"><div class="container header-inner"><a class="logo" href="index.html">S. Çağrı Çakır</a><details class="nav-menu"><summary>Menü</summary><nav aria-label="Ana navigasyon"><ul class="nav-list"><li><a href="index.html#hizmetler">Hizmetler</a></li><li><a href="dijital-donusum-ofisi.html">Dönüşüm Ofisi</a></li><li><a href="fractional-cto-danismanligi.html">Fractional CTO</a></li><li class="lang-switch"><a href="digital-transformation-consultant.html" lang="en">EN</a></li><li><a class="nav-cta" href="mailto:mail@cagricakir.com.tr?subject=Dijital%20dönüşüm%20görüşmesi">Görüşme başlat</a></li></ul></nav></details></div></header>
+  <main id="main">
+    <article class="article">
+      <div class="reading">
+        <ol class="breadcrumb"><li><a href="index.html">Ana Sayfa</a></li><li>Yazılar</li><li>Dijital Dönüşüm</li></ol>
+        <p class="eyebrow">Dijital dönüşüm · Uygulama rehberi</p>
+        <h1>Dijital dönüşüm danışmanı ne yapar?</h1>
+        <p class="lede">Dijital dönüşüm danışmanı, kurumun teknoloji ve süreçlerini analiz eder; doğru öncelikleri belirler; uygulama, değişim ve yönetişim modelini kurar; sonuçları ölçülebilir iş faydalarıyla takip eder. Görevi yeni yazılım tavsiye etmekten çok, yatırımın gerçekten çalışmasını sağlamaktır.</p>
+        <p class="small muted">Yayın: 10 Temmuz 2026 · Güncelleme: 30 Ekim 2026</p>
 
-  <nav>
-    <a href="index.html" class="logo">S. Çağrı Çakır</a>
-    <a href="index.html" class="back">← Ana Sayfaya Dön</a>
-  </nav>
+        <div class="prose">
+          <h2>Kısa cevap</h2>
+          <div class="answer-box"><p><strong>Dijital dönüşüm danışmanı;</strong> mevcut durumu görünür hale getirir, iş hedeflerine bağlı bir yol haritası oluşturur, doğru teknoloji ve çalışma modelini seçmeye yardımcı olur, risk ve bağımlılıkları yönetir ve dönüşümün gerçek faydasını ölçer.</p></div>
+          <p>Dijital dönüşüm, eski bir süreci ekrana taşımak değildir. Kurumun karar verme, veri kullanma, hizmet üretme ve müşteriye değer sunma biçimini yeniden tasarlamaktır. Bu nedenle çalışma yalnızca bilgi işlem biriminin değil, yönetimin ve iş birimlerinin ortak sorumluluğudur.</p>
 
-  <div class="container">
-    <main>
-      <p class="eyebrow">Dijital Dönüşüm</p>
-      <h1>Dijital Dönüşüm Danışmanı Ne Yapar? KOBİ'ler İçin Pratik Bir Yol Haritası</h1>
-      <p class="lede">
-        Dijital dönüşüm danışmanı, bir kurumun teknoloji ve süreçlerini analiz ederek doğru dijitalleşme
-        stratejisini belirleyen, sistem seçimi ve entegrasyonunda rehberlik eden, değişim sürecini yöneten
-        ve sonuçları ölçülebilir hedeflerle takip eden kişidir. Aşağıda, 15+ yıllık CTO ve danışmanlık
-        deneyimime dayanarak, özellikle KOBİ'ler için işleyen bir yol haritasını paylaşıyorum.
-      </p>
+          <h2>Danışmanın somut sorumlulukları</h2>
+          <h3>1. Mevcut durumu analiz etmek</h3><p>Süreçler, uygulamalar, veri akışları, entegrasyonlar, teknoloji altyapısı, ekip yetkinlikleri, vendor bağımlılıkları ve riskler birlikte incelenir. Sorunların semptomu ile kök nedeni ayrılır.</p>
+          <h3>2. Önceliklendirilmiş yol haritası hazırlamak</h3><p>Her şeyi aynı anda değiştirmek yerine iş değeri, zorunluluk, risk, kapasite ve bağımlılık temelinde sıralama yapılır. Quick win’ler ile temel mimari yatırımlar aynı portföyde dengelenir.</p>
+          <h3>3. Teknoloji ve çalışma modeli seçmek</h3><p>Hazır ürün, özel yazılım, bulut, entegrasyon, otomasyon veya süreç değişikliği seçenekleri karşılaştırılır. “En popüler araç” değil, kurumun ölçeğine ve işletme modeline uygun çözüm seçilir.</p>
+          <h3>4. Değişimi ve yönetişimi kurmak</h3><p>Sponsor, owner, karar hakları, RACI, toplantı ritmi, risk yönetimi ve raporlama yapısı tanımlanır. Ekiplerin yeni sistemi neden ve nasıl kullanacağı açık hale getirilir.</p>
+          <h3>5. Sonucu ölçmek</h3><p>Başarı; teslim edilen özellik sayısıyla değil, işlem süresinin kısalması, hata oranının azalması, veri kalitesinin artması, maliyetin düşmesi, riskin azalması ve müşteri deneyiminin iyileşmesiyle ölçülür.</p>
 
-      <h2>Dijital Dönüşüm Danışmanı Ne Yapar?</h2>
-      <div class="answer-box">
-        <p><strong>Kısa cevap:</strong> Dijital dönüşüm danışmanı, kurumun mevcut durumunu analiz eder, önceliklendirilmiş bir dijitalleşme stratejisi hazırlar, doğru teknolojiyi (kesintisiz çalışan kritik sistemler, e-Dönüşüm, otomasyon vb.) seçip entegre eder, değişim sürecini yönetir ve sonuçları somut metriklerle takip eder.</p>
+          <h2>KOBİ’ler için pratik yol haritası</h2>
+          <ol>
+            <li><strong>Sorun envanteri çıkarın:</strong> manuel işler, tekrarlanan veri girişi, bekleme süreleri, hata kaynakları ve raporlama boşlukları.</li>
+            <li><strong>Tek bir yüksek etkili alan seçin:</strong> finans, satış, stok, müşteri hizmeti veya saha operasyonu gibi ölçülebilir bir süreç.</li>
+            <li><strong>Önce standardize edin, sonra otomatikleştirin:</strong> bozuk süreci hızlandırmak yalnızca daha hızlı hata üretir.</li>
+            <li><strong>Küçük pilot kurun:</strong> dar kapsam, net owner, kısa takvim ve başlangıç metriği.</li>
+            <li><strong>Sonucu doğrulayıp ölçekleyin:</strong> fayda oluşmadan yeni birimlere ve daha pahalı araçlara geçmeyin.</li>
+          </ol>
+
+          <h2>Kritik sistemlerde süreklilik</h2>
+          <p>Dijitalleşme arttıkça sistem kesintisinin iş etkisi de büyür. Bu nedenle dönüşüm yalnızca fonksiyon eklemek değil, hizmetin kesintisiz ve güvenli çalışmasını tasarlamaktır.</p>
+          <ul>
+            <li>Aktif-aktif veya aktif-pasif altyapı seçenekleri</li>
+            <li>Veri yedekleme, replikasyon ve felaket kurtarma hedefleri</li>
+            <li>Yük dengeleme ve yatay ölçeklenebilir yazılım mimarisi</li>
+            <li>Kimlik, erişim, loglama ve saldırı tespit katmanları</li>
+            <li>RTO, RPO, kapasite ve olay müdahale ölçütleri</li>
+          </ul>
+          <p>Her kurumun aynı mimariye ihtiyacı yoktur. Mühendislik; risk ve maliyet arasında bilinçli denge kurmaktır, her probleme veri merkezi inşa etmek değil.</p>
+
+          <h2>Ne zaman dış destek gerekir?</h2>
+          <p>Yönetim hangi projeye neden yatırım yaptığını net açıklayamıyorsa, teknoloji ekibi sürekli yangın söndürüyorsa, vendor teklifleri karşılaştırılamıyorsa, dönüşüm projeleri birbirini bekliyorsa veya ilerleme sunumlarda iyi görünüp iş sonuçlarına yansımıyorsa bağımsız bir değerlendirme gerekir.</p>
+          <p>Düzenli teknoloji liderliği için <a href="fractional-cto-danismanligi.html">Fractional CTO</a>; çoklu dönüşüm programının yönetişimi için <a href="dijital-donusum-ofisi.html">Dijital Dönüşüm Ofisi</a> modeli daha uygundur.</p>
+
+          <h2>Sıkça sorulan sorular</h2>
+          <div class="faq-list">
+            <div class="faq-item"><h3>Dijital dönüşüm danışmanı ne yapar?</h3><p>Kurumun teknoloji, süreç ve organizasyon yapısını analiz eder; önceliklendirilmiş yol haritası oluşturur; doğru teknoloji ve çalışma modelinin seçilmesine yardımcı olur; değişim, risk, bağımlılık ve sonuç ölçümünü yönetir.</p></div>
+            <div class="faq-item"><h3>Dijital dönüşüm yalnızca yazılım satın almak mıdır?</h3><p>Hayır. Yazılım araçtır. Süreç, veri, rol, yetkinlik, karar mekanizması, entegrasyon, güvenlik, iş sürekliliği ve değişim yönetimi birlikte ele alınmalıdır.</p></div>
+            <div class="faq-item"><h3>KOBİ’ler nereden başlamalıdır?</h3><p>Mevcut sorunları görünür hale getirip en yüksek etkiyi en düşük riskle sağlayacak tek bir alanı seçmeli, küçük ve ölçülebilir pilotlarla başlamalıdır.</p></div>
+            <div class="faq-item"><h3>Başarı nasıl ölçülür?</h3><p>İşlem süresi, hata oranı, maliyet, deneyim, veri kalitesi, risk azalması ve gerçekleşen iş faydası gibi başlangıçta tanımlanmış göstergelerle ölçülür.</p></div>
+          </div>
+        </div>
       </div>
-      <p>
-        Bu tanımın içini biraz daha dolduralım. Dijital dönüşüm, tek bir yazılım kurulumu değil; kurumun
-        çalışma biçiminin yeniden tasarlanmasıdır. Bir danışmanın işi, teknolojiyi amaç değil araç olarak
-        konumlandırmaktır.
-      </p>
-
-      <h3>Somut olarak neler yapılır?</h3>
-      <ul>
-        <li><strong>Süreç analizi:</strong> Hangi süreçler manuel, hangileri tekrar eden hatalara açık, nerede veri kaybı yaşanıyor — bunlar haritalanır.</li>
-        <li><strong>Öncelik belirleme:</strong> Her şeyi aynı anda değiştirmek yerine, en yüksek etkiyi en düşük riskle sağlayacak adımlar sıralanır.</li>
-        <li><strong>Sistem seçimi ve entegrasyonu:</strong> Kesintisiz ve sürdürülebilir kritik sistemler, e-Dönüşüm altyapısı, CRM veya otomasyon araçlarının kurumun ölçeğine uygun olanı seçilir.</li>
-        <li><strong>Değişim yönetimi:</strong> Yeni sistemin ekip tarafından benimsenmesi, eğitim ve iç iletişim süreciyle desteklenir.</li>
-        <li><strong>Ölçme ve iyileştirme:</strong> Zaman tasarrufu, hata oranı düşüşü gibi somut metriklerle sonuç takip edilir.</li>
-      </ul>
-
-      <h2>KOBİ'ler İçin Dijital Dönüşüm Yol Haritası</h2>
-      <p>
-        Büyük kurumsal projelerde çalıştığım kadar, sınırlı bütçe ve ekiple çalışan küçük ve orta ölçekli
-        işletmelerin ihtiyaçlarının çok farklı olduğunu da biliyorum. KOBİ'ler için önerdiğim yol haritası şu
-        şekilde:
-      </p>
-
-      <h3>1. Zorunlu alanlardan başlayın</h3>
-      <p>
-        e-Fatura, e-Arşiv Fatura ve e-Defter gibi mevzuat gereği zorunlu olan veya yakın zamanda zorunlu
-        hale gelecek alanlar öncelik olmalı. Bu, hem uyum riskini azaltır hem de dijitalleşmenin ilk somut
-        faydasını hızlıca görmenizi sağlar.
-      </p>
-
-      <h3>2. Ölçeğinize uygun araç seçin</h3>
-      <p>
-        Büyük kurumlar için tasarlanmış kapsamlı ve karmaşık kritik sistemler, küçük bir işletme için gereksiz maliyet ve
-        karmaşıklık yaratabilir. Bulut tabanlı, modüler ve ölçeklenebilir çözümler genellikle KOBİ'ler için
-        daha uygundur.
-      </p>
-
-      <h3>3. Küçük ve ölçülebilir adımlarla ilerleyin</h3>
-      <p>
-        Tüm şirketi aynı anda dönüştürmeye çalışmak yerine, bir bölüm veya süreçte pilot uygulama yapın.
-        Örneğin önce muhasebe süreçlerini dijitalleştirin, sonuçları görün, ardından stok ve satış
-        süreçlerine geçin.
-      </p>
-
-      <h3>4. Ekibinizi sürece dahil edin</h3>
-      <p>
-        Dijital dönüşümün en sık başarısız olduğu nokta teknoloji değil, insan direncidir. Ekibin yeni
-        sistemi neden kullandığını anlaması, eğitim alması ve sürece erken dahil edilmesi, uygulamanın
-        hızını ve başarısını doğrudan etkiler.
-      </p>
-
-      <h3>5. Sonuçları takip edin</h3>
-      <p>
-        Zaman tasarrufu, hata oranındaki düşüş, raporlama hızı gibi somut göstergelerle ilerlemeyi izleyin.
-        Bu hem yönetime hem de ekibe sürecin değerini gösterir.
-      </p>
-
-      <h2>Kesintisiz ve Sürdürülebilir Kritik Sistem Tasarımı</h2>
-      <p>
-        Dijital dönüşümün en kritik ama en az konuşulan boyutu, sistemlerin hiçbir noktada durmaması. Bu,
-        tek bir yazılım özelliği değil; sunucudan elektrik altyapısına, veritabanından siber güvenliğe kadar
-        uzanan uçtan uca bir mühendislik disiplinidir.
-      </p>
-
-      <h3>Altyapı seviyesinde süreklilik</h3>
-      <ul>
-        <li><strong>Yedekli veri merkezi mimarisi:</strong> Aktif-aktif veya aktif-pasif veri merkezi kurgusu, bir merkezde yaşanan kesintide diğerinin devreye girmesini sağlar.</li>
-        <li><strong>Always-on veritabanları:</strong> Gerçek zamanlı replikasyon ile veri kaybı olmadan kesintisiz erişim sağlanır.</li>
-        <li><strong>Felaket kurtarma (disaster recovery) planları:</strong> Beklenmedik bir kesinti durumunda sistemlerin ne kadar sürede ve hangi veri kaybıyla geri ayağa kalkacağı önceden tanımlanır.</li>
-        <li><strong>Kesintisiz güç kaynakları:</strong> UPS sistemleri, jeneratör yedekliliği ve elektrik altyapısının kendisi de bu zincirin bir parçasıdır.</li>
-        <li><strong>Siber güvenlik katmanları:</strong> Saldırı tespit ve önleme sistemleri, güvenlik duvarları ve sürekli izleme, sürekliliği tehdit eden dış etkenlere karşı korur.</li>
-      </ul>
-
-      <h3>Yazılım seviyesinde süreklilik</h3>
-      <p>
-        Dayanıklı altyapı tek başına yeterli değil; üzerinde çalışan yazılımın da bu dayanıklılığa uygun
-        yazılması gerekir. Yük dengeleme (load balancing) ile trafiğin birden fazla sunucuya dağıtılması,
-        yatay ölçeklenebilir (horizontally scalable) mimariler ve hatasız devreye alma (zero-downtime
-        deployment) pratikleri, bankacılık ve kamu gibi kesintiye tahammülü olmayan sektörlerde standart
-        hale gelmiştir.
-      </p>
-
-      <h2>Sıkça Sorulan Sorular</h2>
-
-      <div class="faq-item">
-        <p class="faq-q">Dijital dönüşüm danışmanlığı neden gereklidir?</p>
-        <p class="faq-a">Doğru teknolojiye doğru zamanda yatırım yapılmasını sağlar, gereksiz maliyet ve entegrasyon hatalarını önler, mevzuata uyumu garanti eder (e-Fatura ve e-Defter zorunlulukları gibi) ve değişim sürecinde çalışan direncini azaltarak uygulamayı hızlandırır.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">e-Dönüşüm nedir ve hangi şirketler için zorunludur?</p>
-        <p class="faq-a">e-Dönüşüm; e-Fatura, e-Arşiv Fatura ve e-Defter gibi Gelir İdaresi Başkanlığı tarafından zorunlu tutulan elektronik belge ve kayıt sistemlerine geçiş sürecidir. Belirli ciro eşiklerini aşan şirketler ile e-ticaret, akaryakıt ve bazı düzenlenmiş sektörlerdeki işletmeler için zorunludur; eşik olmadan gönüllü olarak da kullanılabilir.</p>
-      </div>
-
-      <div class="faq-item">
-        <p class="faq-q">Kesintisiz ve sürdürülebilir kritik sistem tasarımı ne anlama gelir?</p>
-        <p class="faq-a">Bir kurumun operasyonlarını hiçbir noktada durdurmadan sürdürebilmesi için altyapının uçtan uca yedekli ve dayanıklı kurgulanmasıdır. Bu; always-on ve replikasyonlu veritabanları, aktif-aktif veya aktif-pasif veri merkezi yedekliliği, felaket kurtarma (disaster recovery) planları, kesintisiz güç kaynakları ve elektrik altyapısı, sunucu ve ağ seviyesinde yük dengeleme (load balancing), siber güvenlik katmanları ve saldırı tespit sistemleri ile bu altyapı üzerinde çalışan yazılımın da yatay ölçeklenebilir ve yük paylaşımına uygun şekilde kodlanmasını kapsayan uçtan uca bir mühendislik disiplinidir.</p>
-      </div>
-
-      <div class="cta-box">
-        <p>Dijital dönüşüm veya kesintisiz kritik sistem tasarımı konusunda danışmanlık ihtiyacınız mı var?</p>
-        <a href="index.html#iletisim">İletişime Geçin</a>
-      </div>
-
-    </main>
-  </div>
-
-  <footer>
-    <p>© 2026 Sabri Çağrı Çakır · Ankara, Türkiye · Son güncelleme: 10 Temmuz 2026</p>
-    <p>mail@cagricakir.com.tr</p>
-  </footer>
-
+    </article>
+    <div class="contact-band"><section class="section"><div class="container contact-grid"><div><p class="eyebrow" style="color:rgba(255,255,255,.65)">Dönüşümü somutlaştırın</p><h2>Önce mevcut durumu ve öncelikleri çıkaralım.</h2><p>Tek bir proje, sürekli teknoloji liderliği veya kurumsal dönüşüm ofisi için doğru başlangıç kapsamını birlikte belirleyebiliriz.</p></div><a class="btn btn-light" href="mailto:mail@cagricakir.com.tr?subject=Dijital%20dönüşüm%20görüşmesi">Görüşme başlat</a></div></section></div>
+  </main>
+  <footer class="site-footer"><div class="container footer-grid"><p class="footer-copy">© 2026 Sabri Çağrı Çakır · Son güncelleme: 30 Ekim 2026</p><div class="footer-links"><a href="index.html">Ana Sayfa</a><a href="dijital-donusum-ofisi.html">Dönüşüm Ofisi</a><a href="mailto:mail@cagricakir.com.tr">E-posta</a></div></div></footer>
 </body>
 </html>
