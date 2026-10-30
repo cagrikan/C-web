@@ -8,7 +8,7 @@ body.home-page {
 }
 
 .home-page .section-tight {
-  padding: 3.25rem 0;
+  padding: 2.9rem 0;
 }
 
 .home-page h1,
@@ -21,9 +21,10 @@ body.home-page {
 }
 
 .home-page h1 {
-  max-width: 17ch;
-  font-size: clamp(2.45rem, 4.8vw, 4.25rem);
+  max-width: 22ch;
+  font-size: clamp(2.4rem, 3.7vw, 3.25rem);
   font-weight: 600;
+  line-height: 1.13;
 }
 
 .home-page h2 {
@@ -39,8 +40,8 @@ body.home-page {
 }
 
 .home-page .eyebrow {
-  margin-bottom: 0.85rem;
-  font-size: 0.72rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.7rem;
   letter-spacing: 0.1em;
 }
 
@@ -49,60 +50,95 @@ body.home-page {
 }
 
 .home-page .lede {
-  max-width: 690px;
-  margin-top: 1.2rem;
-  font-size: clamp(1rem, 1.35vw, 1.15rem);
-  line-height: 1.65;
+  max-width: 630px;
+  margin-top: 1.1rem;
+  font-size: clamp(0.98rem, 1.2vw, 1.08rem);
+  line-height: 1.68;
 }
 
 .home-page .hero-grid {
-  grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
-  gap: 3rem;
-  align-items: start;
+  grid-template-columns: minmax(0, 1.2fr) minmax(350px, 0.8fr);
+  gap: clamp(2.5rem, 4vw, 4.25rem);
+  align-items: stretch;
 }
 
 .home-page .hero-copy {
-  max-width: 760px;
+  max-width: 710px;
+  align-self: center;
 }
 
 .home-page .hero-aside {
-  padding: 1.5rem;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 320px;
+  padding: 1.75rem;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--paper-soft);
   box-shadow: none;
 }
 
 .home-page .hero-aside strong {
-  margin-bottom: 0.7rem;
-  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .home-page .hero-aside ul {
-  font-size: 0.92rem;
-  line-height: 1.55;
+  counter-reset: first-month;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+  color: var(--ink-soft);
+}
+
+.home-page .hero-aside li {
+  counter-increment: first-month;
+  min-height: 112px;
+  padding: 0.9rem;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-size: 0.84rem;
+  line-height: 1.48;
+}
+
+.home-page .hero-aside li::before {
+  content: '0' counter(first-month);
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
 }
 
 .home-page .actions {
-  margin-top: 1.6rem;
+  margin-top: 1.45rem;
 }
 
 .home-page .btn {
-  min-height: 46px;
-  padding: 0.72rem 1.1rem;
-  font-size: 0.82rem;
+  min-height: 44px;
+  padding: 0.68rem 1.05rem;
+  font-size: 0.8rem;
   letter-spacing: 0;
   text-transform: none;
 }
 
 .home-page .stat,
 .home-page .proof-item {
-  padding: 1.3rem;
+  padding: 1.2rem 1.3rem;
 }
 
 .home-page .stat-value {
   font-family: 'Jost', system-ui, sans-serif;
-  font-size: 2rem;
+  font-size: 1.85rem;
   font-weight: 600;
 }
 
@@ -218,12 +254,27 @@ body.home-page {
   max-width: 760px;
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1120px) {
+  .home-page .hero-grid {
+    grid-template-columns: minmax(0, 1.12fr) minmax(320px, 0.88fr);
+    gap: 2.5rem;
+  }
+
+  .home-page h1 {
+    font-size: clamp(2.35rem, 4.4vw, 3rem);
+  }
+}
+
+@media (max-width: 940px) {
   .home-page .hero-grid,
   .home-page .section-head,
   .home-page .split {
     grid-template-columns: 1fr;
     gap: 2rem;
+  }
+
+  .home-page .hero-aside {
+    min-height: 0;
   }
 
   .home-page .section-head > p {
@@ -241,12 +292,12 @@ body.home-page {
   }
 
   .home-page .section-tight {
-    padding: 2.6rem 0;
+    padding: 2.45rem 0;
   }
 
   .home-page h1 {
     max-width: none;
-    font-size: clamp(2.15rem, 9.5vw, 3rem);
+    font-size: clamp(2.05rem, 9vw, 2.8rem);
   }
 
   .home-page h2 {
@@ -254,7 +305,11 @@ body.home-page {
   }
 
   .home-page .hero-grid {
-    gap: 1.6rem;
+    gap: 1.5rem;
+  }
+
+  .home-page .hero-aside {
+    padding: 1.25rem;
   }
 
   .home-page .method-grid,
@@ -274,5 +329,15 @@ body.home-page {
   .home-page .evidence-item {
     grid-template-columns: 1fr;
     gap: 0.25rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-page .hero-aside ul {
+    grid-template-columns: 1fr;
+  }
+
+  .home-page .hero-aside li {
+    min-height: 0;
   }
 }
