@@ -13,6 +13,8 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
+from build_collection import image_dimensions
+
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://cagricakir.com.tr"
 COLLECTION_DATA = json.loads((ROOT / "data" / "collection-inventory.json").read_text(encoding="utf-8"))
@@ -102,6 +104,7 @@ class ParsedPage:
     alternates: dict[str, str] = field(default_factory=dict)
     hrefs: list[str] = field(default_factory=list)
     srcs: list[str] = field(default_factory=list)
+    images: list[dict[str, str | None]] = field(default_factory=list)
     ids: list[str] = field(default_factory=list)
     json_ld: list[Any] = field(default_factory=list)
     visible_text: str = ""
@@ -146,6 +149,8 @@ class StaticPageParser(HTMLParser):
             self.page.hrefs.append(data["href"] or "")
         if data.get("src"):
             self.page.srcs.append(data["src"] or "")
+            if tag == "img":
+                self.page.images.append(data)
         if data.get("id"):
             self.page.ids.append(data["id"] or "")
 
@@ -486,6 +491,22 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
     }
     if referenced_images != PUBLISHED_COLLECTION_IMAGES:
         errors.append(f"Published collection image set mismatch: {sorted(referenced_images)!r}")
+
+    collection_pages = ("koleksiyon.html", "collection.html", *PUBLISHED_COLLECTION_FILES)
+    for filename in collection_pages:
+        page = pages.get(filename)
+        if page is None:
+            continue
+        for image in page.images:
+            src = image.get("src") or ""
+            if not src.startswith("assets/collection/"):
+                continue
+            expected_width, expected_height = image_dimensions(src)
+            if image.get("width") != str(expected_width) or image.get("height") != str(expected_height):
+                errors.append(
+                    f"{filename}: {src} dimensions must be {expected_width}x{expected_height}, "
+                    f"found {image.get('width')}x{image.get('height')}"
+                )
 
 
 def main() -> int:
