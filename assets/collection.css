@@ -423,10 +423,43 @@
 }
 @media (max-width: 620px) {
   .collection-page .container {
-    width: min(calc(100% - 3.5rem), var(--max));
+    width: min(calc(100% - 2rem), var(--max));
   }
+
   .collection-hero {
-    padding-top: 3rem;
+    padding: 1.25rem 0 1rem;
+  }
+
+  .collection-hero h1 {
+    font-size: clamp(2rem, 9vw, 2.35rem);
+    line-height: 1.02;
+  }
+
+  .collection-intro {
+    margin-top: 0.75rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .collection-page .collection-hero + .section {
+    padding-top: 0.5rem;
+  }
+
+  .collection-tools {
+    flex-wrap: nowrap;
+    gap: 0.45rem;
+    margin: 0 -1rem 1.25rem;
+    padding-inline: 1rem;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 1rem;
+  }
+
+  .collection-filter {
+    flex: 0 0 auto;
+    min-height: 40px;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.8125rem;
   }
 
   .collection-grid {
