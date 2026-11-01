@@ -385,6 +385,14 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
         visible = " ".join(page.visible_text.lower().split())
         if "draft photograph" in visible or "taslak fotoğraf" in visible or "local preview" in visible:
             errors.append(f"{filename}: draft-only wording leaked into the public gallery")
+        removed_gallery_copy = (
+            "record discipline",
+            "kayıt disiplini",
+            "price, provenance, originality and performance are never implied",
+            "fiyat, köken, özgünlük veya performans ima edilmez",
+        )
+        if any(text in visible for text in removed_gallery_copy):
+            errors.append(f"{filename}: removed gallery warning copy is still visible")
         nodes = [node for value in page.json_ld for node in flatten_json_ld(value)]
         lists = [node for node in nodes if node.get("@type") == "CollectionPage"]
         if not lists or lists[0].get("mainEntity", {}).get("numberOfItems") != 2:
@@ -397,19 +405,24 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
         if not any(href.startswith("mailto:mail@cagricakir.com.tr?subject=") for href in page.hrefs):
             errors.append(f"{filename}: missing product-specific enquiry CTA")
         visible = " ".join(page.visible_text.lower().split())
-        disclosure = "ai-generated representative" if filename.startswith("collection-") else "yapay zekâ ile oluşturulmuş temsili"
+        disclosure = "ai-generated illustrative scene." if filename.startswith("collection-") else "yapay zekâyla hazırlanmış temsili sahne."
         if disclosure not in visible:
-            errors.append(f"{filename}: missing representative AI-scene disclosure")
+            errors.append(f"{filename}: missing short AI-scene caption")
+        removed_detail_copy = (
+            "record status",
+            "identification basis",
+            "photographic record",
+            "condition, originality, accessories",
+            "kayıt durumu",
+            "kimlik dayanağı",
+            "fotoğraf kaydı",
+            "durum, özgünlük, aksesuarlar",
+        )
+        if any(text in visible for text in removed_detail_copy):
+            errors.append(f"{filename}: removed detail warning copy is still visible")
         nodes = [node for value in page.json_ld for node in flatten_json_ld(value)]
         if any(node.get("@type") == "Offer" for node in nodes):
             errors.append(f"{filename}: collection records must not expose Offer JSON-LD")
-
-    revox_en = pages.get("collection-revox-b77.html")
-    pioneer_en = pages.get("collection-pioneer-s-z85d-speaker-pair.html")
-    if revox_en and "working per owner" not in revox_en.visible_text.lower():
-        errors.append("collection-revox-b77.html: owner working statement is missing")
-    if pioneer_en and "operation not independently verified" not in pioneer_en.visible_text.lower():
-        errors.append("collection-pioneer-s-z85d-speaker-pair.html: unverified operating status is missing")
 
     referenced_images = {
         src

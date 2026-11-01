@@ -216,6 +216,16 @@
   top: 94px;
 }
 
+.collection-figure {
+  margin: 0;
+}
+
+.collection-figure figcaption {
+  margin-top: 0.75rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .collection-detail-media .collection-photo,
 .collection-detail-media .collection-placeholder {
   aspect-ratio: 16 / 10;
