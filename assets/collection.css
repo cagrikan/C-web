@@ -146,7 +146,8 @@
 .collection-photo img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  background: var(--collection-matte);
+  object-fit: contain;
 }
 
 .collection-placeholder {
@@ -226,7 +227,15 @@
   font-size: 0.9rem;
 }
 
-.collection-detail-media .collection-photo,
+.collection-detail-media .collection-photo {
+  aspect-ratio: auto;
+  border: 0;
+}
+
+.collection-detail-media .collection-photo img {
+  height: auto;
+}
+
 .collection-detail-media .collection-placeholder {
   aspect-ratio: 16 / 10;
   border: 0;
@@ -242,7 +251,8 @@
 .collection-thumbs img {
   width: 100%;
   aspect-ratio: 4 / 3;
-  object-fit: cover;
+  background: var(--collection-matte);
+  object-fit: contain;
   border: 0;
 }
 
