@@ -361,6 +361,8 @@ def validate_known_regressions(errors: list[str]) -> None:
 
 
 def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str]) -> None:
+    current_revox_url = "https://revox.com/de-de/products/revox-b77-mk-iii-stereo-tape-recorder-alice-cooper-limited-edition"
+    irrelevant_pioneer_url = "https://pioneer.jp/en/info/profile/pdf/pioneer_corporate_guide_2021.pdf"
     gallery_expected = {
         "koleksiyon.html": {
             "koleksiyon-revox-b77.html",
@@ -438,6 +440,19 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
         nodes = [node for value in page.json_ld for node in flatten_json_ld(value)]
         if any(node.get("@type") == "Offer" for node in nodes):
             errors.append(f"{filename}: collection records must not expose Offer JSON-LD")
+
+        is_revox = filename in {"koleksiyon-revox-b77.html", "collection-revox-b77.html"}
+        if is_revox:
+            expected_label = "current b77 mk iii" if filename.startswith("collection-") else "güncel b77 mk iii"
+            if current_revox_url not in page.hrefs or expected_label not in visible:
+                errors.append(f"{filename}: missing labelled official current B77 MK III link")
+        elif any("alice-cooper" in href for href in page.hrefs):
+            errors.append(f"{filename}: current B77 MK III link leaked outside the Revox record")
+
+        if irrelevant_pioneer_url in page.hrefs:
+            errors.append(f"{filename}: unrelated Pioneer corporate brochure is still linked")
+        if "pioneer-s-z85d" in filename and ("a-8" in visible or "1937" in visible):
+            errors.append(f"{filename}: unrelated Pioneer corporate-history copy is still visible")
 
     referenced_images = {
         src
