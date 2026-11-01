@@ -25,6 +25,15 @@ PUBLISHED_OVERRIDES = {
         "images": ["assets/collection/pioneer-s-z85d-pair-representative-scene.png"],
     },
 }
+RELATED_OFFICIAL_MODELS = {
+    "revox-b77": [
+        {
+            "label_tr": "Güncel B77 MK III — Revox (Alice Cooper Limited Edition)",
+            "label_en": "Current B77 MK III — Revox (Alice Cooper Limited Edition)",
+            "url": "https://revox.com/de-de/products/revox-b77-mk-iii-stereo-tape-recorder-alice-cooper-limited-edition",
+        }
+    ]
+}
 
 
 def esc(value: str) -> str:
@@ -324,7 +333,8 @@ def detail(item: dict, lang: str) -> str:
         },
     }
     category = detail_descriptors.get(item["id"], {}).get(lang, category)
-    sources = item.get("sources", [])
+    source_candidates = [*item.get("sources", []), *RELATED_OFFICIAL_MODELS.get(item["id"], [])]
+    sources = list({source["url"]: source for source in source_candidates}.values())
     page_title = f"{item_title} | {'Collection' if is_en else 'Koleksiyon'}"
     schema = {
         "@context": "https://schema.org",
@@ -349,7 +359,8 @@ def detail(item: dict, lang: str) -> str:
         sources_heading = "Tarihsel kaynaklar"
 
     source_links = "".join(
-        f'<li><a href="{esc(source["url"])}" target="_blank" rel="noopener noreferrer">{esc(source["label"])}</a></li>'
+        f'<li><a href="{esc(source["url"])}" target="_blank" rel="noopener noreferrer">'
+        f'{esc(source.get("label_en" if is_en else "label_tr", source.get("label", source["url"])))}</a></li>'
         for source in sources
     )
     source_block = (
@@ -379,7 +390,7 @@ def detail(item: dict, lang: str) -> str:
           <p class="lede">{esc(excerpt)}</p>
           <div class="prose"><p>{esc(description)}</p></div>
           {cta}
-          {source_block}
+{source_block}
         </div>
       </div>
     </article>
