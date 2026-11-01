@@ -126,4 +126,58 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/geo-ai-visibility-guide.html"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/geo-ai-visibility-guide.html"/>
   </url>
+  <url>
+    <loc>https://cagricakir.com.tr/koleksiyon.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/koleksiyon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/collection.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/koleksiyon.html"/>
+  </url>
+  <url>
+    <loc>https://cagricakir.com.tr/collection.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/koleksiyon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/collection.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/koleksiyon.html"/>
+  </url>
+  <url>
+    <loc>https://cagricakir.com.tr/koleksiyon-revox-b77.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/koleksiyon-revox-b77.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/collection-revox-b77.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/koleksiyon-revox-b77.html"/>
+  </url>
+  <url>
+    <loc>https://cagricakir.com.tr/collection-revox-b77.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/koleksiyon-revox-b77.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/collection-revox-b77.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/koleksiyon-revox-b77.html"/>
+  </url>
+  <url>
+    <loc>https://cagricakir.com.tr/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/collection-pioneer-s-z85d-speaker-pair.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html"/>
+  </url>
+  <url>
+    <loc>https://cagricakir.com.tr/collection-pioneer-s-z85d-speaker-pair.html</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="tr-TR" href="https://cagricakir.com.tr/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cagricakir.com.tr/collection-pioneer-s-z85d-speaker-pair.html"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cagricakir.com.tr/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html"/>
+  </url>
 </urlset>
