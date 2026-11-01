@@ -15,6 +15,9 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 BASE_URL = "https://cagricakir.com.tr"
+COLLECTION_DATA = json.loads((ROOT / "data" / "collection-inventory.json").read_text(encoding="utf-8"))
+PUBLIC_COLLECTION_ITEMS = [item for item in COLLECTION_DATA["items"] if item.get("show_as_separate_card", True)]
+OFFER_STATUSES = {"sale-owner-working", "sale-unverified-working", "open-to-offers"}
 
 EXPECTED_PAGES = {
     "index.html": f"{BASE_URL}/",
@@ -33,11 +36,10 @@ EXPECTED_PAGES = {
     "geo-ai-visibility-guide.html": f"{BASE_URL}/geo-ai-visibility-guide.html",
     "koleksiyon.html": f"{BASE_URL}/koleksiyon.html",
     "collection.html": f"{BASE_URL}/collection.html",
-    "koleksiyon-revox-b77.html": f"{BASE_URL}/koleksiyon-revox-b77.html",
-    "collection-revox-b77.html": f"{BASE_URL}/collection-revox-b77.html",
-    "koleksiyon-pioneer-s-z85d-hoparlor-cifti.html": f"{BASE_URL}/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html",
-    "collection-pioneer-s-z85d-speaker-pair.html": f"{BASE_URL}/collection-pioneer-s-z85d-speaker-pair.html",
 }
+for _item in PUBLIC_COLLECTION_ITEMS:
+    EXPECTED_PAGES[_item["slug_tr"]] = f"{BASE_URL}/{_item['slug_tr']}"
+    EXPECTED_PAGES[_item["slug_en"]] = f"{BASE_URL}/{_item['slug_en']}"
 
 LANGUAGE_PAIRS = [
     ("index.html", "index_en.html"),
@@ -48,9 +50,8 @@ LANGUAGE_PAIRS = [
     ("dijital-donusum-danismani-nedir.html", "digital-transformation-consultant.html"),
     ("geo-yapay-zeka-gorunurlugu-nedir.html", "geo-ai-visibility-guide.html"),
     ("koleksiyon.html", "collection.html"),
-    ("koleksiyon-revox-b77.html", "collection-revox-b77.html"),
-    ("koleksiyon-pioneer-s-z85d-hoparlor-cifti.html", "collection-pioneer-s-z85d-speaker-pair.html"),
 ]
+LANGUAGE_PAIRS.extend((_item["slug_tr"], _item["slug_en"]) for _item in PUBLIC_COLLECTION_ITEMS)
 
 ENGLISH_FILES = {
     "index_en.html",
@@ -61,21 +62,26 @@ ENGLISH_FILES = {
     "digital-transformation-consultant.html",
     "geo-ai-visibility-guide.html",
     "collection.html",
-    "collection-revox-b77.html",
-    "collection-pioneer-s-z85d-speaker-pair.html",
 }
+ENGLISH_FILES.update(_item["slug_en"] for _item in PUBLIC_COLLECTION_ITEMS)
 
 PUBLISHED_COLLECTION_FILES = {
-    "koleksiyon-revox-b77.html",
-    "collection-revox-b77.html",
-    "koleksiyon-pioneer-s-z85d-hoparlor-cifti.html",
-    "collection-pioneer-s-z85d-speaker-pair.html",
+    filename
+    for item in PUBLIC_COLLECTION_ITEMS
+    for filename in (item["slug_tr"], item["slug_en"])
+}
+OFFER_COLLECTION_FILES = {
+    filename
+    for item in PUBLIC_COLLECTION_ITEMS
+    if item["status"] in OFFER_STATUSES
+    for filename in (item["slug_tr"], item["slug_en"])
 }
 PUBLISHED_COLLECTION_URLS = {f"{BASE_URL}/{filename}" for filename in PUBLISHED_COLLECTION_FILES}
 PUBLISHED_GALLERY_URLS = {f"{BASE_URL}/koleksiyon.html", f"{BASE_URL}/collection.html"}
 PUBLISHED_COLLECTION_IMAGES = {
-    "assets/collection/revox-b77-representative-scene.png",
-    "assets/collection/pioneer-s-z85d-pair-representative-scene.png",
+    image
+    for item in PUBLIC_COLLECTION_ITEMS
+    for image in item.get("images", [])
 }
 
 FAQ_SECTION_MARKERS = (
@@ -347,6 +353,11 @@ def validate_supporting_files(errors: list[str]) -> None:
             url = EXPECTED_PAGES[filename]
             if url not in llms:
                 errors.append(f"llms.txt missing service URL: {url}")
+        for item in PUBLIC_COLLECTION_ITEMS:
+            for filename in (item["slug_tr"], item["slug_en"]):
+                url = EXPECTED_PAGES[filename]
+                if url not in llms:
+                    errors.append(f"llms.txt missing collection URL: {url}")
     except OSError as exc:
         errors.append(f"llms.txt could not be read: {exc}")
 
@@ -366,15 +377,10 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
     current_revox_url = "https://revox.com/de-de/products/revox-b77-mk-iii-stereo-tape-recorder-alice-cooper-limited-edition"
     irrelevant_pioneer_url = "https://pioneer.jp/en/info/profile/pdf/pioneer_corporate_guide_2021.pdf"
     gallery_expected = {
-        "koleksiyon.html": {
-            "koleksiyon-revox-b77.html",
-            "koleksiyon-pioneer-s-z85d-hoparlor-cifti.html",
-        },
-        "collection.html": {
-            "collection-revox-b77.html",
-            "collection-pioneer-s-z85d-speaker-pair.html",
-        },
+        "koleksiyon.html": {item["slug_tr"] for item in PUBLIC_COLLECTION_ITEMS},
+        "collection.html": {item["slug_en"] for item in PUBLIC_COLLECTION_ITEMS},
     }
+    expected_offer_count = sum(item["status"] in OFFER_STATUSES for item in PUBLIC_COLLECTION_ITEMS)
     for filename, expected_links in gallery_expected.items():
         page = pages.get(filename)
         if page is None:
@@ -397,29 +403,45 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
         )
         if any(text in visible for text in removed_gallery_copy):
             errors.append(f"{filename}: removed gallery warning copy is still visible")
-        expected_offer_label = "open to offers" if filename == "collection.html" else "tekliflere açık"
-        if visible.count(expected_offer_label) != 2:
-            errors.append(f"{filename}: both published cards must use the offer label")
+        raw = page.path.read_text(encoding="utf-8")
+        offer_card_count = len(
+            re.findall(
+                r'data-status="(?:sale-owner-working|sale-unverified-working|open-to-offers)"',
+                raw,
+            )
+        )
+        if offer_card_count != expected_offer_count:
+            errors.append(
+                f"{filename}: expected {expected_offer_count} offer cards, found {offer_card_count}"
+            )
         if "for sale" in visible or "satılık" in visible:
             errors.append(f"{filename}: legacy sale wording is still visible")
         nodes = [node for value in page.json_ld for node in flatten_json_ld(value)]
         lists = [node for node in nodes if node.get("@type") == "CollectionPage"]
-        if not lists or lists[0].get("mainEntity", {}).get("numberOfItems") != 2:
-            errors.append(f"{filename}: CollectionPage must expose exactly two published items")
+        if not lists or lists[0].get("mainEntity", {}).get("numberOfItems") != len(PUBLIC_COLLECTION_ITEMS):
+            errors.append(
+                f"{filename}: CollectionPage must expose exactly {len(PUBLIC_COLLECTION_ITEMS)} published items"
+            )
 
     for filename in PUBLISHED_COLLECTION_FILES:
         page = pages.get(filename)
         if page is None:
             continue
-        if not any(href.startswith("mailto:mail@cagricakir.com.tr?subject=") for href in page.hrefs):
-            errors.append(f"{filename}: missing product-specific enquiry CTA")
         visible = " ".join(page.visible_text.lower().split())
+        has_mailto = any(href.startswith("mailto:mail@cagricakir.com.tr?subject=") for href in page.hrefs)
+        should_offer = filename in OFFER_COLLECTION_FILES
+        if should_offer and not has_mailto:
+            errors.append(f"{filename}: missing product-specific enquiry CTA")
+        if not should_offer and has_mailto:
+            errors.append(f"{filename}: display-only record must not expose an enquiry CTA")
         disclosure = "ai-generated illustrative scene." if filename.startswith("collection-") else "yapay zekâyla hazırlanmış temsili sahne."
         if disclosure not in visible:
             errors.append(f"{filename}: missing short AI-scene caption")
         expected_cta = "send an offer" if filename.startswith("collection-") else "teklif gönder"
-        if expected_cta not in visible:
+        if should_offer and expected_cta not in visible:
             errors.append(f"{filename}: missing offer CTA")
+        if not should_offer and expected_cta in visible:
+            errors.append(f"{filename}: display-only record exposes offer CTA copy")
         removed_detail_copy = (
             "record status",
             "identification basis",
