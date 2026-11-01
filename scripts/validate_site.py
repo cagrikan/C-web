@@ -393,6 +393,11 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
         )
         if any(text in visible for text in removed_gallery_copy):
             errors.append(f"{filename}: removed gallery warning copy is still visible")
+        expected_offer_label = "open to offers" if filename == "collection.html" else "tekliflere açık"
+        if visible.count(expected_offer_label) != 2:
+            errors.append(f"{filename}: both published cards must use the offer label")
+        if "for sale" in visible or "satılık" in visible:
+            errors.append(f"{filename}: legacy sale wording is still visible")
         nodes = [node for value in page.json_ld for node in flatten_json_ld(value)]
         lists = [node for node in nodes if node.get("@type") == "CollectionPage"]
         if not lists or lists[0].get("mainEntity", {}).get("numberOfItems") != 2:
@@ -408,6 +413,9 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
         disclosure = "ai-generated illustrative scene." if filename.startswith("collection-") else "yapay zekâyla hazırlanmış temsili sahne."
         if disclosure not in visible:
             errors.append(f"{filename}: missing short AI-scene caption")
+        expected_cta = "send an offer" if filename.startswith("collection-") else "teklif gönder"
+        if expected_cta not in visible:
+            errors.append(f"{filename}: missing offer CTA")
         removed_detail_copy = (
             "record status",
             "identification basis",
@@ -417,6 +425,13 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
             "kimlik dayanağı",
             "fotoğraf kaydı",
             "durum, özgünlük, aksesuarlar",
+            "the precise version",
+            "remain unconfirmed",
+            "require separate confirmation",
+            "unverified promise",
+            "alt sürümü",
+            "ayrıca belirlenmeli",
+            "doğrulanmadan teknik",
         )
         if any(text in visible for text in removed_detail_copy):
             errors.append(f"{filename}: removed detail warning copy is still visible")
