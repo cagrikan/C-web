@@ -68,23 +68,68 @@ def placeholder(title: str) -> str:
     )
 
 
+def image_dimensions(src: str) -> tuple[int, int]:
+    """Read PNG or JPEG dimensions without adding a build dependency."""
+    path = ROOT / src
+    with path.open("rb") as image:
+        header = image.read(24)
+        if header.startswith(b"\x89PNG\r\n\x1a\n"):
+            return int.from_bytes(header[16:20], "big"), int.from_bytes(header[20:24], "big")
+
+        if not header.startswith(b"\xff\xd8"):
+            raise ValueError(f"Unsupported collection image format: {src}")
+
+        image.seek(2)
+        while True:
+            marker_start = image.read(1)
+            if not marker_start:
+                break
+            if marker_start != b"\xff":
+                continue
+            marker = image.read(1)
+            while marker == b"\xff":
+                marker = image.read(1)
+            if marker in {b"\xd8", b"\xd9"}:
+                continue
+            length_bytes = image.read(2)
+            if len(length_bytes) != 2:
+                break
+            segment_length = int.from_bytes(length_bytes, "big")
+            if marker in {
+                b"\xc0", b"\xc1", b"\xc2", b"\xc3", b"\xc5", b"\xc6", b"\xc7",
+                b"\xc9", b"\xca", b"\xcb", b"\xcd", b"\xce", b"\xcf",
+            }:
+                image.read(1)
+                height = int.from_bytes(image.read(2), "big")
+                width = int.from_bytes(image.read(2), "big")
+                return width, height
+            image.seek(segment_length - 2, 1)
+
+    raise ValueError(f"Could not read collection image dimensions: {src}")
+
+
 def picture(item: dict, lang: str, detail: bool = False) -> str:
     title = title_for(item, lang)
     images = item["images"]
     if not images:
         return placeholder(title)
     scene_suffix = "representative interior scene" if lang == "en" else "temsili mekân sahnesi"
+    primary_width, primary_height = image_dimensions(images[0])
+    orientation_class = " collection-photo--portrait" if primary_height > primary_width else ""
     primary = (
-        '<div class="collection-photo">'
-        f'<img src="{esc(images[0])}" alt="{esc(title)}, {scene_suffix}" width="1536" height="960" loading="eager" decoding="sync">'
+        f'<div class="collection-photo{orientation_class}">'
+        f'<img src="{esc(images[0])}" alt="{esc(title)}, {scene_suffix}" width="{primary_width}" height="{primary_height}" loading="eager" decoding="sync">'
         "</div>"
     )
     if not detail:
         return primary
-    thumbs = "".join(
-        f'<img src="{esc(src)}" alt="{esc(title)}: {index}. görünüm" width="1200" height="1500">'
-        for index, src in enumerate(images[1:], start=2)
-    )
+    thumbs_parts = []
+    for index, src in enumerate(images[1:], start=2):
+        width, height = image_dimensions(src)
+        thumbs_parts.append(
+            f'<img src="{esc(src)}" alt="{esc(title)}: {index}. görünüm" width="{width}" height="{height}">'
+        )
+    thumbs = "".join(thumbs_parts)
     thumbs_block = f'<div class="collection-thumbs">{thumbs}</div>' if thumbs else ""
     caption = "AI-generated illustrative scene." if lang == "en" else "Yapay zekâyla hazırlanmış temsili sahne."
     return f'<figure class="collection-figure">{primary}{thumbs_block}<figcaption>{caption}</figcaption></figure>'

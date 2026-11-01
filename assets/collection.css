@@ -150,6 +150,10 @@
   object-fit: contain;
 }
 
+.collection-photo--portrait {
+  background: #181715;
+}
+
 .collection-placeholder {
   padding: 1.5rem;
   color: #4a4743;
@@ -464,6 +468,15 @@
 
   .collection-grid {
     display: block;
+  }
+
+  .collection-card .collection-photo--portrait {
+    aspect-ratio: auto;
+  }
+
+  .collection-card .collection-photo--portrait img {
+    width: 100%;
+    height: auto;
   }
 
   .collection-card + .collection-card {
