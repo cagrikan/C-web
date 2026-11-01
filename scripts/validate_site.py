@@ -239,6 +239,8 @@ def validate_page_basics(pages: dict[str, ParsedPage], errors: list[str]) -> Non
             errors.append(f"{filename}: duplicate HTML id values")
         if not page.json_ld:
             errors.append(f"{filename}: missing JSON-LD")
+        if any(urllib.parse.urlsplit(href).path.endswith("llms.txt") for href in page.hrefs):
+            errors.append(f"{filename}: llms.txt must not appear as a visible page link")
 
         for block in page.json_ld:
             for node in flatten_json_ld(block):
