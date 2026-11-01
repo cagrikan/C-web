@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -30,6 +31,12 @@ EXPECTED_PAGES = {
     "digital-transformation-consultant.html": f"{BASE_URL}/digital-transformation-consultant.html",
     "geo-yapay-zeka-gorunurlugu-nedir.html": f"{BASE_URL}/geo-yapay-zeka-gorunurlugu-nedir.html",
     "geo-ai-visibility-guide.html": f"{BASE_URL}/geo-ai-visibility-guide.html",
+    "koleksiyon.html": f"{BASE_URL}/koleksiyon.html",
+    "collection.html": f"{BASE_URL}/collection.html",
+    "koleksiyon-revox-b77.html": f"{BASE_URL}/koleksiyon-revox-b77.html",
+    "collection-revox-b77.html": f"{BASE_URL}/collection-revox-b77.html",
+    "koleksiyon-pioneer-s-z85d-hoparlor-cifti.html": f"{BASE_URL}/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html",
+    "collection-pioneer-s-z85d-speaker-pair.html": f"{BASE_URL}/collection-pioneer-s-z85d-speaker-pair.html",
 }
 
 LANGUAGE_PAIRS = [
@@ -40,6 +47,9 @@ LANGUAGE_PAIRS = [
     ("dijital-donusum-ofisi.html", "digital-transformation-office.html"),
     ("dijital-donusum-danismani-nedir.html", "digital-transformation-consultant.html"),
     ("geo-yapay-zeka-gorunurlugu-nedir.html", "geo-ai-visibility-guide.html"),
+    ("koleksiyon.html", "collection.html"),
+    ("koleksiyon-revox-b77.html", "collection-revox-b77.html"),
+    ("koleksiyon-pioneer-s-z85d-hoparlor-cifti.html", "collection-pioneer-s-z85d-speaker-pair.html"),
 ]
 
 ENGLISH_FILES = {
@@ -50,6 +60,22 @@ ENGLISH_FILES = {
     "digital-transformation-office.html",
     "digital-transformation-consultant.html",
     "geo-ai-visibility-guide.html",
+    "collection.html",
+    "collection-revox-b77.html",
+    "collection-pioneer-s-z85d-speaker-pair.html",
+}
+
+PUBLISHED_COLLECTION_FILES = {
+    "koleksiyon-revox-b77.html",
+    "collection-revox-b77.html",
+    "koleksiyon-pioneer-s-z85d-hoparlor-cifti.html",
+    "collection-pioneer-s-z85d-speaker-pair.html",
+}
+PUBLISHED_COLLECTION_URLS = {f"{BASE_URL}/{filename}" for filename in PUBLISHED_COLLECTION_FILES}
+PUBLISHED_GALLERY_URLS = {f"{BASE_URL}/koleksiyon.html", f"{BASE_URL}/collection.html"}
+PUBLISHED_COLLECTION_IMAGES = {
+    "assets/collection/revox-b77-representative-scene.png",
+    "assets/collection/pioneer-s-z85d-pair-representative-scene.png",
 }
 
 FAQ_SECTION_MARKERS = (
@@ -285,6 +311,14 @@ def validate_supporting_files(errors: list[str]) -> None:
         missing = sorted(set(EXPECTED_PAGES.values()) - locations)
         if missing:
             errors.append("sitemap.xml missing URLs: " + ", ".join(missing))
+        collection_locations = {
+            location
+            for location in locations
+            if location and re.match(rf"^{re.escape(BASE_URL)}/(?:koleksiyon|collection)(?:-|\.).+", location)
+        }
+        expected_collection_locations = PUBLISHED_GALLERY_URLS | PUBLISHED_COLLECTION_URLS
+        if collection_locations != expected_collection_locations:
+            errors.append("sitemap.xml collection URL set mismatch: " + ", ".join(sorted(collection_locations)))
     except (OSError, ET.ParseError) as exc:
         errors.append(f"sitemap.xml is invalid: {exc}")
 
@@ -326,6 +360,67 @@ def validate_known_regressions(errors: list[str]) -> None:
             errors.append(f"index_en.html contains mixed-language regression: {bad_text!r}")
 
 
+def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str]) -> None:
+    gallery_expected = {
+        "koleksiyon.html": {
+            "koleksiyon-revox-b77.html",
+            "koleksiyon-pioneer-s-z85d-hoparlor-cifti.html",
+        },
+        "collection.html": {
+            "collection-revox-b77.html",
+            "collection-pioneer-s-z85d-speaker-pair.html",
+        },
+    }
+    for filename, expected_links in gallery_expected.items():
+        page = pages.get(filename)
+        if page is None:
+            continue
+        collection_links = {
+            href.split("#", 1)[0]
+            for href in page.hrefs
+            if re.match(r"^(?:koleksiyon|collection)-.+\.html$", href.split("#", 1)[0])
+        }
+        if collection_links != expected_links:
+            errors.append(f"{filename}: published collection links mismatch: {sorted(collection_links)!r}")
+        visible = " ".join(page.visible_text.lower().split())
+        if "draft photograph" in visible or "taslak fotoğraf" in visible or "local preview" in visible:
+            errors.append(f"{filename}: draft-only wording leaked into the public gallery")
+        nodes = [node for value in page.json_ld for node in flatten_json_ld(value)]
+        lists = [node for node in nodes if node.get("@type") == "CollectionPage"]
+        if not lists or lists[0].get("mainEntity", {}).get("numberOfItems") != 2:
+            errors.append(f"{filename}: CollectionPage must expose exactly two published items")
+
+    for filename in PUBLISHED_COLLECTION_FILES:
+        page = pages.get(filename)
+        if page is None:
+            continue
+        if not any(href.startswith("mailto:mail@cagricakir.com.tr?subject=") for href in page.hrefs):
+            errors.append(f"{filename}: missing product-specific enquiry CTA")
+        visible = " ".join(page.visible_text.lower().split())
+        disclosure = "ai-generated representative" if filename.startswith("collection-") else "yapay zekâ ile oluşturulmuş temsili"
+        if disclosure not in visible:
+            errors.append(f"{filename}: missing representative AI-scene disclosure")
+        nodes = [node for value in page.json_ld for node in flatten_json_ld(value)]
+        if any(node.get("@type") == "Offer" for node in nodes):
+            errors.append(f"{filename}: collection records must not expose Offer JSON-LD")
+
+    revox_en = pages.get("collection-revox-b77.html")
+    pioneer_en = pages.get("collection-pioneer-s-z85d-speaker-pair.html")
+    if revox_en and "working per owner" not in revox_en.visible_text.lower():
+        errors.append("collection-revox-b77.html: owner working statement is missing")
+    if pioneer_en and "operation not independently verified" not in pioneer_en.visible_text.lower():
+        errors.append("collection-pioneer-s-z85d-speaker-pair.html: unverified operating status is missing")
+
+    referenced_images = {
+        src
+        for filename in ("koleksiyon.html", "collection.html", *PUBLISHED_COLLECTION_FILES)
+        for src in pages.get(filename, ParsedPage(ROOT / filename)).srcs
+        if src.startswith("assets/collection/")
+    }
+    if referenced_images != PUBLISHED_COLLECTION_IMAGES:
+        errors.append(f"Published collection image set mismatch: {sorted(referenced_images)!r}")
+
+
 def main() -> int:
     errors: list[str] = []
     pages = parse_pages(errors)
@@ -334,6 +429,7 @@ def main() -> int:
     validate_internal_links(pages, errors)
     validate_supporting_files(errors)
     validate_known_regressions(errors)
+    validate_published_collection(pages, errors)
 
     if errors:
         print("Site validation failed:\n")
