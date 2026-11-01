@@ -389,11 +389,11 @@
 
   .collection-detail-media {
     position: static;
-    order: 2;
+    order: 1;
   }
 
   .collection-detail-copy {
-    order: 1;
+    order: 2;
   }
 
   .collection-card,
