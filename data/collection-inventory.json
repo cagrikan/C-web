@@ -1,0 +1,361 @@
+{
+  "version": 1,
+  "editorial_status": "local-draft",
+  "items": [
+    {
+      "id": "brother-pn-8500mds",
+      "slug_tr": "koleksiyon-brother-powernote-pn-8500mds.html",
+      "slug_en": "collection-brother-powernote-pn-8500mds.html",
+      "title": "Brother PowerNote PN-8500MDS",
+      "category_tr": "Bilgisayar & Yazı",
+      "category_en": "Computing & Writing",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Brother PowerNote PN-8500MDS taşınabilir kelime işlemci; model etiketi fotoğrafta doğrulandı.",
+      "excerpt_en": "A Brother PowerNote PN-8500MDS portable word processor; the model label is confirmed in the photograph.",
+      "description_tr": "Taşınabilir elektronik yazı sistemlerinin kişisel bilgisayarlarla kesiştiği dönemi temsil eden bir Brother PowerNote örneği. Bu nüshanın kesin üretim yılı ve özgün aksesuarları ayrıca doğrulanmadı.",
+      "description_en": "A Brother PowerNote example from the period when portable electronic writing systems overlapped with personal computing. This specimen’s exact production year and original accessories have not been independently verified.",
+      "images": [
+        "assets/collection/brother-pn-8500mds-scene.png"
+      ],
+      "selected_library_image": "libfile_d6409dd3b2e081918ef45511665656fb",
+      "label_notes_tr": "Fotoğrafta Brother PowerNote PN-8500MDS ibaresi görülüyor.",
+      "label_notes_en": "The photograph shows the Brother PowerNote PN-8500MDS label."
+    },
+    {
+      "id": "commodore-amiga",
+      "slug_tr": "koleksiyon-commodore-amiga.html",
+      "slug_en": "collection-commodore-amiga.html",
+      "title": "Commodore Amiga 500",
+      "category_tr": "Bilgisayar & Yazı",
+      "category_en": "Computing & Writing",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Commodore Amiga ailesinden bir bilgisayar; tam model henüz doğrulanmadı.",
+      "excerpt_en": "A computer from the Commodore Amiga family; the exact model has not yet been verified.",
+      "description_tr": "Amiga ailesi, ev bilgisayarı kültüründe grafik ve ses yetenekleriyle ayrı bir yer tutar. Bu nüsha için model, üretim yılı ve konfigürasyon fotoğraftaki etiketler doğrulanmadan kesinleştirilmiyor.",
+      "description_en": "The Amiga family occupies a distinctive place in home-computing culture for its graphics and sound capabilities. This specimen’s model, year and configuration remain deliberately unassigned until its labels are verified.",
+      "images": [
+        "assets/collection/commodore-amiga-500-scene.jpg"
+      ],
+      "label_notes_tr": "Commodore Amiga kimliği sahibinin beyanıdır; tam model açık değil.",
+      "label_notes_en": "The Commodore Amiga identity is owner-supplied; the exact model is unclear.",
+      "title_en": "Commodore Amiga 500",
+      "selected_library_image": "libfile_01e483b9943c8191acf25a9b04639a22"
+    },
+    {
+      "id": "polaroid-automatic-340",
+      "slug_tr": "koleksiyon-polaroid-automatic-340.html",
+      "slug_en": "collection-polaroid-automatic-340.html",
+      "title": "Polaroid Automatic 340",
+      "category_tr": "Fotoğraf & Sinema",
+      "category_en": "Photography & Cinema",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Polaroid Automatic 340 körüklü pack-film fotoğraf makinesi.",
+      "excerpt_en": "A Polaroid Automatic 340 folding pack-film camera.",
+      "description_tr": "Körüklü gövdesi ve anında fotoğraf yaklaşımıyla Polaroid’in pack-film dönemini temsil eder. Bu modelin özgün film sistemi, güncel integral Polaroid filmleriyle aynı değildir; sarf malzemesi uyumluluğu ayrıca araştırılmalıdır.",
+      "description_en": "With its folding body and instant-photography concept, it represents Polaroid’s pack-film era. Its original film system is not the same as current integral Polaroid film, so consumable compatibility requires separate research.",
+      "images": [
+        "assets/collection/polaroid-automatic-340-scene.jpg"
+      ],
+      "label_notes_tr": "Model adı fotoğrafta Polaroid Automatic 340 olarak okunuyor.",
+      "label_notes_en": "The model name reads Polaroid Automatic 340 in the photograph.",
+      "selected_library_image": "libfile_cd4c9b36e7dc8191acb9616a0252305e"
+    },
+    {
+      "id": "reuge-music-box",
+      "slug_tr": "koleksiyon-reuge-muzik-kutusu.html",
+      "slug_en": "collection-reuge-music-box.html",
+      "title": "Reuge Müzik Kutusu",
+      "title_en": "Reuge Music Box",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Reuge olarak tanımlanan mekanik müzik kutusu.",
+      "excerpt_en": "A mechanical music box identified as Reuge.",
+      "description_tr": "Mekanik müzik kutusu geleneğinin koleksiyonluk bir örneği. Model, melodi programı, üretim yılı ve mekanizma ayrıntıları etiket veya servis kaydı olmadan kesinleştirilmiyor.",
+      "description_en": "A collectible example of the mechanical music-box tradition. Model, tune programme, year and movement details remain unassigned without a label or service record.",
+      "images": [
+        "assets/collection/reuge-music-box-scene.jpg"
+      ],
+      "label_notes_tr": "Reuge tanımı sahibin ilk eşleştirmesine dayanıyor.",
+      "label_notes_en": "The Reuge identification follows the owner’s initial matching.",
+      "selected_library_image": "libfile_e33711522bf88191ab2970b90517711b"
+    },
+    {
+      "id": "revox-b77",
+      "slug_tr": "koleksiyon-revox-b77.html",
+      "slug_en": "collection-revox-b77.html",
+      "title": "Revox B77",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Revox B77 açık makara teyp.",
+      "excerpt_en": "A Revox B77 open-reel tape recorder.",
+      "description_tr": "Açık makara kayıt kültürünün tanınan Revox B77 serisinden bir örnek. Hız, iz düzeni, seri ve servis geçmişi bu nüsha için ayrıca doğrulanmadı.",
+      "description_en": "An example from the well-known Revox B77 series in open-reel recording culture. Speed, track configuration, serial details and service history have not been independently verified for this specimen.",
+      "images": [
+        "assets/collection/revox-b77-representative-scene.png"
+      ],
+      "label_notes_tr": "Revox B77 model tanımı fotoğraf eşleştirmesine dayanıyor.",
+      "label_notes_en": "The Revox B77 model identification follows the photographed specimen.",
+      "selected_library_image": "libfile_78f896201bfc81919c77bb708b43cb36"
+    },
+    {
+      "id": "webster-chicago-electronic-memory",
+      "slug_tr": "koleksiyon-webster-chicago-electronic-memory.html",
+      "slug_en": "collection-webster-chicago-electronic-memory.html",
+      "title": "Webster Chicago Electronic Memory",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Webster Chicago ‘Electronic Memory’ etiketli kayıt cihazı.",
+      "excerpt_en": "A recording device labelled Webster Chicago ‘Electronic Memory’.",
+      "description_tr": "Ev ve ofis kayıt teknolojisinin erken dönemlerinden bir cihaz. Kayıt ortamı, model varyantı ve üretim tarihi, mekanizma ve etiketler ayrıntılı incelenmeden kesinleştirilmiyor.",
+      "description_en": "A device from an early period of domestic and office recording technology. Recording medium, model variant and production date remain unassigned pending closer inspection of its mechanism and labels.",
+      "images": [
+        "assets/collection/webster-chicago-electronic-memory-scene.png"
+      ],
+      "label_notes_tr": "Webster Chicago ve Electronic Memory ibareleri sahibin fotoğraf eşleştirmesinde yer alıyor.",
+      "label_notes_en": "Webster Chicago and Electronic Memory are part of the owner’s photo identification.",
+      "selected_library_image": "libfile_d962ba832e6881919ae3930860e105a0"
+    },
+    {
+      "id": "pathe-gramophone",
+      "slug_tr": "koleksiyon-pathe-gramofon.html",
+      "slug_en": "collection-pathe-gramophone.html",
+      "title": "Pathé Etiketli Gramofon",
+      "title_en": "Pathé-labelled Gramophone",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Pathé etiketi taşıyan gramofon; model ve dönem doğrulanmadı.",
+      "excerpt_en": "A gramophone carrying a Pathé label; model and period are unverified.",
+      "description_tr": "Mekanik ses çoğaltımının koleksiyonluk bir örneği. Pathé etiketi görünür olsa da model, tarih, özgünlük ve parça bütünlüğü bağımsız uzman incelemesi olmadan garanti edilmiyor.",
+      "description_en": "A collectible example of mechanical sound reproduction. Although a Pathé label is visible, model, date, originality and component completeness are not guaranteed without independent specialist inspection.",
+      "images": [
+        "assets/collection/pathe-gramophone-scene.png"
+      ],
+      "label_notes_tr": "Yalnız görünür Pathé etiketi temel alınmıştır.",
+      "label_notes_en": "Only the visible Pathé label is used for identification.",
+      "selected_library_image": "libfile_ae578ff1e0108191aa654c45f4e76446"
+    },
+    {
+      "id": "bauer-film-projector",
+      "slug_tr": "koleksiyon-bauer-film-projektoru.html",
+      "slug_en": "collection-bauer-film-projector.html",
+      "title": "Bauer Film Projektörü",
+      "title_en": "Bauer Film Projector",
+      "category_tr": "Fotoğraf & Sinema",
+      "category_en": "Photography & Cinema",
+      "status": "sale-owner-working",
+      "excerpt_tr": "Bauer markalı film projektörü; tam model doğrulanmadı.",
+      "excerpt_en": "A Bauer film projector; the exact model is unverified.",
+      "description_tr": "Ev sineması ve amatör film gösterimi geleneğinden bir Bauer projektör. Film formatı, lamba, model ve üretim yılı etiket fotoğrafı olmadan kesinleştirilmiyor.",
+      "description_en": "A Bauer projector from the home-cinema and amateur-film tradition. Film format, lamp, model and year remain unassigned without a verified label photograph.",
+      "images": [
+        "assets/collection/bauer-film-projector-scene.png"
+      ],
+      "label_notes_tr": "Bauer marka eşleştirmesi sahibin beyanıdır; model açık değildir.",
+      "label_notes_en": "The Bauer brand match is owner-supplied; the model is unclear.",
+      "selected_library_image": "libfile_5abb58d1ac84819189ad989b2529804d"
+    },
+    {
+      "id": "polyphon-disc-music-box",
+      "slug_tr": "koleksiyon-polyphon-28-cm-diskli-muzik-kutusu.html",
+      "slug_en": "collection-polyphon-28-cm-disc-music-box.html",
+      "title": "Polyphon, 28 cm Diskli Müzik Kutusu",
+      "title_en": "Polyphon 28 cm Disc Music Box",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "open-to-offers",
+      "excerpt_tr": "Metal diskli, ahşap kasalı mekanik müzik kutusu; üretici ve model doğrulanmadı.",
+      "excerpt_en": "A wooden-cased mechanical disc music box; maker and model remain unverified.",
+      "description_tr": "Metal disk, tarak mekanizması ve resimli kapakla sunulan büyük boy bir müzik kutusu. Rozette ‘Hannover’ okunuyor; çevresindeki üretici metni fotoğraftan güvenle çözülemedi.",
+      "description_en": "A large music box presented with a metal disc, comb mechanism and illustrated lid. ‘Hannover’ is legible on the badge, while the surrounding maker text cannot be read reliably from the photograph.",
+      "images": [
+        "assets/collection/polyphon-disc-music-box-scene.png"
+      ],
+      "label_notes_tr": "Rozette Hannover okunuyor; üretici/model belirsiz.",
+      "label_notes_en": "Hannover is legible on the badge; maker/model are uncertain.",
+      "selected_library_image": "libfile_9f484cf066648191941e0f0b2dc776b2"
+    },
+    {
+      "id": "field-phone-mark-ii",
+      "slug_tr": "koleksiyon-field-phone-mark-ii.html",
+      "slug_en": "collection-field-phone-mark-ii.html",
+      "title": "Field Phone Mark II — S.O.S.L. Collection",
+      "category_tr": "Bilgisayar & Yazı",
+      "category_en": "Computing & Writing",
+      "status": "open-to-offers",
+      "excerpt_tr": "S.O.S.L. Collection için üretilmiş retro tasarımlı Field Phone Mark II.",
+      "excerpt_en": "A retro-styled Field Phone Mark II made for the S.O.S.L. Collection.",
+      "description_tr": "Üzerindeki modern tuş takımı, hafıza ve tekrar arama kontrolleri bu parçanın tarihî bir askerî saha telefonu değil, retro yorumlu bir telefon olduğunu gösteriyor. Kesin üretici ve yıl, seri kaydıyla ayrıca doğrulanmalıdır.",
+      "description_en": "Its modern keypad, memory and redial controls show that this is a retro interpretation rather than a historical military field telephone. Exact maker and year require separate verification against the serial record.",
+      "images": [
+        "assets/collection/field-phone-mark-ii-scene.png"
+      ],
+      "label_notes_tr": "Etiket: FIELD PHONE MARK II, MADE FOR S.O.S.L. COLLECTION, NEW YORK–PARIS, LIMITED EDITION.",
+      "label_notes_en": "Label: FIELD PHONE MARK II, MADE FOR S.O.S.L. COLLECTION, NEW YORK–PARIS, LIMITED EDITION.",
+      "selected_library_image": "libfile_73bc0023fda48191909d6fb0f62c26ae"
+    },
+    {
+      "id": "brass-mechanical-calculator",
+      "slug_tr": "koleksiyon-mekanik-hesap-makinesi.html",
+      "slug_en": "collection-mechanical-calculator.html",
+      "title": "Facit Kuyumcu Mekanik Hesap Makinesi",
+      "title_en": "Facit Mechanical Calculator for Jewellers",
+      "category_tr": "Bilgisayar & Yazı",
+      "category_en": "Computing & Writing",
+      "status": "open-to-offers",
+      "excerpt_tr": "Kollu ve basamak tuşlu mekanik hesap makinesi; üretici/model okunmuyor.",
+      "excerpt_en": "A lever-operated mechanical calculator with digit keys; maker/model are unreadable.",
+      "description_tr": "Mekanik hesaplama tarihinin masaüstü aygıtlarından bir örnek. Gövdede yoğun kullanım izleri korunuyor; üretici, model, dönem ve işlem kapasitesi etiket doğrulaması olmadan belirtilmiyor.",
+      "description_en": "An example of the desktop machines of mechanical calculation history. Heavy use marks remain visible; maker, model, period and operating capacity are left unstated without label verification.",
+      "images": [
+        "assets/collection/facit-mechanical-calculator-scene.png"
+      ],
+      "label_notes_tr": "Fotoğrafta güvenle okunabilen üretici/model ibaresi yok.",
+      "label_notes_en": "No maker/model marking can be read reliably in the photograph.",
+      "selected_library_image": "libfile_a2e3fae644688191af99b554a1f63c11"
+    },
+    {
+      "id": "pioneer-s-z85d-pair",
+      "slug_tr": "koleksiyon-pioneer-s-z85d-hoparlor-cifti.html",
+      "slug_en": "collection-pioneer-s-z85d-speaker-pair.html",
+      "title": "Pioneer S-Z85D Hoparlör Çifti",
+      "title_en": "Pioneer S-Z85D Speaker Pair",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "open-to-offers",
+      "excerpt_tr": "Pioneer S-Z85D üç yollu hoparlör sistemi; iki kabin tek çift kaydıdır.",
+      "excerpt_en": "A Pioneer S-Z85D three-way speaker system; two cabinets form one pair listing.",
+      "description_tr": "Etiket üzerindeki bilgilere göre 6 Ω empedans ve 75 W maksimum güç değerleri taşıyan üç yollu bir hoparlör sistemi. Kasa çizikleri ve yüzey aşınmaları fotoğraflarda açıkça korunuyor.",
+      "description_en": "According to its label, this is a three-way speaker system rated at 6 Ω and 75 W maximum power. Cabinet scratches and surface wear remain clearly visible in the photographs.",
+      "images": [
+        "assets/collection/pioneer-s-z85d-pair-representative-scene.png"
+      ],
+      "label_notes_tr": "Etiket: PIONEER, 3 Way Speaker System S-Z85D, 6 Ω, Maximum Power 75W.",
+      "label_notes_en": "Label: PIONEER, 3 Way Speaker System S-Z85D, 6 Ω, Maximum Power 75W.",
+      "selected_library_image": "libfile_7abd8cd757f08191af0cdf1ed2b6b860"
+    },
+    {
+      "id": "lubitel-2",
+      "slug_tr": "koleksiyon-lubitel-2.html",
+      "slug_en": "collection-lubitel-2.html",
+      "title": "Lubitel 2",
+      "category_tr": "Fotoğraf & Sinema",
+      "category_en": "Photography & Cinema",
+      "status": "open-to-offers",
+      "excerpt_tr": "Lubitel 2 çift objektifli refleks fotoğraf makinesi.",
+      "excerpt_en": "A Lubitel 2 twin-lens reflex camera.",
+      "description_tr": "Çift objektifli refleks tasarımın erişilebilir orta format örneklerinden biri. Bu nüshanın seri, üretim yılı, lens ve mekanik çalışma durumu bağımsız olarak doğrulanmadı.",
+      "description_en": "One of the accessible medium-format examples of the twin-lens reflex design. This specimen’s serial, year, lens details and mechanical operation have not been independently verified.",
+      "images": [
+        "assets/collection/lubitel-2-scene.png"
+      ],
+      "label_notes_tr": "Ön yüzde Lubitel 2 ibaresi açıkça görülüyor.",
+      "label_notes_en": "Lubitel 2 is clearly visible on the front.",
+      "selected_library_image": "libfile_dc8a4aa1bf948191a9746960153c1357"
+    },
+    {
+      "id": "zenit-11-helios",
+      "slug_tr": "koleksiyon-zenit-11-helios-44m-4.html",
+      "slug_en": "collection-zenit-11-helios-44m-4.html",
+      "title": "Zenit 11 + Helios-44M-4",
+      "category_tr": "Fotoğraf & Sinema",
+      "category_en": "Photography & Cinema",
+      "status": "open-to-offers",
+      "excerpt_tr": "Zenit 11 gövde ve Helios-44M-4 58 mm f/2 objektif.",
+      "excerpt_en": "A Zenit 11 body with a Helios-44M-4 58 mm f/2 lens.",
+      "description_tr": "Zenit 11 gövde, Helios-44M-4 objektifle birlikte görülüyor. Kaplama ve askı bağlantısı çevresindeki yıpranma gizlenmeden korunuyor; perde, ölçüm ve optik durum bağımsız test edilmedi.",
+      "description_en": "The Zenit 11 body is shown with a Helios-44M-4 lens. Wear around the covering and strap lug remains visible; shutter, metering and optical condition have not been independently tested.",
+      "images": [
+        "assets/collection/zenit-11-helios-scene.png"
+      ],
+      "label_notes_tr": "Gövde: ZENIT 11. Objektif: HELIOS-44M-4, 58 mm 1:2.",
+      "label_notes_en": "Body: ZENIT 11. Lens: HELIOS-44M-4, 58 mm 1:2.",
+      "selected_library_image": "libfile_a9a74e3830d88191b48615c73086ac48"
+    },
+    {
+      "id": "longcase-clock",
+      "slug_tr": "koleksiyon-uzun-kasali-saat.html",
+      "slug_en": "collection-longcase-clock.html",
+      "title": "Uzun Kasalı Ayaklı Saat",
+      "title_en": "Longcase Clock",
+      "category_tr": "Zaman & Mekanizma",
+      "category_en": "Time & Mechanism",
+      "status": "display-only",
+      "excerpt_tr": "Ay evresi, gün ve ay göstergeli dekoratif kadrana sahip uzun kasalı saat; satılık değildir.",
+      "excerpt_en": "A longcase clock with a decorative moon-phase, day and month dial; not for sale.",
+      "description_tr": "Ahşap uzun kasası, yan mekanizma penceresi ve çok göstergeli kadranıyla koleksiyonda sergilenen bir saat. Marka, üretim yılı ve komplikasyonların çalışması doğrulanmadı.",
+      "description_en": "A display piece with a wooden long case, side movement window and multi-indication dial. Maker, year and operation of the complications remain unverified.",
+      "images": [
+        "assets/collection/longcase-clock-scene.jpg"
+      ],
+      "selected_library_image": "libfile_b49d7d07a1f08191ad9c7bfd878d945f",
+      "label_notes_tr": "Üç fotoğraf aynı saatin farklı açılarını gösteriyor.",
+      "label_notes_en": "Three photographs show different views of the same clock."
+    },
+    {
+      "id": "pioneer-ct-f6161",
+      "slug_tr": "koleksiyon-pioneer-ct-f6161-sx-550-ses-sistemi.html",
+      "slug_en": "collection-pioneer-ct-f6161-sx-550-audio-system.html",
+      "title": "Pioneer Ses Sistemi — CT-F6161 + SX-550",
+      "title_en": "Pioneer Audio System — CT-F6161 + SX-550",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "open-to-offers",
+      "excerpt_tr": "Pioneer CT-F6161 kaset deck ve SX-550 stereo receiver’dan oluşan iki bileşenli ses sistemi.",
+      "excerpt_en": "A two-component audio system combining the Pioneer CT-F6161 cassette deck and SX-550 stereo receiver.",
+      "description_tr": "CT-F6161 kaset kaydını, SX-550 ise analog radyo alıcısı ve amplifikasyonu aynı Pioneer sistemi içinde bir araya getiriyor. İki bileşen koleksiyonda tek kayıt ve tek kart altında sunuluyor.",
+      "description_en": "The CT-F6161 brings cassette recording together with the SX-550's analogue radio reception and amplification in one Pioneer system. The two components are presented as one collection record and card.",
+      "images": [
+        "assets/collection/pioneer-ct-f6161-sx550-system-scene.png"
+      ],
+      "selected_library_image": "libfile_1889f2db19b4819181258fdd80d03505",
+      "component_ids": [
+        "pioneer-ct-f6161",
+        "pioneer-sx-550"
+      ],
+      "label_notes_tr": "Kullanıcı fotoğrafında üst bileşen Pioneer CT-F6161, alt bileşen Pioneer SX-550 olarak görülüyor.",
+      "label_notes_en": "The owner photograph shows a Pioneer CT-F6161 as the upper component and a Pioneer SX-550 below."
+    },
+    {
+      "id": "pioneer-sx-550",
+      "slug_tr": "koleksiyon-pioneer-sx-550.html",
+      "slug_en": "collection-pioneer-sx-550.html",
+      "title": "Pioneer SX-550",
+      "category_tr": "Ses & Müzik",
+      "category_en": "Sound & Music",
+      "status": "component-only",
+      "show_as_separate_card": false,
+      "collection_parent_id": "pioneer-ct-f6161",
+      "excerpt_tr": "Pioneer SX-550 stereo receiver; satılık, çalışma durumu bağımsız doğrulanmadı.",
+      "excerpt_en": "A Pioneer SX-550 stereo receiver; offered for sale, operation not independently verified.",
+      "description_tr": "Analog kadranlı Pioneer SX-550 stereo receiver. Bu nüshanın çıkışları, tuner doğruluğu, kozmetik ayrıntıları ve servis geçmişi ayrıca değerlendirilmelidir.",
+      "description_en": "A Pioneer SX-550 stereo receiver with an analogue dial. This specimen’s outputs, tuner accuracy, cosmetic details and service history require separate evaluation.",
+      "images": [],
+      "label_notes_tr": "Model kimliği kullanıcı fotoğrafı üzerinde Pioneer SX-550 olarak doğrulandı.",
+      "label_notes_en": "The model identity is confirmed as Pioneer SX-550 in the owner photograph."
+    },
+    {
+      "id": "vitalie-grisciuc-surreal-composition",
+      "slug_tr": "koleksiyon-vitalie-grisciuc-surreal-kompozisyon.html",
+      "slug_en": "collection-vitalie-grisciuc-surreal-composition.html",
+      "title": "Vitalie Grișciuc — Müzik Enstrümanlı Sürreal Kompozisyon",
+      "title_en": "Vitalie Grișciuc — Surreal Composition with Musical Instruments",
+      "category_tr": "Sanat & İllüstrasyon",
+      "category_en": "Art & Illustration",
+      "status": "open-to-offers",
+      "images": [
+        "assets/collection/vitalie-grisciuc-surreal-composition-scene.png"
+      ],
+      "selected_library_image": "libfile_f32ebb52ed8881918cb72ae039b71060",
+      "source_library_images": [
+        "libfile_918e5ac947448191b21f22015f18d07c",
+        "libfile_f580227562b08191bcde71450d4be80c"
+      ],
+      "label_notes_tr": "İmza yakın planında Vitalie Grișciuc ve 1998 tarihi görülüyor.",
+      "label_notes_en": "The close-up shows the signature Vitalie Grișciuc and the date 1998."
+    }
+  ]
+}

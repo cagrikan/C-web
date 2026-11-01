@@ -10,26 +10,15 @@ from pathlib import Path
 from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / ".taste-skill" / "collection-inventory.json"
-RESEARCHED_COPY = ROOT / ".taste-skill" / "researched-copy.json"
+DATA = ROOT / "data" / "collection-inventory.json"
+RESEARCHED_COPY = ROOT / "data" / "collection-copy.json"
 BASE = "https://cagricakir.com.tr"
 EMAIL = "mail@cagricakir.com.tr"
-PUBLISHED_IDS = {"revox-b77", "pioneer-s-z85d-pair"}
-PUBLISHED_OVERRIDES = {
-    "revox-b77": {
-        "status": "sale-owner-working",
-        "images": ["assets/collection/revox-b77-representative-scene.png"],
-    },
-    "pioneer-s-z85d-pair": {
-        "status": "sale-unverified-working",
-        "images": ["assets/collection/pioneer-s-z85d-pair-representative-scene.png"],
-    },
-}
 RELATED_OFFICIAL_MODELS = {
     "revox-b77": [
         {
-            "label_tr": "Güncel B77 MK III — Revox (Alice Cooper Limited Edition)",
-            "label_en": "Current B77 MK III — Revox (Alice Cooper Limited Edition)",
+            "label_tr": "Güncel B77 MK III: Revox (Alice Cooper Limited Edition)",
+            "label_en": "Current B77 MK III: Revox (Alice Cooper Limited Edition)",
             "url": "https://revox.com/de-de/products/revox-b77-mk-iii-stereo-tape-recorder-alice-cooper-limited-edition",
         }
     ]
@@ -54,13 +43,17 @@ def status_copy(status: str, lang: str) -> tuple[str, str]:
             "Tekliflere açık",
             "Open to offers",
         ),
+        "open-to-offers": (
+            "Tekliflere açık",
+            "Open to offers",
+        ),
         "pending": (
             "Satış ve çalışma durumu teyit bekliyor",
             "Sale and operating status pending confirmation",
         ),
         "display-only": (
-            "Koleksiyonda · Satılık değil",
-            "Collection display · Not for sale",
+            "Koleksiyonda · Teklife kapalı",
+            "Collection display · Not open to offers",
         ),
     }
     tr, en = copies[status]
@@ -89,7 +82,7 @@ def picture(item: dict, lang: str, detail: bool = False) -> str:
     if not detail:
         return primary
     thumbs = "".join(
-        f'<img src="{esc(src)}" alt="{esc(title)} — {index}. görünüm" width="1200" height="1500">'
+        f'<img src="{esc(src)}" alt="{esc(title)}: {index}. görünüm" width="1200" height="1500">'
         for index, src in enumerate(images[1:], start=2)
     )
     thumbs_block = f'<div class="collection-thumbs">{thumbs}</div>' if thumbs else ""
@@ -162,7 +155,7 @@ def footer(lang: str, collection_file: str) -> str:
           <a href="{collection_file}">{collection}</a>
         </div>
       </div>
-      <a class="geoni-badge" href="https://geoni.ai/s/01d55c80-5ff5-48c1-93dc-387c8262efb7" target="_blank" rel="noopener" title="AI Friendly — Checked by GEONI"><img src="https://geoni.ai/badge/01d55c80-5ff5-48c1-93dc-387c8262efb7" alt="AI Friendly — Checked by GEONI" width="232" height="44"></a>
+      <a class="geoni-badge" href="https://geoni.ai/s/01d55c80-5ff5-48c1-93dc-387c8262efb7" target="_blank" rel="noopener" title="AI Friendly: Checked by GEONI"><img src="https://geoni.ai/badge/01d55c80-5ff5-48c1-93dc-387c8262efb7" alt="AI Friendly: Checked by GEONI" width="232" height="44"></a>
     </div>
   </footer>"""
 
@@ -233,6 +226,8 @@ def gallery(data: dict, lang: str) -> str:
             "Fotoğraf & Sinema": "image",
             "Time & Mechanism": "time",
             "Zaman & Mekanizma": "time",
+            "Art & Illustration": "art",
+            "Sanat & İllüstrasyon": "art",
         }[category]
         href = item["slug_en" if is_en else "slug_tr"]
         excerpt = item["excerpt_en" if is_en else "excerpt_tr"]
@@ -257,7 +252,25 @@ def gallery(data: dict, lang: str) -> str:
             }
         )
 
-    labels = [("all", "All"), ("sound", "Sound & Music")] if is_en else [("all", "Tümü"), ("sound", "Ses & Müzik")]
+    labels = (
+        [
+            ("all", "All"),
+            ("computing", "Computing & Writing"),
+            ("sound", "Sound & Music"),
+            ("image", "Photography & Cinema"),
+            ("time", "Time & Mechanism"),
+            ("art", "Art & Illustration"),
+        ]
+        if is_en
+        else [
+            ("all", "Tümü"),
+            ("computing", "Bilgisayar & Yazı"),
+            ("sound", "Ses & Müzik"),
+            ("image", "Fotoğraf & Sinema"),
+            ("time", "Zaman & Mekanizma"),
+            ("art", "Sanat & İllüstrasyon"),
+        ]
+    )
     filters = "".join(
         f'<button class="collection-filter" type="button" data-filter="{key}" aria-pressed="{"true" if key == "all" else "false"}">{label}</button>'
         for key, label in labels
@@ -337,7 +350,7 @@ def detail(item: dict, lang: str) -> str:
     page_title = f"{item_title} | {'Collection' if is_en else 'Koleksiyon'}"
     schema = {
         "@context": "https://schema.org",
-        "@type": "IndividualProduct",
+        "@type": "VisualArtwork" if item["id"] == "vitalie-grisciuc-surreal-composition" else "IndividualProduct",
         "name": item_title,
         "description": excerpt,
         "url": f"{BASE}/{filename}",
@@ -370,8 +383,10 @@ def detail(item: dict, lang: str) -> str:
     )
 
     cta = ""
-    if item["status"] in {"sale-owner-working", "sale-unverified-working"}:
+    if item["status"] in {"sale-owner-working", "sale-unverified-working", "open-to-offers"}:
         cta = f'<div class="actions"><a class="btn btn-primary" href="mailto:{EMAIL}?subject={quote(subject)}">{inquire}</a></div>'
+    extra_blocks = "\n          ".join(block for block in (cta, source_block) if block)
+    extra = f"\n          {extra_blocks}" if extra_blocks else ""
 
     return f"""{head(lang=lang, title=page_title, description=excerpt, canonical_file=filename, tr_file=item['slug_tr'], en_file=item['slug_en'], structured_data=schema)}
 <body class="collection-page">
@@ -387,9 +402,7 @@ def detail(item: dict, lang: str) -> str:
           <p class="collection-category">{esc(category)}</p>
           <a class="collection-back" href="{gallery_file}">{back}</a>
           <p class="lede">{esc(excerpt)}</p>
-          <div class="prose"><p>{esc(description)}</p></div>
-          {cta}
-{source_block}
+          <div class="prose"><p>{esc(description)}</p></div>{extra}
         </div>
       </div>
     </article>
@@ -410,11 +423,9 @@ def main() -> None:
         raise SystemExit(f"Researched copy coverage mismatch; missing={missing}, extra={extra}")
     for item in data["items"]:
         item.update(researched[item["id"]])
-        if item["id"] in PUBLISHED_OVERRIDES:
-            item.update(PUBLISHED_OVERRIDES[item["id"]])
-    published_items = [item for item in data["items"] if item["id"] in PUBLISHED_IDS]
-    if {item["id"] for item in published_items} != PUBLISHED_IDS:
-        raise SystemExit("Published collection subset is incomplete")
+    published_items = [item for item in data["items"] if item.get("show_as_separate_card", True)]
+    if len(published_items) != 17:
+        raise SystemExit(f"Expected 17 public collection records, found {len(published_items)}")
     published_data = {**data, "items": published_items}
     outputs = {
         "koleksiyon.html": gallery(published_data, "tr"),
@@ -460,14 +471,18 @@ def update_discovery_files(data: dict) -> None:
     llms_path = ROOT / "llms.txt"
     llms = llms_path.read_text(encoding="utf-8")
     marker = "## Personal collection"
+    links = "\n".join(
+        f"- {item['title_en'] if item.get('title_en') else item['title']}: "
+        f"{BASE}/{item['slug_tr']} | {BASE}/{item['slug_en']}"
+        for item in data["items"]
+    )
     block = (
         "## Personal collection\n\n"
-        "A secondary personal archive. Two sound-system records are currently public; remaining collection records are private drafts. "
-        "Selected public pieces are open to offers through the listed contact channel.\n\n"
+        f"A secondary personal archive with {len(data['items'])} public records spanning computing, sound, photography, cinema, mechanisms and art. "
+        "Selected pieces are open to offers through the listed contact channel.\n\n"
         f"- Turkish gallery: {BASE}/koleksiyon.html\n"
         f"- English gallery: {BASE}/collection.html\n"
-        f"- Revox B77: {BASE}/koleksiyon-revox-b77.html | {BASE}/collection-revox-b77.html\n"
-        f"- Pioneer S-Z85D speaker pair: {BASE}/koleksiyon-pioneer-s-z85d-hoparlor-cifti.html | {BASE}/collection-pioneer-s-z85d-speaker-pair.html\n"
+        f"{links}\n"
     )
     if marker in llms:
         llms = re.sub(r"## Personal collection\n.*?(?=\n## |\Z)", block.rstrip(), llms, flags=re.DOTALL)
