@@ -93,13 +93,20 @@ const runPage = ({ consent, search = '', hash = '' } = {}) => {
     cookieWrites,
     elements,
     storage,
+    window,
   };
+};
+
+const finishGoogleLoad = (result) => {
+  assert.equal(result.appendedScripts.length, 1);
+  result.appendedScripts[0].listeners.load();
 };
 
 test('does not load Google before explicit acceptance', () => {
   const result = runPage();
 
   assert.equal(result.appendedScripts.length, 0);
+  assert.equal(result.window['ga-disable-G-W92EZDY9L4'], true);
   assert.deepEqual(result.calls[0].slice(0, 2), ['consent', 'default']);
   assert.equal(result.calls[0][2].analytics_storage, 'denied');
   assert.equal(result.calls[0][2].ad_storage, 'denied');
@@ -108,13 +115,17 @@ test('does not load Google before explicit acceptance', () => {
 test('sends one sanitised page_view with advertising signals disabled', () => {
   const result = runPage({ consent: 'granted' });
   const config = result.calls.find((call) => call[0] === 'config');
-  const pageView = result.calls.find((call) => call[0] === 'event' && call[1] === 'page_view');
 
   assert.equal(result.appendedScripts.length, 1);
   assert.equal(result.appendedScripts[0].src, 'https://www.googletagmanager.com/gtag/js?id=G-W92EZDY9L4');
+  assert.equal(result.window['ga-disable-G-W92EZDY9L4'], false);
   assert.equal(config[2].send_page_view, false);
   assert.equal(config[2].allow_google_signals, false);
   assert.equal(config[2].allow_ad_personalization_signals, false);
+  assert.equal(result.calls.some((call) => call[0] === 'event' && call[1] === 'page_view'), false);
+
+  finishGoogleLoad(result);
+  const pageView = result.calls.find((call) => call[0] === 'event' && call[1] === 'page_view');
   assert.deepEqual(JSON.parse(JSON.stringify(pageView[2])), {
     page_location: 'https://cagricakir.com.tr/index.html',
     page_path: '/index.html',
@@ -136,14 +147,64 @@ test('withdrawal denies consent and clears accessible analytics cookies', () => 
   const manage = result.elements.find((element) => element.textContent === 'Çerez tercihleri');
   const reject = result.elements.find((element) => element.textContent === 'Reddet');
 
+  finishGoogleLoad(result);
   manage.listeners.click();
   reject.listeners.click();
 
   assert.equal(result.storage.get('cc_analytics_consent_v1'), 'denied');
+  assert.equal(result.window['ga-disable-G-W92EZDY9L4'], true);
   assert.ok(result.cookieWrites.some((value) => value.startsWith('_ga=') && value.includes('Max-Age=0')));
   assert.ok(result.cookieWrites.some((value) => value.startsWith('_ga_TEST=') && value.includes('Max-Age=0')));
   const lastConsentUpdate = result.calls.filter((call) => call[0] === 'consent' && call[1] === 'update').at(-1);
   assert.equal(lastConsentUpdate[2].analytics_storage, 'denied');
   assert.equal(lastConsentUpdate[2].ad_storage, 'denied');
+  assert.equal(result.calls.filter((call) => call[0] === 'event' && call[1] === 'page_view').length, 1);
+});
+
+test('withdrawal while Google is loading cancels the queued page view and delayed collection', () => {
+  const result = runPage({ consent: 'granted' });
+  const manage = result.elements.find((element) => element.textContent === 'Çerez tercihleri');
+  const reject = result.elements.find((element) => element.textContent === 'Reddet');
+
+  manage.listeners.click();
+  reject.listeners.click();
+  assert.equal(result.window['ga-disable-G-W92EZDY9L4'], true);
+
+  finishGoogleLoad(result);
+  assert.equal(result.calls.filter((call) => call[0] === 'event' && call[1] === 'page_view').length, 0);
+  const delayedCollections = result.window['ga-disable-G-W92EZDY9L4'] ? 0 : 1;
+  assert.equal(delayedCollections, 0);
+});
+
+test('renewed acceptance re-enables collection and sends one fresh page view', () => {
+  const result = runPage({ consent: 'granted' });
+  const manage = result.elements.find((element) => element.textContent === 'Çerez tercihleri');
+  const reject = result.elements.find((element) => element.textContent === 'Reddet');
+  const accept = result.elements.find((element) => element.textContent === 'Analizi kabul et');
+
+  finishGoogleLoad(result);
+  manage.listeners.click();
+  reject.listeners.click();
+  manage.listeners.click();
+  accept.listeners.click();
+
+  assert.equal(result.window['ga-disable-G-W92EZDY9L4'], false);
+  assert.equal(result.appendedScripts.length, 1);
+  assert.equal(result.calls.filter((call) => call[0] === 'event' && call[1] === 'page_view').length, 2);
+});
+
+test('reject and re-accept during loading emits only the latest accepted page view', () => {
+  const result = runPage({ consent: 'granted' });
+  const manage = result.elements.find((element) => element.textContent === 'Çerez tercihleri');
+  const reject = result.elements.find((element) => element.textContent === 'Reddet');
+  const accept = result.elements.find((element) => element.textContent === 'Analizi kabul et');
+
+  manage.listeners.click();
+  reject.listeners.click();
+  manage.listeners.click();
+  accept.listeners.click();
+  finishGoogleLoad(result);
+
+  assert.equal(result.window['ga-disable-G-W92EZDY9L4'], false);
   assert.equal(result.calls.filter((call) => call[0] === 'event' && call[1] === 'page_view').length, 1);
 });
