@@ -394,12 +394,20 @@ def validate_analytics_consent(pages: dict[str, ParsedPage], errors: list[str]) 
         "cc_analytics_consent_v1",
         "analytics_storage: 'denied'",
         "ad_storage: 'denied'",
+        "window.location.search !== ''",
+        "window.location.hash !== ''",
+        "send_page_view: false",
+        "allow_google_signals: false",
+        "allow_ad_personalization_signals: false",
+        "page_referrer: ''",
         "googletagmanager.com/gtag/js",
         "localStorage.setItem",
     )
     for marker in required_markers:
         if marker not in script:
             errors.append(f"assets/site.js missing consent marker: {marker!r}")
+    if "send_page_view: true" in script:
+        errors.append("assets/site.js must not send an automatic full-URL page_view")
 
     for filename, page in pages.items():
         if "assets/site.js" not in page.srcs:

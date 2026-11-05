@@ -12,6 +12,9 @@
   const MEASUREMENT_ID = 'G-W92EZDY9L4';
   const CONSENT_KEY = 'cc_analytics_consent_v1';
   const COOKIE_DOMAIN = '.cagricakir.com.tr';
+  const pagePath = window.location.pathname;
+  if (window.location.search !== '' || window.location.hash !== '') return;
+
   const isEnglish = document.documentElement.lang.toLowerCase().startsWith('en');
   const copy = isEnglish
     ? {
@@ -56,6 +59,7 @@
     wait_for_update: 500,
   });
   gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'allow_google_signals', false);
 
   let analyticsLoaded = false;
 
@@ -93,8 +97,20 @@
     if (analyticsLoaded || document.getElementById('google-analytics-tag')) return;
     analyticsLoaded = true;
 
+    const pageLocation = `${window.location.origin}${pagePath}`;
     gtag('js', new Date());
-    gtag('config', MEASUREMENT_ID, { send_page_view: true });
+    gtag('config', MEASUREMENT_ID, {
+      send_page_view: false,
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+      cookie_flags: 'SameSite=Lax;Secure',
+    });
+    gtag('event', 'page_view', {
+      page_location: pageLocation,
+      page_path: pagePath,
+      page_title: document.title,
+      page_referrer: '',
+    });
 
     const script = document.createElement('script');
     script.id = 'google-analytics-tag';
