@@ -24,6 +24,8 @@ OFFER_STATUSES = {"sale-owner-working", "sale-unverified-working", "open-to-offe
 EXPECTED_PAGES = {
     "index.html": f"{BASE_URL}/",
     "index_en.html": f"{BASE_URL}/index_en.html",
+    "gizlilik.html": f"{BASE_URL}/gizlilik.html",
+    "privacy.html": f"{BASE_URL}/privacy.html",
     "fractional-cto-danismanligi.html": f"{BASE_URL}/fractional-cto-danismanligi.html",
     "fractional-cto-advisory.html": f"{BASE_URL}/fractional-cto-advisory.html",
     "yonetici-teknoloji-danismanligi.html": f"{BASE_URL}/yonetici-teknoloji-danismanligi.html",
@@ -45,6 +47,7 @@ for _item in PUBLIC_COLLECTION_ITEMS:
 
 LANGUAGE_PAIRS = [
     ("index.html", "index_en.html"),
+    ("gizlilik.html", "privacy.html"),
     ("fractional-cto-danismanligi.html", "fractional-cto-advisory.html"),
     ("yonetici-teknoloji-danismanligi.html", "executive-technology-advisor.html"),
     ("yapay-zeka-gorunurlugu-ve-yonetisimi.html", "ai-visibility-and-governance.html"),
@@ -57,6 +60,7 @@ LANGUAGE_PAIRS.extend((_item["slug_tr"], _item["slug_en"]) for _item in PUBLIC_C
 
 ENGLISH_FILES = {
     "index_en.html",
+    "privacy.html",
     "fractional-cto-advisory.html",
     "executive-technology-advisor.html",
     "ai-visibility-and-governance.html",
@@ -378,6 +382,48 @@ def validate_known_regressions(errors: list[str]) -> None:
             errors.append(f"index_en.html contains mixed-language regression: {bad_text!r}")
 
 
+def validate_analytics_consent(pages: dict[str, ParsedPage], errors: list[str]) -> None:
+    try:
+        script = (ROOT / "assets" / "site.js").read_text(encoding="utf-8")
+    except OSError as exc:
+        errors.append(f"assets/site.js could not be read: {exc}")
+        return
+
+    required_markers = (
+        "G-W92EZDY9L4",
+        "cc_analytics_consent_v1",
+        "analytics_storage: 'denied'",
+        "ad_storage: 'denied'",
+        "window.location.search !== ''",
+        "window.location.hash !== ''",
+        "send_page_view: false",
+        "allow_google_signals: false",
+        "allow_ad_personalization_signals: false",
+        "page_referrer: ''",
+        "googletagmanager.com/gtag/js",
+        "localStorage.setItem",
+    )
+    for marker in required_markers:
+        if marker not in script:
+            errors.append(f"assets/site.js missing consent marker: {marker!r}")
+    if "send_page_view: true" in script:
+        errors.append("assets/site.js must not send an automatic full-URL page_view")
+
+    for filename, page in pages.items():
+        if "assets/site.js" not in page.srcs:
+            errors.append(f"{filename}: shared consent script is missing")
+        raw = page.path.read_text(encoding="utf-8")
+        if "googletagmanager.com/gtag/js" in raw:
+            errors.append(f"{filename}: Google Analytics must not load before shared consent")
+
+    try:
+        css = (ROOT / "assets" / "site.css").read_text(encoding="utf-8")
+        if "fonts.googleapis.com" in css:
+            errors.append("assets/site.css: Google Fonts must not load before consent")
+    except OSError as exc:
+        errors.append(f"assets/site.css could not be read: {exc}")
+
+
 def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str]) -> None:
     current_revox_url = "https://revox.com/de-de/products/revox-b77-mk-iii-stereo-tape-recorder-alice-cooper-limited-edition"
     irrelevant_pioneer_url = "https://pioneer.jp/en/info/profile/pdf/pioneer_corporate_guide_2021.pdf"
@@ -517,6 +563,7 @@ def main() -> int:
     validate_internal_links(pages, errors)
     validate_supporting_files(errors)
     validate_known_regressions(errors)
+    validate_analytics_consent(pages, errors)
     validate_published_collection(pages, errors)
 
     if errors:
