@@ -443,6 +443,14 @@ def validate_published_collection(pages: dict[str, ParsedPage], errors: list[str
         }
         if collection_links != expected_links:
             errors.append(f"{filename}: published collection links mismatch: {sorted(collection_links)!r}")
+        gallery_images = [image for image in page.images if image.get("src") in PUBLISHED_COLLECTION_IMAGES]
+        if len(gallery_images) != len(PUBLIC_COLLECTION_ITEMS):
+            errors.append(f"{filename}: missing published gallery images")
+        for index, image in enumerate(gallery_images):
+            expected_loading = "eager" if index < 2 else "lazy"
+            expected_decoding = "sync" if index < 2 else "async"
+            if image.get("loading") != expected_loading or image.get("decoding") != expected_decoding:
+                errors.append(f"{filename}: gallery image {index + 1} has incorrect loading policy")
         visible = " ".join(page.visible_text.lower().split())
         if "draft photograph" in visible or "taslak fotoğraf" in visible or "local preview" in visible:
             errors.append(f"{filename}: draft-only wording leaked into the public gallery")

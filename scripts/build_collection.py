@@ -108,7 +108,7 @@ def image_dimensions(src: str) -> tuple[int, int]:
     raise ValueError(f"Could not read collection image dimensions: {src}")
 
 
-def picture(item: dict, lang: str, detail: bool = False) -> str:
+def picture(item: dict, lang: str, detail: bool = False, *, lazy: bool = False) -> str:
     title = title_for(item, lang)
     images = item["images"]
     if not images:
@@ -116,9 +116,10 @@ def picture(item: dict, lang: str, detail: bool = False) -> str:
     scene_suffix = "representative interior scene" if lang == "en" else "temsili mekân sahnesi"
     primary_width, primary_height = image_dimensions(images[0])
     orientation_class = " collection-photo--portrait" if primary_height > primary_width else ""
+    loading = 'loading="lazy" decoding="async"' if lazy else 'loading="eager" decoding="sync"'
     primary = (
         f'<div class="collection-photo{orientation_class}">'
-        f'<img src="{esc(images[0])}" alt="{esc(title)}, {scene_suffix}" width="{primary_width}" height="{primary_height}" loading="eager" decoding="sync">'
+        f'<img src="{esc(images[0])}" alt="{esc(title)}, {scene_suffix}" width="{primary_width}" height="{primary_height}" {loading}>'
         "</div>"
     )
     if not detail:
@@ -257,6 +258,7 @@ def gallery(data: dict, lang: str) -> str:
         if is_en
         else "Bilgisayar, ses, fotoğraf ve sinema nesnelerinden oluşan kişisel koleksiyon. Seçili parçalar tekliflere açıktır."
     )
+    # Keep the first desktop row eager; defer the remaining gallery images.
     cards = []
     elements = []
     for index, item in enumerate(data["items"], start=1):
@@ -279,7 +281,7 @@ def gallery(data: dict, lang: str) -> str:
         status, code = status_copy(item["status"], lang)
         cards.append(
             f"""<a class="collection-card" data-category="{category_key}" href="{href}">
-  {picture(item, lang)}
+  {picture(item, lang, lazy=index > 2)}
   <div class="collection-card-body">
     <h2>{esc(item_title)}</h2>
     <p>{esc(excerpt)}</p>
